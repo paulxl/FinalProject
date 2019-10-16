@@ -1,6 +1,10 @@
 package com.skilldistillery.goOrbital.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -27,7 +31,7 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(Volunteer.class, 4);
+		user = em.find(User.class, 1);
 	}
 
 	@AfterEach
@@ -37,7 +41,7 @@ class UserTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		assertEquals(1, user.getId());
 	}
 
 }
