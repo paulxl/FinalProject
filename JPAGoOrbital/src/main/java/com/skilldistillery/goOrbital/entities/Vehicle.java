@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Vehicle {
@@ -14,21 +15,33 @@ public class Vehicle {
 
 	private String name;
 
-	private String description;
-
 	private String type;
 
-	private int height;
+	private String description;
 
+	private Integer capacity;
+
+	@JoinColumn(name = "photo_url")
 	private String photoUrl;
 
-	private int payloadCap;
+	private String range;
+
+	@JoinColumn(name = "provider_id")
+	private Provider provider;
 
 	public Vehicle() {
 	}
 
-//	payloadCapacity
-//	trip
+	public Vehicle(int id, String name, String type, String description, Integer capacity, String photoUrl,
+			String range) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.description = description;
+		this.capacity = capacity;
+		this.photoUrl = photoUrl;
+		this.range = range;
+	}
 
 	public int getId() {
 		return id;
@@ -46,14 +59,6 @@ public class Vehicle {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -62,12 +67,20 @@ public class Vehicle {
 		this.type = type;
 	}
 
-	public int getHeight() {
-		return height;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setHeight(int height) {
-		this.height = height;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
 	}
 
 	public String getPhotoUrl() {
@@ -78,25 +91,33 @@ public class Vehicle {
 		this.photoUrl = photoUrl;
 	}
 
-	public int getPayloadCap() {
-		return payloadCap;
+	public String getRange() {
+		return range;
 	}
 
-	public void setPayloadCap(int payloadCap) {
-		this.payloadCap = payloadCap;
+	public void setRange(String range) {
+		this.range = range;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
+	@Override
+	public String toString() {
+		return "Vehicle [id=" + id + ", name=" + name + ", type=" + type + ", description=" + description
+				+ ", capacity=" + capacity + ", photoUrl=" + photoUrl + ", range=" + range + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + height;
 		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + payloadCap;
-		result = prime * result + ((photoUrl == null) ? 0 : photoUrl.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -109,39 +130,9 @@ public class Vehicle {
 		if (getClass() != obj.getClass())
 			return false;
 		Vehicle other = (Vehicle) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (height != other.height)
-			return false;
 		if (id != other.id)
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (payloadCap != other.payloadCap)
-			return false;
-		if (photoUrl == null) {
-			if (other.photoUrl != null)
-				return false;
-		} else if (!photoUrl.equals(other.photoUrl))
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
-			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Vehicle [id=" + id + ", name=" + name + ", description=" + description + ", type=" + type + ", height="
-				+ height + ", photoUrl=" + photoUrl + ", payloadCap=" + payloadCap + "]";
 	}
 
 }
