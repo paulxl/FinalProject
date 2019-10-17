@@ -53,11 +53,17 @@ class ProviderTest {
 		
 		assertEquals(1, provider.getTrips().size());
 	}
-	@Test
+	//@Test
 	@DisplayName("testing relationships in entity")
 	void test2() {
 		
 		assertEquals(2, provider.getVehicles().size());
+	}
+	@Test
+	@DisplayName("testing user relationship")
+	void test3() {
+		
+		assertEquals("123xyz", provider.getUser().getPassword());
 	}
 	
 }
