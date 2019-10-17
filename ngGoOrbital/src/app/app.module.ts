@@ -27,6 +27,8 @@ import { MatListModule } from '@angular/material/list';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
