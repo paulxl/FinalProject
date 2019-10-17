@@ -9,6 +9,12 @@
     </provider>
     <!--  entities here -->
 <class>com.skilldistillery.goOrbital.entities.User</class>
+<class>com.skilldistillery.goOrbital.entities.Launchport</class>
+<class>com.skilldistillery.goOrbital.entities.Traveler</class>
+<class>com.skilldistillery.goOrbital.entities.TravelerTrip</class>
+<class>com.skilldistillery.goOrbital.entities.Vehicle</class>
+<class>com.skilldistillery.goOrbital.entities.Provider</class>
+<class>com.skilldistillery.goOrbital.entities.Trip</class>
 
 
 

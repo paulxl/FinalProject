@@ -30,7 +30,7 @@ public class Provider {
 	@Column(name = "web_url")
 	private String webUrl;
 	
-	@OneToMany
+	@OneToMany(mappedBy="provider")
 	private List<Vehicle> vehicles;
 	
 	@OneToMany(mappedBy = "provider")

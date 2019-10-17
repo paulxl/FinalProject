@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Traveler {
@@ -24,6 +25,7 @@ public class Traveler {
 	@Column(name = "last_name")
 	private String lastName;
 
+	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 

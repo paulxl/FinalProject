@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class VehicleTest {
@@ -31,7 +32,7 @@ class VehicleTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		vehicle = em.find(Vehicle.class, 1);
+		vehicle = em.find(Vehicle.class, 8);
 	}
 
 	@AfterEach
@@ -40,9 +41,19 @@ class VehicleTest {
 		vehicle = null;
 	}
 
-	@Test
+	//@Test
+	@DisplayName("testing vehicle entities")
 	void test() {
-		fail("Not yet implemented");
+		assertNotNull(vehicle);
+		assertEquals("Omega ", vehicle.getName());
+		
+	}
+	@Test
+	@DisplayName("testing provider relationships")
+	void test1() {
+		
+		assertEquals(5, vehicle.getProvider().getId());
+		
 	}
 
 }

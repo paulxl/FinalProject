@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LaunchportTest {
@@ -40,8 +41,10 @@ class LaunchportTest {
 	}
 
 	@Test
+	@DisplayName("testing fields of entity")
 	void test() {
-		fail("Not yet implemented");
+		assertNotNull(launchP);
+		assertEquals("Spaceport America",launchP.getName());
 	}
 
 }

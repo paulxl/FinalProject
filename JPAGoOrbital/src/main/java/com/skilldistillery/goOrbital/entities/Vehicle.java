@@ -1,10 +1,12 @@
 package com.skilldistillery.goOrbital.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Vehicle {
@@ -21,11 +23,12 @@ public class Vehicle {
 
 	private Integer capacity;
 
-	@JoinColumn(name = "photo_url")
+	@Column(name = "photo_url")
 	private String photoUrl;
 
 	private String range;
 
+	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
