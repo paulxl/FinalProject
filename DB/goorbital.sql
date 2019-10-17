@@ -158,7 +158,6 @@ CREATE TABLE IF NOT EXISTS `traveler_trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `trip_id` INT NOT NULL,
   `traveler_id` INT NOT NULL,
-  `date_signed` DATETIME NULL,
   `date_completed` DATETIME NULL,
   `rating` INT NULL,
   `review` TEXT NULL,
@@ -287,7 +286,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_signed`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
+INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
 
 COMMIT;
 
