@@ -2,34 +2,62 @@ package com.skilldistillery.goOrbital.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Trip {
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	private String description;
-	
-	private String location;
-	
-	private String destination;
-	
-	private int cost;
-	
-	private int length;
-	
-	private int capacity;
-	
-	private LocalDate date;
-	
+
+	@JoinColumn(name = "provider_id")
 	private Provider provider;
-	
+
+	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
+
+	@ManyToOne
+	@JoinColumn(name = "launchport_id")
+	private Launchport launchport;
+
+	private String title;
+
+	private String destination;
+
+	private int cost;
+
+	@Column(name = "length_trip")
+	private int length;
+
+	@Column(name = "trip_date")
+	private LocalDate date;
+
+	@Column(name = "photo_url")
+	private String photoUrl;
+
+	public Trip() {
+	}
+
+	public Trip(int id, Provider provider, Vehicle vehicle, Launchport launchport, String title, String destination,
+			int cost, int length, LocalDate date, String photoUrl) {
+		super();
+		this.id = id;
+		this.provider = provider;
+		this.vehicle = vehicle;
+		this.launchport = launchport;
+		this.title = title;
+		this.destination = destination;
+		this.cost = cost;
+		this.length = length;
+		this.date = date;
+		this.photoUrl = photoUrl;
+	}
 
 	public int getId() {
 		return id;
@@ -39,20 +67,36 @@ public class Trip {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public Provider getProvider() {
+		return provider;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
-	public String getLocation() {
-		return location;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
+	public Launchport getLaunchport() {
+		return launchport;
+	}
+
+	public void setLaunchport(Launchport launchport) {
+		this.launchport = launchport;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDestination() {
@@ -79,14 +123,6 @@ public class Trip {
 		this.length = length;
 	}
 
-	public int getCapacity() {
-		return capacity;
-	}
-
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
-
 	public LocalDate getDate() {
 		return date;
 	}
@@ -95,36 +131,25 @@ public class Trip {
 		this.date = date;
 	}
 
-	public Provider getProvider() {
-		return provider;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setProvider(Provider provider) {
-		this.provider = provider;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 
-	public Vehicle getVehicle() {
-		return vehicle;
-	}
-
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	@Override
+	public String toString() {
+		return "Trip [id=" + id + ", title=" + title + ", destination=" + destination + ", cost=" + cost + ", length="
+				+ length + ",  date=" + date + ", photoUrl=" + photoUrl + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + capacity;
-		result = prime * result + cost;
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
 		result = prime * result + id;
-		result = prime * result + length;
-		result = prime * result + ((location == null) ? 0 : location.hashCode());
-		result = prime * result + ((provider == null) ? 0 : provider.hashCode());
-		result = prime * result + ((vehicle == null) ? 0 : vehicle.hashCode());
 		return result;
 	}
 
@@ -137,71 +162,9 @@ public class Trip {
 		if (getClass() != obj.getClass())
 			return false;
 		Trip other = (Trip) obj;
-		if (capacity != other.capacity)
-			return false;
-		if (cost != other.cost)
-			return false;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (destination == null) {
-			if (other.destination != null)
-				return false;
-		} else if (!destination.equals(other.destination))
-			return false;
 		if (id != other.id)
 			return false;
-		if (length != other.length)
-			return false;
-		if (location == null) {
-			if (other.location != null)
-				return false;
-		} else if (!location.equals(other.location))
-			return false;
-		if (provider == null) {
-			if (other.provider != null)
-				return false;
-		} else if (!provider.equals(other.provider))
-			return false;
-		if (vehicle == null) {
-			if (other.vehicle != null)
-				return false;
-		} else if (!vehicle.equals(other.vehicle))
-			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Trip [id=" + id + ", description=" + description + ", location=" + location + ", destination="
-				+ destination + ", cost=" + cost + ", length=" + length + ", capacity=" + capacity + ", date=" + date
-				+ "]";
-	}
-
-	public Trip(int id, String description, String location, String destination, int cost, int length, int capacity,
-			LocalDate date, Provider provider, Vehicle vehicle) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.location = location;
-		this.destination = destination;
-		this.cost = cost;
-		this.length = length;
-		this.capacity = capacity;
-		this.date = date;
-		this.provider = provider;
-		this.vehicle = vehicle;
-	}
-
-	public Trip() {
-		super();
 	}
 
 }
