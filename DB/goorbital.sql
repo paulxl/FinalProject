@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `provider` ;
 
 CREATE TABLE IF NOT EXISTS `provider` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NULL,
+  `user_id` INT NOT NULL,
   `name` VARCHAR(200) NULL,
   `logo_url` VARCHAR(500) NULL,
   `web_url` VARCHAR(500) BINARY NULL,
@@ -104,7 +104,6 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `destination` VARCHAR(100) NULL,
   `cost` INT NULL,
   `length_trip` INT NULL,
-  `capacity` INT NULL,
   `trip_date` DATETIME NULL,
   `photo_url` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`),
@@ -159,7 +158,6 @@ CREATE TABLE IF NOT EXISTS `traveler_trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `trip_id` INT NOT NULL,
   `traveler_id` INT NOT NULL,
-  `date_signed` DATETIME NULL,
   `date_completed` DATETIME NULL,
   `rating` INT NULL,
   `review` TEXT NULL,
@@ -264,7 +262,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `capacity`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'Earth return', 15000, 1, NULL, NULL, NULL);
+INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'Earth return', 15000, 1, NULL, NULL);
 
 COMMIT;
 
@@ -288,7 +286,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_signed`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
+INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
 
 COMMIT;
 
