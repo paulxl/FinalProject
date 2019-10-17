@@ -1,5 +1,7 @@
 package com.skilldistillery.goOrbital.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehicle {
@@ -31,6 +34,17 @@ public class Vehicle {
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
+
+	@OneToMany(mappedBy = "vehicle")
+	private List<Trip> trips;
+
+	public List<Trip> getTrips() {
+		return trips;
+	}
+
+	public void setTrips(List<Trip> trips) {
+		this.trips = trips;
+	}
 
 	public Vehicle() {
 	}
