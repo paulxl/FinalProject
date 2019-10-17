@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ProviderTest {
@@ -30,7 +31,7 @@ class ProviderTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		provider = em.find(Provider.class, 1);
+		provider = em.find(Provider.class, 3);
 	}
 
 	@AfterEach
@@ -39,9 +40,24 @@ class ProviderTest {
 		provider = null;
 	}
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
 
+	//@Test
+	@DisplayName("testing fields in entity")
+	void test() {
+		assertNotNull(provider);
+		assertEquals("Space X", provider.getName());
+	}
+	//@Test
+	@DisplayName("testing relationships in entity")
+	void test1() {
+		
+		assertEquals(1, provider.getTrips().size());
+	}
+	@Test
+	@DisplayName("testing relationships in entity")
+	void test2() {
+		
+		assertEquals(2, provider.getVehicles().size());
+	}
+	
 }

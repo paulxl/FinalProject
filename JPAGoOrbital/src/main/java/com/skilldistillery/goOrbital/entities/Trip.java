@@ -1,6 +1,7 @@
 package com.skilldistillery.goOrbital.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -16,9 +18,11 @@ public class Trip {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 
+	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 
@@ -40,6 +44,18 @@ public class Trip {
 
 	@Column(name = "photo_url")
 	private String photoUrl;
+	
+	@ManyToMany(mappedBy="trips")
+	private List<Traveler> travelers;
+	
+
+	public List<Traveler> getTravelers() {
+		return travelers;
+	}
+
+	public void setTravelers(List<Traveler> travelers) {
+		this.travelers = travelers;
+	}
 
 	public Trip() {
 	}

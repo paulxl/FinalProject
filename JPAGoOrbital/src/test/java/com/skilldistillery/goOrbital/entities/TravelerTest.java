@@ -31,7 +31,7 @@ class TravelerTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		traveler = em.find(Traveler.class, 1);
+		traveler = em.find(Traveler.class, 2);
 	}
 
 	@AfterEach
@@ -40,11 +40,18 @@ class TravelerTest {
 		traveler = null;
 	}
 
-	@Test
+	//@Test
 	@DisplayName("testing fields of entity")
 	void test() {
 		assertNotNull(traveler);
-		assertEquals("",traveler.getFirstName());
+		assertEquals("John",traveler.getFirstName());
 	}
+	@Test
+	@DisplayName("testing relationships of entity")
+	void test1() {
+		
+		assertEquals(1,traveler.getTrips().size());
+	}
+	
 
 }
