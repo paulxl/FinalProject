@@ -32,7 +32,7 @@ class VehicleTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		vehicle = em.find(Vehicle.class, 8);
+		vehicle = em.find(Vehicle.class, 1);
 	}
 
 	@AfterEach
@@ -48,11 +48,18 @@ class VehicleTest {
 		assertEquals("Omega ", vehicle.getName());
 		
 	}
-	@Test
+	//@Test
 	@DisplayName("testing provider relationships")
 	void test1() {
 		
 		assertEquals(5, vehicle.getProvider().getId());
+		
+	}
+	@Test
+	@DisplayName("testing trip relationships")
+	void test2() {
+		
+		assertEquals(1, vehicle.getTrips().size());
 		
 	}
 

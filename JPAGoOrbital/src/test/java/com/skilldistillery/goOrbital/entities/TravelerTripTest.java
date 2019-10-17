@@ -51,7 +51,7 @@ class TravelerTripTest {
 	@Test
 	@DisplayName("testing tt relationship")
 	void test1() {
-		
+		assertEquals(1, tp.getTrip().getId());
 		assertEquals(2, tp.getTraveler().getId());
 		
 	}
