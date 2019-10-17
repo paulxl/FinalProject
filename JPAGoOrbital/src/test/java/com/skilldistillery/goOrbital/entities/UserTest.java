@@ -41,7 +41,7 @@ class UserTest {
 
 	@Test
 	void test() {
-		assertEquals(1, user.getId());
+		assertEquals("spacex", user.getUsername());
 	}
 
 }
