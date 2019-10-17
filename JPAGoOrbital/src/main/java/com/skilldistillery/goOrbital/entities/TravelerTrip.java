@@ -19,9 +19,6 @@ public class TravelerTrip {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "date_signed")
-	private Date dateSigned;
-
 	@Column(name = "date_completed")
 	private Date dateCompleted;
 
@@ -43,9 +40,8 @@ public class TravelerTrip {
 	public TravelerTrip() {
 	}
 
-	public TravelerTrip(int id, Date dateSigned, Date dateCompleted, Integer rating, String review, String tripNote) {
+	public TravelerTrip(int id, Date dateCompleted, Integer rating, String review, String tripNote) {
 		this.id = id;
-		this.dateSigned = dateSigned;
 		this.dateCompleted = dateCompleted;
 		this.rating = rating;
 		this.review = review;
@@ -54,7 +50,7 @@ public class TravelerTrip {
 
 	@Override
 	public String toString() {
-		return "TravelerTrip [id=" + id + ", dateSigned=" + dateSigned + ", dateCompleted=" + dateCompleted
+		return "TravelerTrip [id=" + id + ", dateSigned"  + ", dateCompleted=" + dateCompleted
 				+ ", rating=" + rating + ", review=" + review + ", tripNote=" + tripNote + "]";
 	}
 
@@ -86,14 +82,6 @@ public class TravelerTrip {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Date getDateSigned() {
-		return dateSigned;
-	}
-
-	public void setDateSigned(Date dateSigned) {
-		this.dateSigned = dateSigned;
 	}
 
 	public Date getDateCompleted() {
