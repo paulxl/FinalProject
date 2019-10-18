@@ -55,11 +55,17 @@ public class TripServiceImpl implements TripService {
 
 	@Override
 	public boolean delete(int id) {
-		Optional<Trip> trip = repo.findById(id);
-		if (trip.isPresent()) {
-			repo.deleteById(id);
+		try {
+			if (repo.existsById(id)) {
+				repo.deleteById(id);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 
 }

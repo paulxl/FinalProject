@@ -28,7 +28,7 @@ public class TravelerTrip {
 
 	@Column(name = "trip_note")
 	private String tripNote;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
