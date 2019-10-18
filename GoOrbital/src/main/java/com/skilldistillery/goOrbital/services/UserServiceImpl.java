@@ -52,11 +52,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean delete(int id) {
-		Optional<User> user = repo.findById(id);
-		if (user.isPresent()) {
-			repo.deleteById(id);
+		try {
+			if (repo.existsById(id)) {
+				repo.deleteById(id);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 
 }

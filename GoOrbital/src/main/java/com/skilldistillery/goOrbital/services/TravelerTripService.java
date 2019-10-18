@@ -10,7 +10,13 @@ public interface TravelerTripService {
 	List<TravelerTrip> index();
 
 	TravelerTrip findById(int id);
+<<<<<<< HEAD
 		
+=======
+	
+	
+	
+>>>>>>> f15c06f28b14c913a0222ef63ef8b029dd0e6b57
 	List <TravelerTrip> findByTripId(int id);
 	
 	List <TravelerTrip> findByTravelerId(int id);

@@ -1,5 +1,6 @@
 package com.skilldistillery.goOrbital.controllers;
 
+<<<<<<< HEAD
 import java.security.Principal;
 import java.util.List;
 
@@ -120,3 +121,8 @@ public class ProviderController {
 	
 }
 
+=======
+public class ProviderController {
+
+}
+>>>>>>> f15c06f28b14c913a0222ef63ef8b029dd0e6b57
