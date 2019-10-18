@@ -264,6 +264,7 @@ COMMIT;
 START TRANSACTION;
 USE `goorbitaldb`;
 INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'Earth return', 15000, 1, NULL, NULL);
+INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (2, 2, 2, 2, 'Mars', 'Mars for a while', 54000, 720, NULL, NULL);
 
 COMMIT;
 
@@ -288,6 +289,7 @@ COMMIT;
 START TRANSACTION;
 USE `goorbitaldb`;
 INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 1, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
+INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (2, 2, 2, NULL, 4, 'kinda long', 'bring snacks');
 
 COMMIT;
 

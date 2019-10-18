@@ -21,7 +21,7 @@ import com.skilldistillery.goOrbital.services.TravelerTripService;
 
 @RequestMapping("api")
 @RestController
-//@CrossOrigin({ "*", "http://localhost:4210" })
+@CrossOrigin({ "*", "http://localhost:4210" })
 public class TravelerTripController {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class TravelerTripController {
 //	ping check
 	@GetMapping("travelerTrip/ping")
 	public String ping() {
-		return "pong/n";
+		return "pong";
 	}
 
 //	Return all traveler trips    GET api/travelerTrip
@@ -80,7 +80,7 @@ public class TravelerTripController {
 
 //	Update / Edit Trip           PUT api.travelerTrip{ttid}
 	@PutMapping("travelerTrip/{ttid}")
-	public TravelerTrip replaceTrip(@PathVariable int ttid, HttpServletRequest req, HttpServletResponse res
+	public TravelerTrip replaceTrip(@PathVariable int ttid, @RequestBody TravelerTrip travelerTrip, HttpServletRequest req, HttpServletResponse res
 			) {
 
 		try {
