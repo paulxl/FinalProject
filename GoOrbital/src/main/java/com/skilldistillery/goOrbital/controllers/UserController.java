@@ -39,7 +39,9 @@ import com.skilldistillery.goOrbital.services.UserService;
 //		Return Type	user	GET api/user/{id}	Gets one user by id
 		@GetMapping("user/{id}")
 		public User getUserById(@PathVariable int id, HttpServletResponse resp) {
+			
 			User user;
+			
 			try {
 				user = serv.findById(id);
 				if (user == null) {
