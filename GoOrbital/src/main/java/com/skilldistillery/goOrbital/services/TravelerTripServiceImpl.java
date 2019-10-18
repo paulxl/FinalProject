@@ -4,16 +4,21 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.skilldistillery.goOrbital.entities.Provider;
 import com.skilldistillery.goOrbital.entities.Traveler;
 import com.skilldistillery.goOrbital.entities.TravelerTrip;
 import com.skilldistillery.goOrbital.repositories.TravelerTripRepository;
 
+@Service
 public class TravelerTripServiceImpl implements TravelerTripService {
 
 	@Autowired
 	public TravelerTripRepository repo;
 	
+	
+
 	@Override
 	public List<TravelerTrip> index() {
 		List<TravelerTrip> traveler = repo.findAll();
@@ -56,5 +61,23 @@ public class TravelerTripServiceImpl implements TravelerTripService {
 		}
 		return false;
 	}
+
+
+
+	@Override
+	public List<TravelerTrip> findByTripId(int id) {
+		List<TravelerTrip> ttt = repo.findByTripId(id);
+		
+		return ttt;
+	}
+
+	@Override
+	public List<TravelerTrip> findByTravelerId(int id) {
+		List<TravelerTrip> ttT= repo.findByTravelerId(id);
+		
+		return ttT;
+	}
+
+	
 
 }
