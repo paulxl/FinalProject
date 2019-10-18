@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.goOrbital.entities.Provider;
 import com.skilldistillery.goOrbital.repositories.ProviderRepository;
 
+@Service
 public class ProviderServiceImpl implements ProviderService {
 
 	@Autowired
@@ -39,9 +41,9 @@ public class ProviderServiceImpl implements ProviderService {
 		Provider provid = findById(id);
 
 		if (provid != null) {
-			provid.setName(provid.getName());
-			provid.setLogoUrl(provid.getLogoUrl());
-			provid.setWebUrl(provid.getWebUrl());
+			provid.setName(provider.getName());
+			provid.setLogoUrl(provider.getLogoUrl());
+			provid.setWebUrl(provider.getWebUrl());
 
 		}
 		return repo.saveAndFlush(provid);

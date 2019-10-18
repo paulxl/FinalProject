@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.goOrbital.entities.Traveler;
 import com.skilldistillery.goOrbital.repositories.TravelerRepository;
 
+@Service
 public class TravelerServiceImpl implements TravelerService {
 
 	@Autowired
@@ -39,9 +41,9 @@ public class TravelerServiceImpl implements TravelerService {
 		Traveler trav = findById(id);
 
 		if (trav != null) {
-			trav.setFirstName(trav.getFirstName());
-			trav.setLastName(trav.getLastName());
-			trav.setPhotoUrl(trav.getPhotoUrl());
+			trav.setFirstName(traveler.getFirstName());
+			trav.setLastName(traveler.getLastName());
+			trav.setPhotoUrl(traveler.getPhotoUrl());
 		}
 		return repo.saveAndFlush(trav);
 	}
