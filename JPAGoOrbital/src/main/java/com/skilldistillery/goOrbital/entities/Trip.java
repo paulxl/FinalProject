@@ -9,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -24,7 +24,7 @@ public class Trip {
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
-
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
@@ -50,7 +50,7 @@ public class Trip {
 	private String photoUrl;
 	
 	@JsonManagedReference
-	@ManyToMany(mappedBy="trips")
+	@OneToMany(mappedBy="trips")
 	private List<Traveler> travelers;
 	
 
