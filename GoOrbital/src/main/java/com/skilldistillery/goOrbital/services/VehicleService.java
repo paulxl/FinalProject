@@ -5,7 +5,8 @@ import java.util.List;
 import com.skilldistillery.goOrbital.entities.Vehicle;
 
 public interface VehicleService {
-List<Vehicle> index();
+
+	List<Vehicle> index();
 	
 	Vehicle findById(int id);
 	

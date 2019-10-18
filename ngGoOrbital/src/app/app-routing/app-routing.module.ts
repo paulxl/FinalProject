@@ -5,10 +5,12 @@ import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
 
 const routes: Routes = [
   {
-      path: '',
-      component: NavBarComponent,
-
+      path: 'navBarCommponent',
+      component: NavBarComponent
   },
+  {
+    path:
+  }
 ];
 
 @NgModule({

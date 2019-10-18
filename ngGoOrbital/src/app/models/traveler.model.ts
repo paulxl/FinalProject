@@ -1,0 +1,2 @@
+export class Traveler.Model {
+}
