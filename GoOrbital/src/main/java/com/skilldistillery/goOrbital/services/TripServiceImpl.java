@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.goOrbital.entities.Trip;
 import com.skilldistillery.goOrbital.repositories.TripRepository;
 
+@Service
 public class TripServiceImpl implements TripService {
 
 	@Autowired
