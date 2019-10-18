@@ -17,8 +17,8 @@ public class VehicleServiceImpl implements VehicleService {
 	
 	@Override
 	public List<Vehicle> index() {
-		List<Vehicle> vehicle = repo.findAll();
-		return vehicle;
+		List<Vehicle> vehicles = repo.findAll();
+		return vehicles;
 	}
 
 	@Override

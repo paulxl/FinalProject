@@ -9,9 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -33,8 +34,9 @@ public class Traveler {
 
 	@Column(name = "photo_url")
 	private String photoUrl;
-	@JsonManagedReference
-	@ManyToMany
+	
+	@JsonIgnore
+	@OneToMany
 	@JoinTable(name = "traveler_trip", joinColumns = @JoinColumn(name = "traveler_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
 	private List<Trip> trips;
 

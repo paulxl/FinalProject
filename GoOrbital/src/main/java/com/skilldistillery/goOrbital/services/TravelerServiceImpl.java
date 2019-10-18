@@ -50,11 +50,17 @@ public class TravelerServiceImpl implements TravelerService {
 
 	@Override
 	public boolean delete(int id) {
-		Optional<Traveler> traveler = repo.findById(id);
-		if (traveler.isPresent()) {
-			repo.deleteById(id);
+		try {
+			if (repo.existsById(id)) {
+				repo.deleteById(id);
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 
 }
