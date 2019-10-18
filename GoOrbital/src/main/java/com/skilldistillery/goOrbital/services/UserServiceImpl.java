@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.goOrbital.entities.User;
 import com.skilldistillery.goOrbital.repositories.UserRepository;
 
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -39,10 +41,11 @@ public class UserServiceImpl implements UserService {
 		User us = findById(id);
 		
 		if (us != null) {
-			us.setPassword(us.getPassword());
-			us.setUsername(us.getUsername());
-			us.setEnabled(us.isEnabled());
-			us.setRole(us.getRole());
+			us.setPassword(user.getPassword());
+			us.setUsername(user.getUsername());
+			us.setEmail(user.getEmail());
+			us.setEnabled(user.isEnabled());
+			us.setRole(user.getRole());
 		}
 		return repo.saveAndFlush(us);
 	}

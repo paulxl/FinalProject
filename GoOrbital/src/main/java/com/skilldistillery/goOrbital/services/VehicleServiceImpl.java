@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.goOrbital.entities.Vehicle;
 import com.skilldistillery.goOrbital.repositories.VehicleRepository;
 
+@Service
 public class VehicleServiceImpl implements VehicleService {
 
 	@Autowired
@@ -39,12 +41,12 @@ public class VehicleServiceImpl implements VehicleService {
 		Vehicle veh = findById(id);
 		
 		if (veh != null) {
-			veh.setName(veh.getName());
-			veh.setType(veh.getType());
-			veh.setDescription(veh.getDescription());
-			veh.setCapacity(veh.getCapacity());
-			veh.setPhotoUrl(veh.getPhotoUrl());
-			veh.setRange(veh.getRange());
+			veh.setName(vehicle.getName());
+			veh.setType(vehicle.getType());
+			veh.setDescription(vehicle.getDescription());
+			veh.setCapacity(vehicle.getCapacity());
+			veh.setPhotoUrl(vehicle.getPhotoUrl());
+			veh.setRange(vehicle.getRange());
 		}
 		return repo.saveAndFlush(veh);
 	}
