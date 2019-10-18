@@ -12,12 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Trip {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
@@ -25,7 +28,8 @@ public class Trip {
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
-
+	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "launchport_id")
 	private Launchport launchport;
@@ -45,6 +49,7 @@ public class Trip {
 	@Column(name = "photo_url")
 	private String photoUrl;
 	
+	@JsonManagedReference
 	@ManyToMany(mappedBy="trips")
 	private List<Traveler> travelers;
 	

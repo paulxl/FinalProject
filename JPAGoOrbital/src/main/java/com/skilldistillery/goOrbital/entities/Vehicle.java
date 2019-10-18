@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Vehicle {
 
@@ -30,11 +33,13 @@ public class Vehicle {
 	private String photoUrl;
 
 	private String range;
-
+	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
-
+	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "vehicle")
 	private List<Trip> trips;
 
