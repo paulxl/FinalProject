@@ -1,6 +1,5 @@
 package com.skilldistillery.goOrbital.controllers;
 
-<<<<<<< HEAD
 import java.security.Principal;
 import java.util.List;
 
@@ -69,41 +68,40 @@ public class ProviderController {
 		return provider;
 		
 	}
-	//  "status": 404,
-    // "error": "Not Found",
+
 
 	
-//	@PostMapping(path ="posts")
-//	public Life create(@RequestBody Life life, HttpServletResponse resp, HttpServletRequest req) {
-//		try {
-//			svr.create(life);
-//			resp.setStatus(201);
-//			StringBuffer url = req.getRequestURL();
-//			url.append("/");
-//			url.append(life.getId());
-//			resp.setHeader("Location", url.toString());
-//		} catch (Exception e) {
-//			resp.setStatus(400);
-//			life = null;
-//			e.printStackTrace();
-//		}
-//		return life;
-//	}
+	@PostMapping(path ="provider")
+	public Provider create(@RequestBody Provider provider, HttpServletResponse resp, HttpServletRequest req) {
+		try {
+			svr.create(provider);
+			resp.setStatus(201);
+			StringBuffer url = req.getRequestURL();
+			url.append("/");
+			url.append(provider.getId());
+			resp.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			resp.setStatus(400);
+			provider = null;
+			e.printStackTrace();
+		}
+		return provider;
+	}
 	
 //
 //	@PutMapping(path ="posts/{trackerId}")
-//	public Life update(@PathVariable("trackerId") Integer trackerId, @RequestBody Life life, HttpServletResponse resp) {
+//	public Provider update(@PathVariable("trackerId") Integer trackerId, @RequestBody Provider provider, HttpServletResponse resp) {
 //
 //		try {
-//			svr.update(trackerId, life);
-//			if (life == null) 
+//			svr.update(trackerId, provider);
+//			if (provider == null) 
 //			{resp.setStatus(404);}
 //		} catch (Exception e) {
 //			resp.setStatus(400);
 //			e.printStackTrace();
-//			life = null;
+//			provider = null;
 //		}
-//		return life;
+//		return provider;
 //		
 //	}
 //
@@ -120,9 +118,3 @@ public class ProviderController {
 	
 	
 }
-
-=======
-public class ProviderController {
-
-}
->>>>>>> f15c06f28b14c913a0222ef63ef8b029dd0e6b57
