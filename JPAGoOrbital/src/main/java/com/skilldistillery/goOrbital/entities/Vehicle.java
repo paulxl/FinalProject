@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Vehicle {
@@ -35,7 +34,7 @@ public class Vehicle {
 
 	private String range;
 	
-	@JsonBackReference
+	@JsonBackReference(value = "providerVehicles")
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
