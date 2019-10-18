@@ -24,7 +24,7 @@ import com.skilldistillery.goOrbital.services.TripService;
 @RequestMapping("api")
 @RestController
 @CrossOrigin({"*", "http://localhost:4210"})
-public class TripController {
+public class ProviderController {
 
 
 	@Autowired
