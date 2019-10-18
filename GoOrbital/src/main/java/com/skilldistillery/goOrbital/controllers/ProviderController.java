@@ -36,13 +36,13 @@ public class ProviderController {
 	{ return "pong/n";  }
 
 	
-	//works	
-	@GetMapping(path ="providers")
+	//err
+	@GetMapping(path ="provider")
 	public List<Provider> index() {
 		return svr.index();
 	}
 
-	
+	//works		
 	@GetMapping(path ="provider/{pid}")
 	public Provider getById(@PathVariable("pid") Integer pid, HttpServletResponse resp) {
 		Provider provider;
