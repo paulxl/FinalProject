@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Trip {
@@ -51,7 +52,7 @@ public class Trip {
 	@Column(name = "photo_url")
 	private String photoUrl;
 	
-	
+	@JsonManagedReference(value = "TTrTrip")
 	@OneToMany(mappedBy="trip", fetch = FetchType.EAGER)
 	private List<TravelerTrip> travelers;
 	
