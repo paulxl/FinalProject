@@ -60,8 +60,6 @@ public class TravelerTripServiceImpl implements TravelerTripService {
 		return false;
 	}
 
-
-
 	@Override
 	public List<TravelerTrip> findByTripId(int id) {
 		List<TravelerTrip> ttt = repo.findByTripId(id);
@@ -75,7 +73,6 @@ public class TravelerTripServiceImpl implements TravelerTripService {
 		
 		return ttT;
 	}
-
 	
 
 }
