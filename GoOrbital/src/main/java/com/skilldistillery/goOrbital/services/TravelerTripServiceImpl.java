@@ -62,12 +62,7 @@ public class TravelerTripServiceImpl implements TravelerTripService {
 		return false;
 	}
 
-	@Override
-	public List<TravelerTrip> findByProviderId(int id) {
-		List<TravelerTrip> ttP = repo.findByProviderId(id);
-		
-		return ttP;
-	}
+
 
 	@Override
 	public List<TravelerTrip> findByTripId(int id) {

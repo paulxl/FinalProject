@@ -11,7 +11,7 @@ public interface TravelerTripService {
 
 	TravelerTrip findById(int id);
 	
-	List <TravelerTrip> findByProviderId(int id);
+	
 	
 	List <TravelerTrip> findByTripId(int id);
 	
