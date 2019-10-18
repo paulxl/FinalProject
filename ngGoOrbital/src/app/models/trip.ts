@@ -1,8 +1,11 @@
+import { Deserializable } from './../interfaces/deserializable';
 import { Launchport } from './launchport';
 import { Provider } from "./provider";
 import { Vehicle } from './vehicle';
-export class Trip {
+import { Traveler } from './traveler';
+export class Trip implements Deserializable {
   id: number;
+  travelers: Traveler[];
   provider: Provider;
   vehicle: Vehicle;
   launchport: Launchport;
@@ -12,5 +15,12 @@ export class Trip {
   tripLength: number;
   tripDate: Date = new Date();
   photoURL: string;
-
+  deserialize(input: any): this {
+    Object.assign(this, input);
+    this.provider = new Provider().deserialize(input.provider);
+    this.vehicle = new Vehicle().deserialize(input.vehicle);
+    this.launchport = new Launchport().deserialize(input.launchport);
+    this.travelers = input.travelers.map(( traveler => new Traveler().deserialize(traveler)));
+    return this;
+  }
 }
