@@ -21,85 +21,103 @@ import com.skilldistillery.goOrbital.services.TravelerTripService;
 
 @RequestMapping("api")
 @RestController
-@CrossOrigin({ "*", "http://localhost:4210" })
+//@CrossOrigin({ "*", "http://localhost:4210" })
 public class TravelerTripController {
 
 	@Autowired
-	private TravelerTripService tts;
+	private TravelerTripService serv;
 
-	@GetMapping("ping")
+//	ping check
+	@GetMapping("travelerTrip/ping")
 	public String ping() {
 		return "pong/n";
 	}
 
-	@GetMapping(path = "travelerTrips")
-	public List<TravelerTrip> index() {
-		return tts.index();
+//	Return all traveler trips    GET api/travelerTrip
+	@GetMapping("travelerTrip")
+	public List<TravelerTrip> allTravelerTrips() {
+		return serv.index();
 	}
-	
-	@PostMapping("travelerTrip")
-	public TravelerTrip create(@RequestBody TravelerTrip travelerTrip) {
-		travelerTrip = tts.create(travelerTrip);
+
+//	Return trip by id     GET api/traavelerTrip/{id} 
+	@GetMapping(path = "travelerTrip/{ttid}")
+	public TravelerTrip getTravelerTripById(@PathVariable int ttid, HttpServletResponse resp) {
+
+		TravelerTrip travelerTrip;
+
+		try {
+			travelerTrip = serv.findById(ttid);
+			if (travelerTrip == null) {
+				resp.setStatus(400);
+			} else {
+				resp.setStatus(200);
+			}
+		} catch (Exception e) {
+			resp.setStatus(404);
+			e.printStackTrace();
+			travelerTrip = null;
+		}
 		return travelerTrip;
 	}
 
-	@GetMapping(path = "travelerTrip/{ttid}")
-	public TravelerTrip show(@PathVariable Integer ttid, HttpServletResponse resp) {
-
-		TravelerTrip travelerTrip;
-		
+//  Create new TravelerTrip   POST api/travelerTrip
+	@PostMapping("travelerTrip")
+	public TravelerTrip create(@RequestBody TravelerTrip travelerTrip, HttpServletResponse resp, HttpServletRequest req) {
 		try {
-			travelerTrip = tts.findById(ttid);
+			travelerTrip = serv.create(travelerTrip);
+			resp.setStatus(201);
+            StringBuffer url = req.getRequestURL();
+            url.append("/");
+            url.append(travelerTrip.getId());
+            resp.setHeader("Location", url.toString());
+        } catch (Exception e) {
+            resp.setStatus(400);
+            travelerTrip = null;
+            e.printStackTrace();
+        }
+		return travelerTrip;
+	}
+
+//	Update / Edit Trip           PUT api.travelerTrip{ttid}
+	@PutMapping("travelerTrip/{ttid}")
+	public TravelerTrip replaceTrip(@PathVariable int ttid, HttpServletRequest req, HttpServletResponse res
+			) {
+
+		try {
+			travelerTrip.setId(ttid);
+			travelerTrip = serv.update(travelerTrip, ttid);
+
+			if (travelerTrip == null) {
+				res.setStatus(404);
+			}
+
 		} catch (Exception e) {
-			resp.setStatus(400);
 			travelerTrip = null;
+			res.setStatus(400);
 			e.printStackTrace();
 		}
 		return travelerTrip;
 	}
 	
 	@DeleteMapping("travelerTrip/{ttid}")
-	public void destroy(@PathVariable("ttid") int ttid, HttpServletResponse resp, HttpServletRequest req) {
-		try { 
-			if (ttid < 0) {
-				resp.setStatus(404);
-			} else {
-				boolean status = tts.delete(ttid);
-				if (status) {
-					resp.setStatus(204);
-				} else {
-					resp.setStatus(400);
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			resp.setStatus(400);
-	}
-}
-	@PutMapping("travelerTrip/{ttid}")
-	public TravelerTrip replaceTrip(HttpServletRequest req, HttpServletResponse res, @PathVariable("ttid") int ttid, @RequestBody TravelerTrip travelerTrip) {
-		
+	public Boolean destroyTravelerTripById(@PathVariable int ttid, HttpServletResponse resp, HttpServletRequest req) {
+		Boolean status;
+
 		try {
-			travelerTrip = tts.update(travelerTrip, ttid);
-			if (travelerTrip == null) {
-				res.setStatus(404); 
+			status = serv.delete(ttid);
+			if (status) {
+				resp.setStatus(204);
+				status = true;
 			} else {
-				res.setStatus(201);
+				status = false;
+				resp.setStatus(404);
 			}
 		} catch (Exception e) {
-			res.setStatus(400);
+			status = false;
+			resp.setStatus(400);
 			e.printStackTrace();
-		} 
-		return travelerTrip; 
+		}
+		return status;
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-

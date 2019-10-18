@@ -15,36 +15,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.goOrbital.entities.User;
-import com.skilldistillery.goOrbital.services.UserService;
+import com.skilldistillery.goOrbital.entities.Vehicle;
+import com.skilldistillery.goOrbital.services.VehicleService;
 
 	@RestController
 	@RequestMapping("api")
-	public class UserController {
+	public class VehicleController {
 		
 		@Autowired
-		UserService serv;
+		VehicleService serv;
 		
-		@GetMapping("user/ping")
+		@GetMapping("vehicle/ping")
 		public String ping() {
 			return "pong\n";
 		}
 		
-//		Return Type	List<user>	GET api/user	Gets all user
-		@GetMapping("user")
-		public List<User> allUsers() {
+//		Return Type	List<vehicle>	GET api/vehicle	Gets all vehicle
+		@GetMapping("vehicle")
+		public List<Vehicle> allVehicles() {
 			return serv.index();
 		}
 
-//		Return Type	user	GET api/user/{id}	Gets one user by id
-		@GetMapping("user/{id}")
-		public User getUserById(@PathVariable int id, HttpServletResponse resp) {
-			
-			User user;
-			
+//		Return Type	vehicle	GET api/vehicle/{id}	Gets one vehicle by id
+		@GetMapping("vehicle/{id}")
+		public Vehicle getVehicleById(@PathVariable int id, HttpServletResponse resp) {
+			Vehicle vehicle;
 			try {
-				user = serv.findById(id);
-				if (user == null) {
+				vehicle = serv.findById(id);
+				if (vehicle == null) {
 					resp.setStatus(400);
 				}else {
 					resp.setStatus(200);
@@ -52,51 +50,51 @@ import com.skilldistillery.goOrbital.services.UserService;
 			} catch (Exception e) {
 				resp.setStatus(404);
 				e.printStackTrace();
-				user = null;
+				vehicle = null;
 			}
 			
-			return user;
+			return vehicle;
 		}
 
-//		Return Type	user	POST api/users	Creates a new user
-		@PostMapping("user")
-		public User createUser(@RequestBody User user, HttpServletResponse resp,HttpServletRequest req) {
+//		Return Type	vehicle	POST api/vehicles	Creates a new vehicle
+		@PostMapping("vehicle")
+		public Vehicle createVehicle(@RequestBody Vehicle vehicle, HttpServletResponse resp,HttpServletRequest req) {
 			try {
-				user = serv.create(user);
+				vehicle = serv.create(vehicle);
 	            resp.setStatus(201);
 	            StringBuffer url = req.getRequestURL();
 	            url.append("/");
-	            url.append(user.getId());
+	            url.append(vehicle.getId());
 	            resp.setHeader("Location", url.toString());
 	        } catch (Exception e) {
 	            resp.setStatus(400);
-	            user = null;
+	            vehicle = null;
 	            e.printStackTrace();
 	        }
-	        return user;
+	        return vehicle;
 	    }
 
-//		Return Type	user	PUT api/user/{id}	Replaces an existing user by id
-		@PutMapping("user/{id}")
-		public User replace(@PathVariable int id, @RequestBody User user, HttpServletResponse resp) {
+//		Return Type	vehicle	PUT api/vehicle/{id}	Replaces an existing vehicle by id
+		@PutMapping("vehicle/{id}")
+		public Vehicle replace(@PathVariable int id, @RequestBody Vehicle vehicle, HttpServletResponse resp) {
 			try {
-				user.setId(id);
-				user = serv.update(user, id);
+				vehicle.setId(id);
+				vehicle = serv.update(vehicle, id);
 				
-				if (user == null) {
+				if (vehicle == null) {
 					resp.setStatus(404);
 				}
 			} catch (Exception e) {
-				user = null;
+				vehicle = null;
 				resp.setStatus(400);
 				e.printStackTrace();
 			}
-			return user;
+			return vehicle;
 		}
 
-//		Return Type	Boolean	DELETE api/user/{id}	Deletes an existing user by id
-		@DeleteMapping("user/{id}")
-		public Boolean destroyUserById(@PathVariable int id, HttpServletResponse resp) {
+//		Return Type	Boolean	DELETE api/vehicle/{id}	Deletes an existing vehicle by id
+		@DeleteMapping("vehicle/{id}")
+		public Boolean destroyVehicleById(@PathVariable int id, HttpServletResponse resp) {
 			Boolean status;
 			try {
 				status = serv.delete(id);
