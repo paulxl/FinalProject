@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Launchport {
 
@@ -21,6 +23,7 @@ public class Launchport {
 
 	private double longitude;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "launchport")
 	private List<Trip> trips;
 

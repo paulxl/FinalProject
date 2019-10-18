@@ -1,6 +1,6 @@
 package com.skilldistillery.goOrbital.entities;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,16 +20,18 @@ public class Trip {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@JsonBackReference
+	
+	@JsonBackReference(value = "providerTrips")
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
-	@JsonBackReference
+	
+//	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 	
-	@JsonBackReference
+//	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "launchport_id")
 	private Launchport launchport;
@@ -44,7 +46,7 @@ public class Trip {
 	private int length;
 
 	@Column(name = "trip_date")
-	private LocalDate date;
+	private Date date;
 
 	@Column(name = "photo_url")
 	private String photoUrl;
@@ -66,7 +68,7 @@ public class Trip {
 	}
 
 	public Trip(int id, Provider provider, Vehicle vehicle, Launchport launchport, String title, String destination,
-			int cost, int length, LocalDate date, String photoUrl) {
+			int cost, int length, Date date, String photoUrl) {
 		super();
 		this.id = id;
 		this.provider = provider;
@@ -144,11 +146,11 @@ public class Trip {
 		this.length = length;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

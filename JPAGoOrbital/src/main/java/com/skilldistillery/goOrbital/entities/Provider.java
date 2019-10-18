@@ -32,11 +32,11 @@ public class Provider {
 	@Column(name = "web_url")
 	private String webUrl;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value = "providerVehicles")
 	@OneToMany(mappedBy="provider")
 	private List<Vehicle> vehicles;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value = "providerTrips")
 	@OneToMany(mappedBy = "provider")
 	private List<Trip> trips;
 	
