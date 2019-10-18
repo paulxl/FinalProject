@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `provider` ;
 
 CREATE TABLE IF NOT EXISTS `provider` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NULL,
+  `user_id` INT NOT NULL,
   `name` VARCHAR(200) NULL,
   `logo_url` VARCHAR(500) NULL,
   `web_url` VARCHAR(500) BINARY NULL,
@@ -158,7 +158,6 @@ CREATE TABLE IF NOT EXISTS `traveler_trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `trip_id` INT NOT NULL,
   `traveler_id` INT NOT NULL,
-  `date_signed` DATETIME NULL,
   `date_completed` DATETIME NULL,
   `rating` INT NULL,
   `review` TEXT NULL,
@@ -217,15 +216,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (1, 1, 'Space X', NULL, 'https://www.spacex.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (2, 2, 'United Launch Alliance', NULL, 'https://www.ulalaunch.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (3, 3, 'Blue Origin', NULL, 'https://www.blueorigin.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (4, 4, 'Virgin Galactic', NULL, 'https://www.virgingalactic.com');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (5, 5, 'Northrup Grumman ', NULL, 'https://www.northropgrumman.com/MediaResources/MediaKits/Space/Home.aspx?utm_source=DigitalAd&utm_medium=Redirect&utm_campaign=SpaceOrig+Redirect');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (6, 6, 'NASA', NULL, 'www.nasa.gov');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (7, 7, 'Bigelow Aerospace ', NULL, 'https://bigelowaerospace.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (8, 13, 'Boeing', NULL, 'https://www.boeing.com/space/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (9, 14, 'Sierra Nevada Corporation', NULL, 'https://www.sncorp.com/');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (1, 1, 'Space X', 'assets/img/spaceX.jpg', 'https://www.spacex.com/');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (2, 2, 'United Launch Alliance', 'assets/img/ula.jpg', 'https://www.ulalaunch.com/');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (3, 3, 'Blue Origin', 'assets/img/blueOrigin.jpeg', 'https://www.blueorigin.com/');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (4, 4, 'Virgin Galactic', 'assets/img/virginGal.jpeg', 'https://www.virgingalactic.com');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (5, 5, 'Northrup Grumman ', 'assets/img/ngorbital.jpg', 'https://www.northropgrumman.com/MediaResources/MediaKits/Space/Home.aspx?utm_source=DigitalAd&utm_medium=Redirect&utm_campaign=SpaceOrig+Redirect');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (6, 6, 'NASA', 'assets/img/nasa.jpg', 'www.nasa.gov');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (7, 7, 'Bigelow Aerospace ', 'assets/img/bigelow.jpeg', 'https://bigelowaerospace.com/');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (8, 13, 'Boeing', 'assets/img/boeing.jpeg', 'https://www.boeing.com/space/');
+INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (9, 14, 'Sierra Nevada Corporation', 'assets/img/snc.jpg', 'https://www.sncorp.com/');
 
 COMMIT;
 
@@ -242,7 +241,7 @@ INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `rang
 INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (5, 8, 'Starship', 'passenger', 'passenger and crew transports to Mars', 'Mars', 100, NULL);
 INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (6, 1, 'Dragon', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
 INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (7, 3, 'New Shepard', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (8, 5, 'Omega ', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 15, NULL);
+INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (8, 5, 'Omega', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 15, NULL);
 
 COMMIT;
 
@@ -287,7 +286,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_signed`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
+INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
 
 COMMIT;
 
