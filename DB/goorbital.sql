@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(150) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `enabled` TINYINT NULL,
-  `role` VARCHAR(45) NULL,
+  `enabled` TINYINT NOT NULL,
+  `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -193,20 +193,21 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (1, 'spacex', '123xyz', 'buzz@spacex.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (2, 'unitedla', '123xyz', 'buzz@unitedla.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (3, 'blueorigin', '123xyz', 'buzz@blueorigin.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (4, 'virgingalactic', '123xyz', 'buzz@virgalactic.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (5, 'northgrum', '123xyz', 'buzz@northgrum.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (6, 'nasa', '123xyz', 'buzz@nasa.gov', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (7, 'bigelow', '123xyz', 'buzz@bigelow.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (8, 'jglen', '123xyz', 'jglen@gmail.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (9, 'gbluford', '123xyz', 'gbluford@gmail.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (10, 'blightyear', '123xyz', 'blightyear@gmail.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (11, 'sride', '123xyz', 'sride@gmail.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (12, 'jwilliams', '123xyz', 'jwilliams@gmail.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (13, 'boeing', '123xyz', 'boeing@gmail.com', NULL, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (14, 'sierranc', '123xyz', 'sierranc@gmail.com', NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (1, 'spacex', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (2, 'unitedla', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (3, 'blueorigin', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (4, 'virgingalactic', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (5, 'northgrum', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (6, 'nasa', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (7, 'bigelow', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (8, 'jglen', '123xyz', 'jglen@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (9, 'gbluford', '123xyz', 'gbluford@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (10, 'blightyear', '123xyz', 'blightyear@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (11, 'sride', '123xyz', 'sride@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (12, 'jwilliams', '123xyz', 'jwilliams@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (13, 'boeing', '123xyz', 'boeing@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (14, 'sierranc', '123xyz', 'sierranc@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (15, 'admin', 'admin', 'admin@orbtmail.com', 1, 'admin');
 
 COMMIT;
 
@@ -286,7 +287,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 2, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
+INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 1, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
 
 COMMIT;
 
