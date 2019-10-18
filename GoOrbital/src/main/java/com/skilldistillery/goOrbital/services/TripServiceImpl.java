@@ -39,12 +39,14 @@ public class TripServiceImpl implements TripService {
 		Trip tr = findById(id);
 
 		if (tr != null) {
-			tr.setTitle(tr.getTitle());
-			tr.setDestination(tr.getDestination());
-			tr.setCost(tr.getCost());
-			tr.setLength(tr.getLength());
-			tr.setDate(tr.getDate());
-			tr.setPhotoUrl(tr.getPhotoUrl());
+			tr.setVehicle(trip.getVehicle());
+			tr.setLaunchport(trip.getLaunchport());
+			tr.setTitle(trip.getTitle());
+			tr.setDestination(trip.getDestination());
+			tr.setCost(trip.getCost());
+			tr.setLength(trip.getLength());		
+			tr.setDate(trip.getDate());
+			tr.setPhotoUrl(trip.getPhotoUrl());
 		}
 		return repo.saveAndFlush(tr);
 	}
