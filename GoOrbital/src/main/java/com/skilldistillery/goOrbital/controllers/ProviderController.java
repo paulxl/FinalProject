@@ -42,12 +42,6 @@ public class ProviderController {
 		return svr.index();
 	}
 
-
-	
-//	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
-//	public Principal authenticate(Principal principal) {
-//	    return principal;
-//	}
 	
 	@GetMapping(path ="provider/{pid}")
 	public Provider getById(@PathVariable("pid") Integer pid, HttpServletResponse resp) {
@@ -88,33 +82,47 @@ public class ProviderController {
 		return provider;
 	}
 	
-//
-//	@PutMapping(path ="posts/{trackerId}")
-//	public Provider update(@PathVariable("trackerId") Integer trackerId, @RequestBody Provider provider, HttpServletResponse resp) {
-//
-//		try {
-//			svr.update(trackerId, provider);
-//			if (provider == null) 
-//			{resp.setStatus(404);}
-//		} catch (Exception e) {
-//			resp.setStatus(400);
-//			e.printStackTrace();
-//			provider = null;
-//		}
-//		return provider;
-//		
-//	}
-//
-//	@DeleteMapping(path ="posts/{trackerId}")
-//	public void delete(@PathVariable int trackerId, HttpServletRequest req, HttpServletResponse resp) {
-//		try {
-//			svr.delete(trackerId);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			resp.setStatus(404);
-//		}
-//	}
-//	
+
+	@PutMapping(path ="provider/{pid}")
+	public Provider update(@PathVariable("pid") Integer pid, 
+			@RequestBody Provider provider, HttpServletResponse resp,
+			HttpServletRequest req) {
+
+		try {
+			provider.setId(pid);
+			provider =  svr.update(provider, pid);
+			
+			if (provider == null) 
+			{resp.setStatus(404);}
+			
+		} catch (Exception e) {
+			resp.setStatus(400);
+			provider = null;
+			e.printStackTrace();
+		}
+		return provider;
+		
+	}
+
+	@DeleteMapping(path ="provider/{id}")
+	public void delete(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse resp) {
+		Boolean status;
+		
+		try {
+			status = svr.delete(id);
+			if (status) {
+				status = true;
+				resp.setStatus(204);
+			} else {
+				status = false;
+				resp.setStatus(204);
+			}
+		} catch (Exception e) {
+			status = false;
+			resp.setStatus(400);
+			e.printStackTrace();
+		}
+	}
 	
-	
+
 }
