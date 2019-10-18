@@ -10,9 +10,7 @@ public interface TravelerTripService {
 	List<TravelerTrip> index();
 
 	TravelerTrip findById(int id);
-	
-	List <TravelerTrip> findByProviderId(int id);
-	
+		
 	List <TravelerTrip> findByTripId(int id);
 	
 	List <TravelerTrip> findByTravelerId(int id);

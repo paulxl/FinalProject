@@ -35,14 +35,13 @@ public class ProviderController {
 	public String ping()
 	{ return "pong/n";  }
 
+	
+	//works	
 	@GetMapping(path ="providers")
 	public List<Provider> index() {
 		return svr.index();
 	}
-	//"status": 500,
-	// Failed :    "error": "Internal Server Error",
-  //  "message": "Could not write JSON: (was java.lang.NullPointerException); nested exception is 
-	
+
 
 	
 //	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
@@ -50,19 +49,24 @@ public class ProviderController {
 //	    return principal;
 //	}
 	
-	@GetMapping(path ="provider/{providerId}")
-	public Provider show(@PathVariable Integer providerId, HttpServletResponse resp) {
-		
+	@GetMapping(path ="provider/{pid}")
+	public Provider getById(@PathVariable("pid") Integer pid, HttpServletResponse resp) {
 		Provider provider;
+		
 		try {
-			provider = svr.findById(providerId);
+			provider = svr.findById(pid);
+			if (provider != null) {
+				resp.setStatus(200);
+			}else {
+				resp.setStatus(404);
+			}
 		} catch (Exception e) {
-			resp.setStatus(400);
-			provider = null;
 			e.printStackTrace();
+			resp.setStatus(400);
+			return null;
 		}
-		 
 		return provider;
+		
 	}
 	//  "status": 404,
     // "error": "Not Found",
