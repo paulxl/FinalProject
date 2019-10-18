@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class Traveler {
@@ -32,7 +34,7 @@ public class Traveler {
 	@Column(name = "photo_url")
 	private String photoUrl;
 	
-	
+	@JsonManagedReference(value = "TTrTraveler")
 	@OneToMany(mappedBy = "traveler")
 	private List<TravelerTrip> trips;
 

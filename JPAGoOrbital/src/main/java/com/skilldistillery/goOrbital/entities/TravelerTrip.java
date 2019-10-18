@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "traveler_trip")
@@ -31,12 +31,12 @@ public class TravelerTrip {
 	@Column(name = "trip_note")
 	private String tripNote;
 	
-	@JsonIgnore
+	@JsonBackReference(value = "TTrTrip")
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
 	
-	@JsonIgnore
+	@JsonBackReference(value = "TTrTraveler")
 	@ManyToOne
 	@JoinColumn(name = "traveler_id")
 	private Traveler traveler;
