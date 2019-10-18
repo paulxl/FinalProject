@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Vehicle {
@@ -39,8 +40,8 @@ public class Vehicle {
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "vehicle")
+	@JsonManagedReference(value = "vehicleTrips")
+	@OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER)
 	private List<Trip> trips;
 
 	public List<Trip> getTrips() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Trip {
@@ -26,12 +26,12 @@ public class Trip {
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 	
-//	@JsonBackReference
+	@JsonBackReference(value = "vehicleTrips")
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
 	
-//	@JsonBackReference
+	@JsonBackReference(value = "tripLaunchport")
 	@ManyToOne
 	@JoinColumn(name = "launchport_id")
 	private Launchport launchport;
@@ -51,16 +51,16 @@ public class Trip {
 	@Column(name = "photo_url")
 	private String photoUrl;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy="trips")
-	private List<Traveler> travelers;
+	
+	@OneToMany(mappedBy="trip", fetch = FetchType.EAGER)
+	private List<TravelerTrip> travelers;
 	
 
-	public List<Traveler> getTravelers() {
+	public List<TravelerTrip> getTravelers() {
 		return travelers;
 	}
 
-	public void setTravelers(List<Traveler> travelers) {
+	public void setTravelers(List<TravelerTrip> travelers) {
 		this.travelers = travelers;
 	}
 

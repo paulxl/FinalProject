@@ -8,11 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Traveler {
@@ -34,10 +32,9 @@ public class Traveler {
 	@Column(name = "photo_url")
 	private String photoUrl;
 	
-	@JsonIgnore
-	@OneToMany
-	@JoinTable(name = "traveler_trip", joinColumns = @JoinColumn(name = "traveler_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
-	private List<Trip> trips;
+	
+	@OneToMany(mappedBy = "traveler")
+	private List<TravelerTrip> trips;
 
 	public Traveler() {
 	}
@@ -50,7 +47,7 @@ public class Traveler {
 		this.photoUrl = photoUrl;
 	}
 
-	public Traveler(int id, String firstName, String lastName, User user, String photoUrl, List<Trip> trips) {
+	public Traveler(int id, String firstName, String lastName, User user, String photoUrl, List<TravelerTrip> trips) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -127,11 +124,11 @@ public class Traveler {
 		this.photoUrl = photoUrl;
 	}
 
-	public List<Trip> getTrips() {
+	public List<TravelerTrip> getTrips() {
 		return trips;
 	}
 
-	public void setTrips(List<Trip> trips) {
+	public void setTrips(List<TravelerTrip> trips) {
 		this.trips = trips;
 	}
 
