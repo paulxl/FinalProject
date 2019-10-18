@@ -8,7 +8,7 @@ import com.skilldistillery.goOrbital.entities.TravelerTrip;
 
 public interface TravelerTripRepository extends JpaRepository<TravelerTrip, Integer> {
 
-	List <TravelerTrip> findByProviderId(int id);
+	
 
 	List <TravelerTrip> findByTripId(int id);
 
