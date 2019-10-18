@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.goOrbital.entities.Provider;
-import com.skilldistillery.goOrbital.entities.Traveler;
 import com.skilldistillery.goOrbital.entities.TravelerTrip;
 import com.skilldistillery.goOrbital.repositories.TravelerTripRepository;
 
