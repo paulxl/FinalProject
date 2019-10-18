@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.goOrbital.entities.Trip;
-import com.skilldistillery.goOrbital.services.TripService;
+import com.skilldistillery.goOrbital.entities.Provider;
+import com.skilldistillery.goOrbital.services.ProviderService;
 
 @RequestMapping("api")
 @RestController
@@ -28,15 +28,15 @@ public class ProviderController {
 
 
 	@Autowired
-	private TripService svr;
+	private ProviderService svr;
 
 	
 	@GetMapping("ping")
 	public String ping()
 	{ return "pong/n";  }
 
-	@GetMapping(path ="trips")
-	public List<Trip> index() {
+	@GetMapping(path ="providers")
+	public List<Provider> index() {
 		return svr.index();
 	}
 	//"status": 500,
@@ -50,19 +50,19 @@ public class ProviderController {
 //	    return principal;
 //	}
 	
-	@GetMapping(path ="trip/{tripId}")
-	public Trip show(@PathVariable Integer tripId, HttpServletResponse resp) {
+	@GetMapping(path ="provider/{providerId}")
+	public Provider show(@PathVariable Integer providerId, HttpServletResponse resp) {
 		
-		Trip trip;
+		Provider provider;
 		try {
-			trip = svr.findById(tripId);
+			provider = svr.findById(providerId);
 		} catch (Exception e) {
 			resp.setStatus(400);
-			trip = null;
+			provider = null;
 			e.printStackTrace();
 		}
 		 
-		return trip;
+		return provider;
 	}
 	//  "status": 404,
     // "error": "Not Found",
