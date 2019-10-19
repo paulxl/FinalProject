@@ -64,5 +64,10 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 	}
+	
+	@Override
+	public User findByUsername(String username) {
+		return repo.findByUsername(username);
+	}
 
 }

@@ -1,1 +1,19 @@
-<p>register works!</p>
+<mat-sidenav-container class="sidenav-container">
+</mat-sidenav-container><br>
+
+
+
+<div id="travelerOrProvider" *ngIf="true">
+    <h2>Registeration Page For New Users</h2><br>
+    <h4>Click the button that applies.</h4>
+    <form>
+        <button (click)="newTraveler()" style="margin: 20px">New Traveler</button>
+        <button (click)="newProvider()" style='margin: 20px'>New Provider</button>
+    </form>
+</div>
+
+<div id="displayNewProvider" *ngIf="true">
+
+
+
+</div>
