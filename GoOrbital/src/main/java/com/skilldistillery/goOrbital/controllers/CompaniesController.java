@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.goOrbital.entities.Provider;
-import com.skilldistillery.goOrbital.services.ProviderService;
+import com.skilldistillery.goOrbital.entities.Companies;
+import com.skilldistillery.goOrbital.services.CompaniesService;
 
 @RequestMapping("api")
 @RestController
 @CrossOrigin({"*", "http://localhost:4210"})
-public class ProviderController {
+public class CompaniesController {
 
 
 	@Autowired
-	private ProviderService svr;
+	private CompaniesService svr;
 
 	
 	@GetMapping("ping")
@@ -35,19 +35,19 @@ public class ProviderController {
 
 	
 	//err
-	@GetMapping(path ="provider")
-	public List<Provider> index() {
+	@GetMapping(path ="companies")
+	public List<Companies> index() {
 		return svr.index();
 	}
 
 	//works		
-	@GetMapping(path ="provider/{pid}")
-	public Provider getById(@PathVariable("pid") Integer pid, HttpServletResponse resp) {
-		Provider provider;
+	@GetMapping(path ="companies/{cid}")
+	public Companies getById(@PathVariable("cid") Integer cid, HttpServletResponse resp) {
+		Companies companies;
 		
 		try {
-			provider = svr.findById(pid);
-			if (provider != null) {
+			companies = svr.findById(cid);
+			if (companies != null) {
 				resp.setStatus(200);
 			}else {
 				resp.setStatus(404);
@@ -57,52 +57,52 @@ public class ProviderController {
 			resp.setStatus(400);
 			return null;
 		}
-		return provider;
+		return companies;
 		
 	}
 
 
 	
-	@PostMapping(path ="provider")
-	public Provider create(@RequestBody Provider provider, HttpServletResponse resp, HttpServletRequest req) {
+	@PostMapping(path ="companies")
+	public Companies create(@RequestBody Companies companies, HttpServletResponse resp, HttpServletRequest req) {
 		try {
-			svr.create(provider);
+			svr.create(companies);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/");
-			url.append(provider.getId());
+			url.append(companies.getId());
 			resp.setHeader("Location", url.toString());
 		} catch (Exception e) {
 			resp.setStatus(400);
-			provider = null;
+			companies = null;
 			e.printStackTrace();
 		}
-		return provider;
+		return companies;
 	}
 	
 
-	@PutMapping(path ="provider/{pid}")
-	public Provider update(@PathVariable("pid") Integer pid, 
-			@RequestBody Provider provider, HttpServletResponse resp,
+	@PutMapping(path ="companies/{cid}")
+	public Companies update(@PathVariable("cid") Integer cid, 
+			@RequestBody Companies companies, HttpServletResponse resp,
 			HttpServletRequest req) {
 
 		try {
-			provider.setId(pid);
-			provider =  svr.update(provider, pid);
+			companies.setId(cid);
+			companies =  svr.update(companies, cid);
 			
-			if (provider == null) 
+			if (companies == null) 
 			{resp.setStatus(404);}
 			
 		} catch (Exception e) {
 			resp.setStatus(400);
-			provider = null;
+			companies = null;
 			e.printStackTrace();
 		}
-		return provider;
+		return companies;
 		
 	}
 
-	@DeleteMapping(path ="provider/{id}")
+	@DeleteMapping(path ="companies/{id}")
 	public void delete(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse resp) {
 		Boolean status;
 		

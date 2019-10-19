@@ -6,25 +6,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.goOrbital.entities.Provider;
+import com.skilldistillery.goOrbital.entities.Companies;
 import com.skilldistillery.goOrbital.repositories.ProviderRepository;
 
 @Service
-public class ProviderServiceImpl implements ProviderService {
+public class CompaniesServiceImpl implements CompaniesService {
 
 	@Autowired
 	private ProviderRepository repo;
 
 	@Override
-	public List<Provider> index() {
-		List<Provider> provider = repo.findAll();
+	public List<Companies> index() {
+		List<Companies> provider = repo.findAll();
 		return provider;
 	}
 
 	@Override
-	public Provider findById(int id) {
-		Optional<Provider> optP = repo.findById(id);
-		Provider provider = null;
+	public Companies findById(int id) {
+		Optional<Companies> optP = repo.findById(id);
+		Companies provider = null;
 		if (optP.isPresent()) {
 			provider = optP.get();
 		}
@@ -32,13 +32,13 @@ public class ProviderServiceImpl implements ProviderService {
 	}
 
 	@Override
-	public Provider create(Provider provider) {
+	public Companies create(Companies provider) {
 		return repo.saveAndFlush(provider);
 	}
 
 	@Override
-	public Provider update(Provider provider, int id) {
-		Provider provid = findById(id);
+	public Companies update(Companies provider, int id) {
+		Companies provid = findById(id);
 
 		if (provid != null) {
 			provid.setName(provider.getName());
@@ -51,7 +51,7 @@ public class ProviderServiceImpl implements ProviderService {
 
 	@Override
 	public boolean delete(int id) {
-		Optional<Provider> provider = repo.findById(id);
+		Optional<Companies> provider = repo.findById(id);
 		if (provider.isPresent()) {
 			repo.deleteById(id);
 		}

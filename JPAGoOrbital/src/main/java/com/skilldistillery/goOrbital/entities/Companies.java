@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class Provider {
+public class Companies {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +32,12 @@ public class Provider {
 	@Column(name = "web_url")
 	private String webUrl;
 	
-	@JsonManagedReference(value = "providerVehicles")
-	@OneToMany(mappedBy="provider")
+	@JsonManagedReference(value = "companiesVehicles")
+	@OneToMany(mappedBy="companies")
 	private List<Vehicle> vehicles;
 	
-	@JsonManagedReference(value = "providerTrips")
-	@OneToMany(mappedBy = "provider")
+	@JsonManagedReference(value = "companiesTrips")
+	@OneToMany(mappedBy = "companies")
 	private List<Trip> trips;
 	
 	public User getUser() {
@@ -69,7 +69,7 @@ public class Provider {
 		return id;
 	}
 
-	public Provider(int id, String name, String logoUrl, String webUrl) {
+	public Companies(int id, String name, String logoUrl, String webUrl) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -77,7 +77,7 @@ public class Provider {
 		this.webUrl = webUrl;
 	}
 
-	public Provider(int id, String name, String logoUrl, String webUrl, List<Vehicle> vehicles, List<Trip> trips) {
+	public Companies(int id, String name, String logoUrl, String webUrl, List<Vehicle> vehicles, List<Trip> trips) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -87,7 +87,7 @@ public class Provider {
 		this.trips = trips;
 	}
 
-	public Provider() {
+	public Companies() {
 	}
 
 	public void setId(int id) {
@@ -120,7 +120,7 @@ public class Provider {
 
 	@Override
 	public String toString() {
-		return "Provider [id=" + id + ", name=" + name + "]";
+		return "Companies [id=" + id + ", name=" + name + "]";
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public class Provider {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Provider other = (Provider) obj;
+		Companies other = (Companies) obj;
 		if (id != other.id)
 			return false;
 		return true;

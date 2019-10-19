@@ -52,7 +52,7 @@ class VehicleTest {
 	@DisplayName("testing provider relationships")
 	void test1() {
 		
-		assertEquals(5, vehicle.getProvider().getId());
+		assertEquals(5, vehicle.getCompanies().getId());
 		
 	}
 	@Test

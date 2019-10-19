@@ -35,10 +35,10 @@ public class Vehicle {
 
 	private String range;
 	
-	@JsonBackReference(value = "providerVehicles")
+	@JsonBackReference(value = "companiesVehicles")
 	@ManyToOne
-	@JoinColumn(name = "provider_id")
-	private Provider provider;
+	@JoinColumn(name = "companies_id")
+	private Companies companies;
 	
 	@JsonManagedReference(value = "vehicleTrips")
 	@OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER)
@@ -122,12 +122,12 @@ public class Vehicle {
 		this.range = range;
 	}
 
-	public Provider getProvider() {
-		return provider;
+	public Companies getCompanies() {
+		return companies;
 	}
 
-	public void setProvider(Provider provider) {
-		this.provider = provider;
+	public void setCompanies(Companies companies) {
+		this.companies = companies;
 	}
 
 	@Override
