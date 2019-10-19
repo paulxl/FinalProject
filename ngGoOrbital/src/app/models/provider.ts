@@ -1,3 +1,4 @@
+import { ProviderService } from './../services/provider.service';
 import { Deserializable } from './../interfaces/deserializable';
 import { User } from './user';
 
@@ -12,4 +13,5 @@ export class Provider implements Deserializable {
     this.user = new User().deserialize(input.user)
     return this;
   }
+
 }

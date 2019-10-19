@@ -10,6 +10,7 @@ description: string;
 range: number;
 capactity: number;
 photoURL: string;
+
 deserialize(input: any): this {
   Object.assign(this, input);
   this.provider = new Provider().deserialize(input.provider);

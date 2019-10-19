@@ -1,3 +1,4 @@
+import { TripService } from './services/trip.service';
 import { ProviderService } from './services/provider.service';
 import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,11 +14,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { TravelerService } from './services/traveler.service';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { TravelerListComponent } from './components/traveler-list/traveler-list.component';
+import { TripListComponent } from './components/trip-list/trip-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserListComponent,
+    TravelerListComponent,
+    TripListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +38,9 @@ import { TravelerService } from './services/traveler.service';
     MatIconModule,
     MatListModule,
     AppRoutingModule,
-
+    HttpClientModule
   ],
-  providers: [TravelerService, UserService, ProviderService],
+  providers: [TravelerService, UserService, ProviderService, TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
