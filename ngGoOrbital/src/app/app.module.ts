@@ -28,8 +28,12 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailsComponent } from './components/details/details.component';
 import { CompaniesComponent } from './components/companies/companies.component';
+
+import { TravelerComponent } from './components/traveler/traveler.component';
+
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -43,8 +47,12 @@ import { LogoutComponent } from './components/logout/logout.component';
     SearchComponent,
     DetailsComponent,
     CompaniesComponent,
+
+    TravelerComponent
+
     LoginComponent,
     LogoutComponent
+
   ],
   imports: [
     BrowserModule,
