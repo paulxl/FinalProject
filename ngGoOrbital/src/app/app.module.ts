@@ -24,6 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
 import { DetailsComponent } from './components/details/details.component';
 import { CompaniesComponent } from './components/companies/companies.component';
+import { TravelerComponent } from './components/traveler/traveler.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CompaniesComponent } from './components/companies/companies.component';
     
     SearchComponent,
     DetailsComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    TravelerComponent
   ],
   imports: [
     BrowserModule,

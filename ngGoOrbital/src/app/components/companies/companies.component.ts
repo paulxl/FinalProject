@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class CompaniesComponent implements OnInit {
 
   TestVehicle = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
+    'Super Hot', 'Weather Changer'];
 
-
+  vehicles:any;
   constructor() { }
 
   ngOnInit() {
@@ -21,4 +21,7 @@ export class CompaniesComponent implements OnInit {
 
   addNewVehicle(vehicle: any) { }
 
+  updateVehicle(id: number) { }
+
+  addNewCompany(vehicle: any) { }
 }

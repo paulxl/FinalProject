@@ -2,19 +2,15 @@
 <!-- companies form for creating a provider or updating -->
 <!-- NEEDS TO AUTO POPULATE with User Id to create Provider -->
 
-
-
-
-
 <!-- Adding or updating company information -->
 <h3>Company Details </h3>
 
-<form #newCompany="ngForm">
+<form > <!-- #newCompany="ngForm" -->
   <input type="number" name="id" ngModel placeholder="Id"> <br>
   <input type="text" name="name" ngModel placeholder="Company Name"> <br>
   <input type="text" name="logoUrl" ngModel placeholder="Company Logo Url"> <br>
   <input type="text" name="webUrl" ngModel placeholder="Company Website Url"> <br>
-  <input type="submit" value="Add New Company" (click)="addNewCompany(newCompanyForm)">
+  <input type="submit" value="Add New Company" (click)="addNewCompany()"> <!--argument needed in addNewVehicle-->
 </form>
 
 <!-- VEHICLES Detail Tables for company (displays list company vehicles) -->
@@ -36,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vehicle of Vehicles" (click)="selectAPoke(poke)">
+    <tr *ngFor="let vehicle of vehicles">
       <td>{{ vehicle.Id }}</td>
       <td>{{ vehicle.providerId }}</td>
       <td>{{ vehicle.name }}</td>
@@ -45,7 +41,7 @@
       <td>{{ vehicle.range }}</td>
       <td>{{ vehicle.capacity }}</td>
       <td>
-        <img [src]='${vehicle.photoUrl}' />
+        <!-- <img [src]='${vehicle.photoUrl}' /> -->
       </td>
       <td><button (click)="updateVehicle(vehicle.id)">Update</button>
           <button (click)="deleteVehicle(vehicle.id)">Delete</button></td>
@@ -58,7 +54,7 @@
 <br>
 
 <!-- Add New Vehicle (needs to switch on and off )-->
-<form #newVehicleForm="ngForm">
+<form > <!-- #newVehicleForm="ngForm" -->
   <input type="number" name="id" ngModel placeholder="Id"> <br>
   <input type="number" name="providerId" ngModel placeholder="provider Id"> <br>
   <input type="text" name="name" ngModel placeholder="Vehicle Name"> <br>
@@ -67,5 +63,5 @@
   <input type="text" name="range" ngModel placeholder="range"> <br>
   <input type="text" name="capacity" ngModel placeholder="Capacity..."> <br>
   <input type="text" name="photoUrl" ngModel placeholder="Photo Url"> <br>
-  <input type="submit" value="Add New Vehicle" (click)="addNewVehicle(newVehicleForm)">
+  <input type="submit" value="Add New Vehicle" (click)="addNewVehicle()"> <!--argument needed in addNewVehicle-->
 </form>
