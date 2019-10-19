@@ -1,1 +1,156 @@
-<p>traveler works!</p>
+
+<!-- companies form for creating a provider or updating -->
+<!-- NEEDS TO AUTO POPULATE with User Id to create Provider -->
+
+<!-- Adding or updating company information -->
+<h3>Traveler Details </h3>
+<!-- user Read-only details -->
+
+<h4>Welcome [insert name],  My Account Details </h4>
+
+
+<div>
+    <table *ngIf="!selectedUser"> <!-- shows user details-->
+      <thead>
+        <tr>
+          <td>ID</td>
+          <td>First Name</td>
+          <td>Last Name </td>
+          <td>Profile Picture</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr > <!--creates a list of users trips -->
+          <td>{{ traveler.id }}</td>
+          <td>{{ traveler.firstName }}</td>
+          <td>{{ traveler.lastName }}</td>
+          <td>{{ traveler.photoUrl }}</td> <!-- this needs to be a img href -->
+
+          <td><button (click)="updateTraveler(user.id)">Update Profile</button>
+              <button (click)="deleteTraveler(user.id)">Delete Profile</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+<h4>Update Profile Account Information</h4>
+<form > <!-- #newTraveler="ngForm" -->
+  <input type="number" name="id" ngModel placeholder="Id"> <br>
+  <input type="text" name="firstName" ngModel placeholder="First name..."> <br>
+  <input type="text" name="lastName" ngModel placeholder="Last name..."> <br>
+  <input type="text" name="photoUrl" ngModel placeholder="Profile photo Url"> <br>
+  <input type="submit" value="Update Profile" (click)="updateTraveler()"> <!--argument needed in updateTraveler()-->
+</form>
+
+
+<hr>
+<br>
+
+<div>
+    <table *ngIf="!selectedUser"> <!-- shows user details-->
+      <thead>
+        <tr>
+          <td>My Account ID</td>
+          <td>Username</td>
+          <td>Password</td>
+          <td>email</td>
+          <td>enabled</td>
+          <td>role</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr > <!--creates a list of users trips -->
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.password }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.enabled }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <!-- <img [src]='${trip.photoUrl}' /> -->
+          </td>
+          <td><button (click)="updateTraveler(user.id)">Update Account</button>
+              <button (click)="deleteTraveler(user.id)">Delete Account</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+<h4>Update User Security Account Information</h4>
+<form > <!-- #newTraveler="ngForm" -->
+  <input type="number" name="id" ngModel placeholder="Id"> <br>
+  <input type="text" name="firstName" ngModel placeholder="First name..."> <br>
+  <input type="text" name="lastName" ngModel placeholder="Last name..."> <br>
+  <input type="text" name="photoUrl" ngModel placeholder="Profile photo Url"> <br>
+  <input type="submit" value="Add New Traveler" (click)="addNewTraveler()"> <!--argument needed in addNewVehicle-->
+</form>
+
+<!-- VEHICLES Detail Tables for Traveler (displays list Traveler vehicles) -->
+
+
+<h3> List of Your Reviewed Trips</h3>
+
+<div>
+<table *ngIf="!selectedReview"> <!-- creates list of reviews-->
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Rating</td>
+      <td>Review</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of trips"> <!--creates a list of users trips -->
+      <td>{{ trip.id }}</td>
+      <td>{{ trip.rating }}</td>
+      <td>{{ trip.review }}</td>
+      <td><button (click)="updateTraveler(trip.id)">Update</button>
+          <button (click)="deleteTraveler(trip.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<h3> List of Your Trips</h3>
+
+<div>
+<table *ngIf="!selectedTrip">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Traveler ID</td>
+      <td>Trip ID</td>
+      <td>Date Completed</td>
+      <td>Rating</td>
+      <td>Review</td>
+      <td>Trip Notes</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let trip of trips"> <!--creates a list of users trips -->
+      <td>{{ trip.id }}</td>
+      <td>{{ trip.tripId }}</td>
+      <td>{{ trip.travelerId }}</td>
+      <td>{{ trip.dateCompleted }}</td>
+      <td>{{ trip.rating }}</td>
+      <td>{{ trip.review }}</td>
+      <td>{{ trip.tripNote }}</td>
+      <td>
+        <!-- <img [src]='${trip.photoUrl}' /> -->
+      </td>
+      <td><button (click)="updateTraveler(trip.id)">Update</button>
+          <button (click)="deleteTraveler(trip.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<button>Continue shopping for another Trip</button>
+<hr>
+<button>Return Home</button>
+<!--need to add routing to puchase another trip -->
+<br>
