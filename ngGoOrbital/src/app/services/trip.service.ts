@@ -16,7 +16,7 @@ export class TripService {
     private http: HttpClient,
     private messageService: MessageService
      ) { }
-private url = environment.serverURL + 'api/trips';
+private url = environment.serverURL + 'api/trip';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -54,7 +54,7 @@ getTrips(): Observable<Trip[]> {
   }
 
   /* GET trips whose name contains search term */
-  searchHeroes(term: string): Observable<Trip[]> {
+  searchTrips(term: string): Observable<Trip[]> {
     if (!term.trim()) {
       // if not search term, return empty trip array.
       return of([]);
@@ -86,7 +86,7 @@ getTrips(): Observable<Trip[]> {
   }
 
   /** PUT: update the trip on the server */
-  updateHero(trip: Trip): Observable<any> {
+  updateTrip(trip: Trip): Observable<any> {
     return this.http.put(this.url, trip, this.httpOptions).pipe(
       tap(_ => this.log(`updated trip id=${trip.id}`)),
       catchError(this.handleError<any>('updateTrip'))
