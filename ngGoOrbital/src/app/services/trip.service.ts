@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Trip} from '../models/Trip';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,12 +16,14 @@ export class TripService {
     private http: HttpClient,
     private messageService: MessageService
      ) { }
-  private tripsUrl = 'api/trips';
+private url = environment.serverURL + 'api/trips';
+
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json' })
   };
 getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.tripsUrl)
+    return this.http.get<Trip[]>(this.url)
       .pipe(
         tap(_ => this.log('fetched trips')),
         catchError(this.handleError<Trip[]>('getTrips', []))
@@ -29,7 +32,7 @@ getTrips(): Observable<Trip[]> {
 
   /** GET trip by id. Return `undefined` when id not found */
   getTripNo404<Data>(id: number): Observable<Trip> {
-    const url = `${this.tripsUrl}/?id=${id}`;
+    const url = `${this.url}/?id=${id}`;
     return this.http.get<Trip[]>(url)
       .pipe(
         map(trips => trips[0]), // returns a {0|1} element array
@@ -43,7 +46,7 @@ getTrips(): Observable<Trip[]> {
 
   /** GET trip by id. Will 404 if id not found */
   getTrip(id: number): Observable<Trip> {
-    const url = `${this.tripsUrl}/${id}`;
+    const url = `${this.url}/${id}`;
     return this.http.get<Trip>(url).pipe(
       tap(_ => this.log(`fetched trip id=${id}`)),
       catchError(this.handleError<Trip>(`getTrip id=${id}`))
@@ -56,7 +59,7 @@ getTrips(): Observable<Trip[]> {
       // if not search term, return empty trip array.
       return of([]);
     }
-    return this.http.get<Trip[]>(`${this.tripsUrl}/?name=${term}`).pipe(
+    return this.http.get<Trip[]>(`${this.url}/?name=${term}`).pipe(
       tap(_ => this.log(`found trips matching "${term}"`)),
       catchError(this.handleError<Trip[]>('searchTrips', []))
     );
@@ -66,7 +69,7 @@ getTrips(): Observable<Trip[]> {
 
   /** POST: add a new trip to the server */
   addTrip(trip: Trip): Observable<Trip> {
-    return this.http.post<Trip>(this.tripsUrl, trip, this.httpOptions).pipe(
+    return this.http.post<Trip>(this.url, trip, this.httpOptions).pipe(
       tap((newTrip: Trip) => this.log(`added trip w/ id=${newTrip.id}`)),
       catchError(this.handleError<Trip>('addTrip'))
     );
@@ -75,7 +78,7 @@ getTrips(): Observable<Trip[]> {
   /** DELETE: delete the trip from the server */
   deleteTrip(trip: Trip | number): Observable<Trip> {
     const id = typeof trip === 'number' ? trip : trip.id;
-    const url = `${this.tripsUrl}/${id}`;
+    const url = `${this.url}/${id}`;
     return this.http.delete<Trip>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted trip id=${id}`)),
       catchError(this.handleError<Trip>('deleteTrip'))
@@ -84,7 +87,7 @@ getTrips(): Observable<Trip[]> {
 
   /** PUT: update the trip on the server */
   updateHero(trip: Trip): Observable<any> {
-    return this.http.put(this.tripsUrl, trip, this.httpOptions).pipe(
+    return this.http.put(this.url, trip, this.httpOptions).pipe(
       tap(_ => this.log(`updated trip id=${trip.id}`)),
       catchError(this.handleError<any>('updateTrip'))
     );
