@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import { Trip } from './trip';
 import { Deserializable } from './../interfaces/deserializable';
+=======
+
+import { Deserializable } from './../interfaces/deserializable';
+import { Trip } from './trip';
+>>>>>>> 35d152cc29bc61460b4dba8dbb1eef418ad109cb
 import { Traveler } from './traveler';
 
 export class TripRecord implements Deserializable {
