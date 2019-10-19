@@ -3,7 +3,6 @@ package com.skilldistillery.goOrbital.services;
 import java.util.List;
 
 import com.skilldistillery.goOrbital.entities.Launchport;
-import com.skilldistillery.goOrbital.entities.Provider;
 
 public interface LaunchportService {
 
