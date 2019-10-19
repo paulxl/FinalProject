@@ -1,3 +1,4 @@
+import { UserService } from './../services/user.service';
 import { Deserializable } from './../interfaces/deserializable';
 export class User implements Deserializable {
   id: number;
@@ -8,4 +9,6 @@ export class User implements Deserializable {
   deserialize(input: any): this {
     return Object.assign(this, input);
   }
+
+
 }
