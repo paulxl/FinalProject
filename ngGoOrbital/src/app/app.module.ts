@@ -18,6 +18,12 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { TravelerListComponent } from './components/traveler-list/traveler-list.component';
 import { TripListComponent } from './components/trip-list/trip-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './components/main/main.component';
+import { RegisterComponent } from './components/register/register.component';
+
+import { SearchComponent } from './components/search/search.component';
+import { DetailsComponent } from './components/details/details.component';
+import { CompaniesComponent } from './components/companies/companies.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,13 @@ import { HttpClientModule } from '@angular/common/http';
     NavBarComponent,
     UserListComponent,
     TravelerListComponent,
-    TripListComponent
+    TripListComponent,
+    MainComponent,
+    RegisterComponent,
+    
+    SearchComponent,
+    DetailsComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,
