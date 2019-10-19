@@ -1,6 +1,6 @@
 import { Traveler } from './traveler';
 
-describe('Traveler.Model', () => {
+describe('Traveler', () => {
   it('should create an instance', () => {
     expect(new Traveler()).toBeTruthy();
   });
