@@ -22,10 +22,10 @@ public class Trip {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonBackReference(value = "providerTrips")
+	@JsonBackReference(value = "companiesTrips")
 	@ManyToOne
-	@JoinColumn(name = "provider_id")
-	private Provider provider;
+	@JoinColumn(name = "companies_id")
+	private Companies companies;
 	
 	@JsonBackReference(value = "vehicleTrips")
 	@ManyToOne
@@ -68,11 +68,11 @@ public class Trip {
 	public Trip() {
 	}
 
-	public Trip(int id, Provider provider, Vehicle vehicle, Launchport launchport, String title, String destination,
+	public Trip(int id, Companies companies, Vehicle vehicle, Launchport launchport, String title, String destination,
 			int cost, int length, Date date, String photoUrl) {
 		super();
 		this.id = id;
-		this.provider = provider;
+		this.companies = companies;
 		this.vehicle = vehicle;
 		this.launchport = launchport;
 		this.title = title;
@@ -91,12 +91,12 @@ public class Trip {
 		this.id = id;
 	}
 
-	public Provider getProvider() {
-		return provider;
+	public Companies getcompanies() {
+		return companies;
 	}
 
-	public void setProvider(Provider provider) {
-		this.provider = provider;
+	public void setcompanies(Companies companies) {
+		this.companies = companies;
 	}
 
 	public Vehicle getVehicle() {

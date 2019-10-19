@@ -8,6 +8,7 @@ import com.skilldistillery.goOrbital.entities.User;
 import com.skilldistillery.goOrbital.repositories.UserRepository;
 @Service
 public class AuthServiceImpl implements AuthService {
+	
 	@Autowired
 	private UserRepository uRepo;
 	

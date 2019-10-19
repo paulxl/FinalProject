@@ -32,16 +32,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `provider`
+-- Table `companies`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `provider` ;
+DROP TABLE IF EXISTS `companies` ;
 
-CREATE TABLE IF NOT EXISTS `provider` (
+CREATE TABLE IF NOT EXISTS `companies` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `name` VARCHAR(200) NULL,
-  `logo_url` VARCHAR(500) NULL,
-  `web_url` VARCHAR(500) BINARY NULL,
+  `name` VARCHAR(200) NULL DEFAULT NULL,
+  `logo_url` VARCHAR(500) NULL DEFAULT NULL,
+  `web_url` VARCHAR(500) BINARY NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_provider_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_provider_user1`
@@ -60,17 +60,17 @@ DROP TABLE IF EXISTS `vehicle` ;
 CREATE TABLE IF NOT EXISTS `vehicle` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `provider_id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `type` VARCHAR(45) NULL,
-  `description` VARCHAR(100) NULL,
-  `range` VARCHAR(100) NULL,
-  `capacity` INT NULL,
-  `photo_url` VARCHAR(750) NULL,
+  `name` VARCHAR(45) NULL DEFAULT NULL,
+  `type` VARCHAR(45) NULL DEFAULT NULL,
+  `description` VARCHAR(100) NULL DEFAULT NULL,
+  `range` VARCHAR(100) NULL DEFAULT NULL,
+  `capacity` INT NULL DEFAULT NULL,
+  `photo_url` VARCHAR(750) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vehicle_provider1_idx` (`provider_id` ASC),
   CONSTRAINT `fk_vehicle_provider1`
     FOREIGN KEY (`provider_id`)
-    REFERENCES `provider` (`id`)
+    REFERENCES `companies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -84,8 +84,8 @@ DROP TABLE IF EXISTS `launchport` ;
 CREATE TABLE IF NOT EXISTS `launchport` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
-  `latitude` DOUBLE NULL,
-  `longitude` DOUBLE NULL,
+  `latitude` DOUBLE NULL DEFAULT NULL,
+  `longitude` DOUBLE NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -101,11 +101,11 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `vehicle_id` INT NOT NULL,
   `launchport_id` INT NOT NULL,
   `title` VARCHAR(100) NOT NULL,
-  `destination` VARCHAR(100) NULL,
-  `cost` INT NULL,
-  `length_trip` INT NULL,
-  `trip_date` DATETIME NULL,
-  `photo_url` VARCHAR(1000) NULL,
+  `destination` VARCHAR(100) NULL DEFAULT NULL,
+  `cost` INT NULL DEFAULT NULL,
+  `length_trip` INT NULL DEFAULT NULL,
+  `trip_date` DATETIME NULL DEFAULT NULL,
+  `photo_url` VARCHAR(1000) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
   INDEX `fktrip_provider_idx` (`provider_id` ASC),
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fktrip_provider`
     FOREIGN KEY (`provider_id`)
-    REFERENCES `provider` (`id`)
+    REFERENCES `companies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trip_launchport1`
@@ -136,9 +136,9 @@ DROP TABLE IF EXISTS `traveler` ;
 CREATE TABLE IF NOT EXISTS `traveler` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
-  `first_name` VARCHAR(45) NULL,
-  `last_name` VARCHAR(45) NULL,
-  `photo_url` VARCHAR(1000) NULL,
+  `first_name` VARCHAR(45) NULL DEFAULT NULL,
+  `last_name` VARCHAR(45) NULL DEFAULT NULL,
+  `photo_url` VARCHAR(1000) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_traveler_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_traveler_user1`
@@ -158,10 +158,10 @@ CREATE TABLE IF NOT EXISTS `traveler_trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `trip_id` INT NOT NULL,
   `traveler_id` INT NOT NULL,
-  `date_completed` DATETIME NULL,
-  `rating` INT NULL,
-  `review` TEXT NULL,
-  `trip_note` TEXT NULL,
+  `date_completed` DATETIME NULL DEFAULT NULL,
+  `rating` INT NULL DEFAULT NULL,
+  `review` TEXT NULL DEFAULT NULL,
+  `trip_note` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_traveler_trip_trip1_idx` (`trip_id` ASC),
   INDEX `fk_traveler_trip_traveler1_idx` (`traveler_id` ASC),
@@ -187,109 +187,3 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'goorbital'@'localho
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (1, 'spacex', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (2, 'unitedla', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (3, 'blueorigin', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (4, 'virgingalactic', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (5, 'northgrum', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (6, 'nasa', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (7, 'bigelow', '123xyz', 'buzz@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (8, 'jglen', '123xyz', 'jglen@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (9, 'gbluford', '123xyz', 'gbluford@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (10, 'blightyear', '123xyz', 'blightyear@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (11, 'sride', '123xyz', 'sride@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (12, 'jwilliams', '123xyz', 'jwilliams@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (13, 'boeing', '123xyz', 'boeing@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (14, 'sierranc', '123xyz', 'sierranc@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (15, 'admin', 'admin', 'admin@orbtmail.com', 1, 'admin');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `provider`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (1, 1, 'Space X', 'assets/img/spaceX.jpg', 'https://www.spacex.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (2, 2, 'United Launch Alliance', 'assets/img/ula.jpg', 'https://www.ulalaunch.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (3, 3, 'Blue Origin', 'assets/img/blueOrigin.jpeg', 'https://www.blueorigin.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (4, 4, 'Virgin Galactic', 'assets/img/virginGal.jpeg', 'https://www.virgingalactic.com');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (5, 5, 'Northrup Grumman ', 'assets/img/ngorbital.jpg', 'https://www.northropgrumman.com/MediaResources/MediaKits/Space/Home.aspx?utm_source=DigitalAd&utm_medium=Redirect&utm_campaign=SpaceOrig+Redirect');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (6, 6, 'NASA', 'assets/img/nasa.jpg', 'www.nasa.gov');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (7, 7, 'Bigelow Aerospace ', 'assets/img/bigelow.jpeg', 'https://bigelowaerospace.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (8, 13, 'Boeing', 'assets/img/boeing.jpeg', 'https://www.boeing.com/space/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (9, 14, 'Sierra Nevada Corporation', 'assets/img/snc.jpg', 'https://www.sncorp.com/');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `vehicle`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (1, 3, 'Bionic Space Vehicle', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 8, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (2, 8, 'CST-100', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (3, 9, 'Dream Chaser', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (4, 8, 'Dragon 2', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (5, 8, 'Starship', 'passenger', 'passenger and crew transports to Mars', 'Mars', 100, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (6, 1, 'Dragon', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (7, 3, 'New Shepard', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (8, 5, 'Omega', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 15, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `launchport`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `launchport` (`id`, `name`, `latitude`, `longitude`) VALUES (1, 'Spaceport America', 32.99, 106.97);
-INSERT INTO `launchport` (`id`, `name`, `latitude`, `longitude`) VALUES (2, 'Mojave Air and Space Port', 35.06, 118.15);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `trip`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'Earth return', 15000, 1, NULL, NULL);
-INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (2, 2, 2, 2, 'Mars', 'Mars for a while', 54000, 720, NULL, NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `traveler`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `traveler` (`id`, `user_id`, `first_name`, `last_name`, `photo_url`) VALUES (1, 8, 'John', 'Glen', NULL);
-INSERT INTO `traveler` (`id`, `user_id`, `first_name`, `last_name`, `photo_url`) VALUES (2, 9, 'Guy', 'Bluford', NULL);
-INSERT INTO `traveler` (`id`, `user_id`, `first_name`, `last_name`, `photo_url`) VALUES (3, 10, 'Buzz', 'Lightyear', NULL);
-INSERT INTO `traveler` (`id`, `user_id`, `first_name`, `last_name`, `photo_url`) VALUES (4, 11, 'Sally', 'Ride', NULL);
-INSERT INTO `traveler` (`id`, `user_id`, `first_name`, `last_name`, `photo_url`) VALUES (5, 12, 'Jeffery', 'Williams', NULL);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `traveler_trip`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `goorbitaldb`;
-INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (1, 1, 1, NULL, 5, 'the view was amazing', 'take favorite sunglasses');
-INSERT INTO `traveler_trip` (`id`, `trip_id`, `traveler_id`, `date_completed`, `rating`, `review`, `trip_note`) VALUES (2, 2, 2, NULL, 4, 'kinda long', 'bring snacks');
-
-COMMIT;
-

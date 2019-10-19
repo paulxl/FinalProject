@@ -13,10 +13,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ProviderTest {
+class CompaniesTest {
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Provider provider;
+	private Companies companies;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,39 +31,39 @@ class ProviderTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		provider = em.find(Provider.class, 3);
+		companies = em.find(Companies.class, 3);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		provider = null;
+		companies = null;
 	}
 
 
 	//@Test
 	@DisplayName("testing fields in entity")
 	void test() {
-		assertNotNull(provider);
-		assertEquals("Space X", provider.getName());
+		assertNotNull(companies);
+		assertEquals("Space X", companies.getName());
 	}
 	//@Test
 	@DisplayName("testing relationships in entity")
 	void test1() {
 		
-		assertEquals(1, provider.getTrips().size());
+		assertEquals(1, companies.getTrips().size());
 	}
 	//@Test
 	@DisplayName("testing relationships in entity")
 	void test2() {
 		
-		assertEquals(2, provider.getVehicles().size());
+		assertEquals(2, companies.getVehicles().size());
 	}
 	@Test
 	@DisplayName("testing user relationship")
 	void test3() {
 		
-		assertEquals("123xyz", provider.getUser().getPassword());
+		assertEquals("123xyz", companies.getUser().getPassword());
 	}
 	
 }
