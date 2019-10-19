@@ -1,4 +1,4 @@
-import { Trip } from './Trip';
+import { Trip } from './trip';
 import { Traveler } from './traveler';
 
 export class TripRecord {
