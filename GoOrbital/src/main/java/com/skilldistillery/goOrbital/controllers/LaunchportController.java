@@ -30,21 +30,21 @@ public class LaunchportController {
 	private LaunchportService svr;
 
 	
-	@GetMapping("launchport/ping")
+	@GetMapping("/launchport/ping")
 	public String ping(){ 
 		return "pong-pong-on-the-launchpad"; 
 		}
-	@GetMapping("launchport")
+	@GetMapping(path ="launchport")
 	public List<Launchport> index() {
 		return svr.index();
 	}
-	@GetMapping("launchport/{lid}")
+	@GetMapping(path ="launchport/{lid}")
 	public Launchport getById(@PathVariable("lid") Integer lid, HttpServletResponse resp) {
-		Launchport launchport;
+		Launchport lp;
 		
 		try {
-			launchport = svr.findById(lid);
-			if (launchport != null) {
+			lp = svr.findById(lid);
+			if (lp != null) {
 				resp.setStatus(200);
 			}else {
 				resp.setStatus(404);
@@ -54,9 +54,9 @@ public class LaunchportController {
 			resp.setStatus(400);
 			return null;
 		}
-		return launchport;
+		return lp;
 	}
-	@PostMapping("launchport")
+	@PostMapping(path ="launchport")
 	public Launchport create(@RequestBody Launchport launchport, HttpServletResponse resp, HttpServletRequest req) {
 		
 		try {
@@ -74,7 +74,7 @@ public class LaunchportController {
 		return launchport;
 	}
 	
-	@PutMapping("launchport/{lid}")
+	@PutMapping(path ="launchport/{lid}")
 	public Launchport update(@PathVariable("lid") Integer pid, 
 			@RequestBody Launchport launchport, HttpServletResponse resp,
 			HttpServletRequest req) {
@@ -83,9 +83,8 @@ public class LaunchportController {
 			launchport.setId(pid);
 			launchport =  svr.update(launchport, pid);
 			
-			if (launchport == null) {
-				resp.setStatus(404);
-				}
+			if (launchport == null) 
+			{resp.setStatus(404);}
 			
 		} catch (Exception e) {
 			resp.setStatus(400);
@@ -94,7 +93,7 @@ public class LaunchportController {
 		}
 		return launchport;	
 	}
-	@DeleteMapping("launchport/{lid}")
+	@DeleteMapping(path ="launchport/{lid}")
 	public void delete(@PathVariable Integer lid, HttpServletRequest req, HttpServletResponse resp) {
 		Boolean status;
 		
