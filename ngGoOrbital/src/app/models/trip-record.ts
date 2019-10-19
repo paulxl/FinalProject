@@ -1,3 +1,4 @@
+
 import { Deserializable } from './../interfaces/deserializable';
 import { Trip } from './trip';
 import { Traveler } from './traveler';

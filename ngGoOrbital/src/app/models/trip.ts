@@ -1,4 +1,3 @@
-import { TripService } from './../services/trip.service';
 import { Deserializable } from './../interfaces/deserializable';
 import { Launchport } from './launchport';
 import { Provider } from './provider';
