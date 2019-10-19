@@ -1,7 +1,7 @@
 import { HttpClientModule, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Trip} from '../models/Trip';
+import { Trip} from '../models/trip';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { environment } from 'src/environments/environment';
