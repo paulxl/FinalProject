@@ -15,7 +15,7 @@ export class TripService {
     private http: HttpClient,
     private messageService: MessageService
      ) { }
-     private baseUrl = 'localhost:8080/';
+     private baseUrl = 'http://localhost:8080/';
 private url = this.baseUrl + 'api/trips';
   httpOptions = {
     headers: new HttpHeaders({
