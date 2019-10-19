@@ -1,3 +1,4 @@
+import { CompaniesService } from './services/companies.service';
 import { TripService } from './services/trip.service';
 import { ProviderService } from './services/provider.service';
 import { UserService } from './services/user.service';
@@ -58,7 +59,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [TravelerService, UserService, ProviderService, TripService],
+
+  providers: [TravelerService, UserService, CompaniesService, TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
