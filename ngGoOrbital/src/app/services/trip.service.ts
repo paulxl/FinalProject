@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Trip} from '../models/Trip';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -15,8 +16,8 @@ export class TripService {
     private http: HttpClient,
     private messageService: MessageService
      ) { }
-     private baseUrl = 'http://localhost:8080/';
-private url = this.baseUrl + 'api/trips';
+private url = environment.serverURL + 'api/trips';
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json' })
