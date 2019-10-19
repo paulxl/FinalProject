@@ -10,7 +10,7 @@ export class CompaniesComponent implements OnInit {
   TestVehicle = ['Really Smart', 'Super Flexible',
     'Super Hot', 'Weather Changer'];
 
-  vehicles:any;
+  vehicles: any;
   constructor() { }
 
   ngOnInit() {
