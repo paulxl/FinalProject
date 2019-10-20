@@ -47,9 +47,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     SearchComponent,
     DetailsComponent,
     CompaniesComponent,
-
-    TravelerComponent
-
+    TravelerComponent,
     LoginComponent,
     LogoutComponent
 
