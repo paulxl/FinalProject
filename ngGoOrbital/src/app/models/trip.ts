@@ -1,48 +1,49 @@
+import { Companies } from "src/app/models/companies";
 // import { Deserializable } from './../interfaces/deserializable';
-import { Launchport } from './launchport';
+import { Launchport } from "./launchport";
 // import { Provider } from './provider';
-import { Vehicle } from './vehicle';
-import { Traveler } from './traveler';
-import { Identifiers } from '@angular/compiler/src/render3/r3_identifiers';
+import { Vehicle } from "./vehicle";
+import { Traveler } from "./traveler";
+import { Identifiers } from "@angular/compiler/src/render3/r3_identifiers";
 
 export class Trip {
   id: number;
-   travelers: Traveler[];
-   companies: Companies;
-   vehicle: Vehicle;
-   launchport: Launchport;
-   title: string;
-   destination: string;
-   cost: number;
-   tripLength: number;
-   tripDate: Date = new Date();
-   photoURL: string;
+  travelers: Traveler[];
+  companies: Companies;
+  vehicle: Vehicle;
+  launchport: Launchport;
+  title: string;
+  destination: string;
+  cost: number;
+  tripLength: number;
+  tripDate: Date;
+  photoURL: string;
 
-   constructor(
-     id?: number,
-     travelers?: Traveler[],
-     companies?: Companies,
-     vehicle?: Vehicle,
-     launchport?: Launchport,
-     title?: string,
-     destination?: string,
-     cost?: number,
-     tripLength?: number,
-     tripDate: Date = new Date(),
-     photoURL?: string,
-   ) {
-     this.id = id;
-     this.travelers = travelers;
-     this.companies = companies;
-     this.vehicle = vehicle;
-     this.launchport = launchport;
-     this.title = title;
-     this.destination = destination;
-     this.cost = cost;
-     this.tripLength = tripLength;
-     this.tripDate = tripDate;
-     this.photoURL = photoURL;
-   }
+  constructor(
+    id?: number,
+    travelers?: Traveler[],
+    companies?: Companies,
+    vehicle?: Vehicle,
+    launchport?: Launchport,
+    title?: string,
+    destination?: string,
+    cost?: number,
+    tripLength?: number,
+    tripDate?: Date,
+    photoURL?: string
+  ) {
+    this.id = id;
+    this.travelers = travelers;
+    this.companies = companies;
+    this.vehicle = vehicle;
+    this.launchport = launchport;
+    this.title = title;
+    this.destination = destination;
+    this.cost = cost;
+    this.tripLength = tripLength;
+    this.tripDate = tripDate;
+    this.photoURL = photoURL;
+  }
 }
 // export class Trip implements Deserializable {
 //    id: number;
