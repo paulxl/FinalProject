@@ -22,7 +22,7 @@ export class CompaniesService {
       "Content-Type": "application/json"
     })
   };
-  getProviders(): Observable<Companies[]> {
+  getCompany(): Observable<Companies[]> {
     return this.http.get<Companies[]>(this.url).pipe(
       tap(_ => this.log("fetched Companies")),
       catchError(this.handleError<Companies[]>("getCompanies", []))
@@ -30,7 +30,7 @@ export class CompaniesService {
   }
 
   /** GET Provider by id. Return `undefined` when id not found */
-  getProviderNo404<Data>(id: number): Observable<Companies> {
+  getCompaniesNo404<Data>(id: number): Observable<Companies> {
     const url = `${this.url}/?id=${id}`;
     return this.http.get<Companies[]>(url).pipe(
       map(providers => Companies[0]), // returns a {0|1} element array
@@ -43,7 +43,7 @@ export class CompaniesService {
   }
 
   /** GET Provider by id. Will 404 if id not found */
-  getProvider(id: number): Observable<Companies> {
+  getCompanies(id: number): Observable<Companies> {
     const url = `${this.url}/${id}`;
     return this.http.get<Companies>(url).pipe(
       tap(_ => this.log(`fetched Companies id=${id}`)),
@@ -52,7 +52,7 @@ export class CompaniesService {
   }
 
   /* GET Providers whose name contains search term */
-  searchProviders(term: string): Observable<Companies[]> {
+  searchCompanies(term: string): Observable<Companies[]> {
     if (!term.trim()) {
       // if not search term, return empty Provider array.
       return of([]);
@@ -66,7 +66,7 @@ export class CompaniesService {
   //////// Save methods //////////
 
   /** POST: add a new Provider to the server */
-  addProvider(companies: Companies): Observable<Companies> {
+  addCompanies(companies: Companies): Observable<Companies> {
     return this.http.post<Companies>(this.url, companies, this.httpOptions).pipe(
       tap((newCompanies: Companies) =>
         this.log(`added Companies w/ id=${newCompanies.id}`)
@@ -76,7 +76,7 @@ export class CompaniesService {
   }
 
   /** DELETE: delete the Provider from the server */
-  deleteProvider(companies: Companies | number): Observable<Companies> {
+  deleteCompanies(companies: Companies | number): Observable<Companies> {
     const id = typeof companies === "number" ? companies : companies.id;
     const url = `${this.url}/${id}`;
     return this.http.delete<Companies>(url, this.httpOptions).pipe(
@@ -86,7 +86,7 @@ export class CompaniesService {
   }
 
   /** PUT: update the Provider on the server */
-  updateProvider(companies: Companies): Observable<any> {
+  updateCompanies(companies: Companies): Observable<any> {
     return this.http.put(this.url, companies, this.httpOptions).pipe(
       tap(_ => this.log(`updated Companies id=${companies.id}`)),
       catchError(this.handleError<any>("updateCompanies"))
