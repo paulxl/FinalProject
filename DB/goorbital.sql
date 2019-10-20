@@ -32,11 +32,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `provider`
+-- Table `companies`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `provider` ;
+DROP TABLE IF EXISTS `companies` ;
 
-CREATE TABLE IF NOT EXISTS `provider` (
+CREATE TABLE IF NOT EXISTS `companies` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `name` VARCHAR(200) NULL,
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   INDEX `fk_vehicle_provider1_idx` (`provider_id` ASC),
   CONSTRAINT `fk_vehicle_provider1`
     FOREIGN KEY (`provider_id`)
-    REFERENCES `provider` (`id`)
+    REFERENCES `companies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fktrip_provider`
     FOREIGN KEY (`provider_id`)
-    REFERENCES `provider` (`id`)
+    REFERENCES `companies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trip_launchport1`
@@ -213,19 +213,19 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `provider`
+-- Data for table `companies`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (1, 16, 'Space X', 'assets/img/spaceX.jpg', 'https://www.spacex.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (2, 17, 'United Launch Alliance', 'assets/img/ula.jpg', 'https://www.ulalaunch.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (3, 18, 'Blue Origin', 'assets/img/blueOrigin.jpeg', 'https://www.blueorigin.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (4, 19, 'Virgin Galactic', 'assets/img/virginGal.jpeg', 'https://www.virgingalactic.com');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (5, 20, 'Northrup Grumman ', 'assets/img/ngorbital.jpg', 'https://www.northropgrumman.com/MediaResources/MediaKits/Space/Home.aspx?utm_source=DigitalAd&utm_medium=Redirect&utm_campaign=SpaceOrig+Redirect');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (6, 21, 'NASA', 'assets/img/nasa.jpg', 'www.nasa.gov');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (7, 22, 'Bigelow Aerospace ', 'assets/img/bigelow.jpeg', 'https://bigelowaerospace.com/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (8, 28, 'Boeing', 'assets/img/boeing.jpeg', 'https://www.boeing.com/space/');
-INSERT INTO `provider` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (9, 29, 'Sierra Nevada Corporation', 'assets/img/snc.jpg', 'https://www.sncorp.com/');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (1, 16, 'Space X', 'assets/img/spaceX.jpg', 'https://www.spacex.com/');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (2, 17, 'United Launch Alliance', 'assets/img/ula.jpg', 'https://www.ulalaunch.com/');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (3, 18, 'Blue Origin', 'assets/img/blueOrigin.jpeg', 'https://www.blueorigin.com/');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (4, 19, 'Virgin Galactic', 'assets/img/virginGal.jpeg', 'https://www.virgingalactic.com');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (5, 20, 'Northrup Grumman ', 'assets/img/ngorbital.jpg', 'https://www.northropgrumman.com/MediaResources/MediaKits/Space/Home.aspx?utm_source=DigitalAd&utm_medium=Redirect&utm_campaign=SpaceOrig+Redirect');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (6, 21, 'NASA', 'assets/img/nasa.jpg', 'www.nasa.gov');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (7, 22, 'Bigelow Aerospace ', 'assets/img/bigelow.jpeg', 'https://bigelowaerospace.com/');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (8, 28, 'Boeing', 'assets/img/boeing.jpeg', 'https://www.boeing.com/space/');
+INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (9, 29, 'Sierra Nevada Corporation', 'assets/img/snc.jpg', 'https://www.sncorp.com/');
 
 COMMIT;
 
