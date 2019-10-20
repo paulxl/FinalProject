@@ -1,10 +1,11 @@
+import { Companies } from 'src/app/models/companies';
 import { Vehicle } from './vehicle';
 // import { Deserializable } from './../interfaces/deserializable';
 // import { Provider } from './provider';
 
 export class Vehicle {
 id: number;
-provider: Provider;
+companies: Companies;
 name: string;
 type: string;
 description: string;
@@ -14,7 +15,7 @@ photoURL: string;
 
 constructor(
 id?: number,
-provider?: Provider,
+companies?: Companies,
 name?: string,
 type?: string,
 description?: string,
@@ -23,7 +24,7 @@ capactity?: number,
 photoURL?: string,
 ) {
   this.id = id;
-  this.provider = provider;
+  this.companies = companies;
   this.name = name;
   this.type = type;
   this.description = description;
