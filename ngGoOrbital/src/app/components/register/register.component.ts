@@ -1,3 +1,4 @@
+import { TravelerListComponent } from "./../traveler-list/traveler-list.component";
 import { TravelerService } from "./../../services/traveler.service";
 import { AuthService } from "./../../services/auth.service";
 import { CompanyDTO } from "./../../models/company-dto";
@@ -87,11 +88,25 @@ export class RegisterComponent implements OnInit {
     company.webUrl = form.value.webUrl;
     console.log("inside of add new company register comp");
     console.log(company);
-    this.addUser(user).subscribe(
+    this.auth.register(user).subscribe(
       data => {
-        console.log(data);
+        console.log("RegisterComponent.register(): user registered.");
+        this.auth.login(user.username, user.password).subscribe(
+          next => {
+            console.log(
+              "RegisterComponent.register(): user logged in, routing to /main."
+            );
+            // this.router.navigateByUrl("/main");
+          },
+          error => {
+            console.error("RegisterComponent.register(): error logging in.");
+          }
+        );
       },
-      err => console.error(err)
+      err => {
+        console.error("RegisterComponent.register(): error registering.");
+        console.error(err);
+      }
     );
 
     this.compServ

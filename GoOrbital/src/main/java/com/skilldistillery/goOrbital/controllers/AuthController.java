@@ -13,38 +13,51 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.goOrbital.entities.Companies;
-import com.skilldistillery.goOrbital.entities.CreateCompanyDTO;
-import com.skilldistillery.goOrbital.entities.CreateTravelerDTO;
 import com.skilldistillery.goOrbital.entities.Traveler;
 import com.skilldistillery.goOrbital.entities.User;
 import com.skilldistillery.goOrbital.services.AuthService;
+import com.skilldistillery.goOrbital.services.CompaniesService;
+import com.skilldistillery.goOrbital.services.TravelerService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4210" })
 public class AuthController {
 	@Autowired
 	private AuthService authService;
+	@Autowired
+	private CompaniesService compService;
+	@Autowired
+	private TravelerService travService;
 	
-//	@PostMapping("/register/company")
-//	public Companies registerCompany(CreateCompanyDTO dto,HttpServletResponse resp) {
-//		User user = new User(dto.getPassword(), dto.getUsername(), dto.getEmail());
-//	        resp.setStatus(400);
-//	    	user = authService.register(user);
-//	    	
-//		return null;
-//	}
-//	
-//	@PostMapping("/register/traveler")
-//	public Traveler registerTraveler(CreateTravelerDTO dto, HttpServletResponse resp) {
-//		User user = new User(dto.getPassword(), dto.getUsername(), dto.getEmail());
-//	        resp.setStatus(400);
-//	    	user = authService.register(user);	    	
-//		return null;
-//	}
+	@PostMapping("/register/company")
+	public Companies registerCompany(@RequestBody Companies company, @RequestBody User user,HttpServletResponse resp) {
+		 if (user == null || company == null) {	
+		        resp.setStatus(400);
+		        return null;
+		    }else {
+		    	user = authService.register(user);
+		    	company.setUser(user);
+		    	company = compService.create(company);
+		    }    
+		return company;
+	}
+	
+	@PostMapping("/register/traveler")
+	public Traveler registerTraveler(@RequestBody Traveler traveler, @RequestBody User user, HttpServletResponse resp) {
+		 if (user == null || traveler == null) {	
+		        resp.setStatus(400);
+		        return null;
+		    }else {
+		    	user = authService.register(user);
+		    	traveler.setUser(user);
+		    	traveler = travService.create(traveler);
+		    }    
+		return traveler;
+	}
 	
 	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public User register(@RequestBody User user, HttpServletResponse resp) {
-	    if (user == null) {
+	    if (user == null) {	
 	        resp.setStatus(400);
 	        return null;
 	    }else {
