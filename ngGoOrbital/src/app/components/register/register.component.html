@@ -1,4 +1,5 @@
 <div id="travelerOrCompanies" *ngIf="!newCompany && !newTraveler">
+
   <h2>Registeration Page For New Users</h2><br>
   <h4>Click the button that applies.</h4>
   <form>
@@ -24,6 +25,7 @@
 </div>
 
 <div id="newTraveler" *ngIf="newTraveler">
+
   <h3>Traveler's Information :</h3>
   <form #createNewTraveler="ngForm">
     <input type="text" name='username' ngModel placeholder="User Name"><br>
@@ -33,6 +35,8 @@
     <input type="text" name="lastName" ngModel placeholder="Last Name"><br>
     <input type="text" name="photoUrl" ngModel placeholder="Upload a Photo URL"><br>
     <button type='submit' (click)="addNewTraveler(createNewTraveler)">Click To Submit</button>
+
+
 
 
   </form>

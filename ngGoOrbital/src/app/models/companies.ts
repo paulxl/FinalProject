@@ -1,23 +1,35 @@
-import { User } from "src/app/models/user";
+
+import { Vehicle } from './vehicle';
+import { Trip } from './trip';
+import { User } from './user';
+
 export class Companies {
   id: number;
   name: string;
-  logoUrl: string;
-  webUrl: string;
   user: User;
-
+  logoURL: string;
+  webURL: string;
+  vehicles: Vehicle;
+  trips: Trip;
 
   constructor(
     id?: number,
+    user?: User,
     name?: string,
-    logoUrl?: string,
-    webUrl?: string,
-    user?: User
+    logoURL?: string,
+    webURL?: string,
+    vehicles?: Vehicle,
+    trip?: Trip,
   ) {
-    this.name = name;
-    this.logoUrl = logoUrl;
-    this.webUrl = webUrl;
-    this.user = user;
-    this.id = id;
+    {
+      this.id = id;
+      this.user = user;
+      this.name = name;
+      this.logoURL = logoURL;
+      this.webURL = webURL;
+      this.vehicles = vehicles;
+      this.trips = trip;
+    }
+
   }
 }
