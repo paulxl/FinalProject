@@ -1,42 +1,59 @@
 <body>
-  <br>
+    <br>
+
 <div class="header">
   <!-- <h5>Space Travel to the moon and back or beyond!</h5> -->
   <h4>Vacation in Space</h4>
-<br>
+
 </div>
+<div class="row">
+    <div class="col-sm-2">
+  <!-- space twitter feed -->
+    </div>
+    <div class="col-sm-8">
 
 <div class="searchBody">
 
-<h5>
-    <form action="" method="POST" name="SearchByDestination">
-    <div align="left">Trips By Destination  <select name="mydropdown">
-    <option value="leo">Fly-By LEO (Low Earth Orbit)</option>
-    <option value="geo">GEO (Geostationary Orbit)</option>
-    <option value="geo">Space Hotel (L.E.O.)</option>
-    <option value="geo">International Space Station (I.S.S.)</option>
-    <option value="mars">MARS (Martian Colony)</option>
-    <option value="moon">Moon (Moon Base AFB)</option>
-    <option value="venus">Venus (Cloud City)</option>
-    </select></div>
+    <div *ngFor='let trip of trips'>
+        <h3>{{trip.destination}}</h3>
+        </div>
+
+<div ng-controller="destinationSelect" *ngIf="!selected">
+
+  <form name="tripDSearch">
+    <label for="selectDestination">Search by destination</label>
+    <select name="destination" ng-model="trip.destination">
+      <!-- <option value="leo">{{ destination }}</option> -->
+      <option value="geo">GEO (Geostationary Orbit)</option>
+      <option value="geo">Space Hotel (L.E.O.)</option>
+      <option value="geo">International Space Station (I.S.S.)</option>
+      <option value="mars">MARS (Martian Colony)</option>
+      <option value="moon">Moon (Moon Base AFB)</option>
+      <option value="venus">Venus (Cloud City)</option>
+      <!-- routing to searchResultsDestination(destination) -->
+    </select>
+  </form>
+</div>
+
+<!-- <tr class="table-info" *ngFor="let todo of todos">
+    <td (click)="displayTodo(todo)">{{ todo.task }}</td> -->
+
+<!-- <div ng-controller="companiesSelect" *ngIf="!selected">
+    <form name="companiesSelect">
+      <label for="selectCompanies">Search by company   </label>
+      <select name="company" ng-model="companies.name">
+        <option value="{{searchResultsCompanies()}}">{{companies.name}}</option> -->
+        <!-- <option value="geo">United Launch Alliance</option>
+        <option value="geo">Blue Origin</option>
+        <option value="geo">Virgin Galactic</option>
+        <option value="mars">Northrup Grumman</option>
+        <option value="moon">NASA</option>
+        <option value="venus">Bigelow Aerospace</option>
+        <option value="venus">Boeing</option>
+        <option value="venus">Sierra Nevada Corporation</option> -->
+      <!-- </select>
     </form>
-<br>
-    <form action="" method="POST" name="myform">
-      <div align="left">Trips By Company  <select name="mydropdown">
-      <option value="leo">Space X</option>
-      <option value="geo">United Launch Alliance </option>
-      <option value="geo">Blue Origin </option>
-      <option value="geo">Virgin Galactic</option>
-      <option value="mars">Northrup Grumman</option>
-      <option value="moon">NASA</option>
-      <option value="venus">Bigelow Aerospace </option>
-      <option value="venus">Boeing </option>
-      <option value="venus">Sierra Nevada Corporation </option>
-      </select></div>
-      </form>
-    </h5>
-    </div>
-    <br>
+  </div> -->
 
 <div class="caro">
   <ngb-carousel>
@@ -69,7 +86,8 @@
           </ng-template>
         </ngb-carousel>
       </div>
-
-    </body>
+    </div>
+      <div class="col-sm-2"></div>
+    </div>
 
 

@@ -193,20 +193,19 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (16, 'spacex', '$2a$10$TTJonTEg88AA/tz.U/RKCO31PqoGlDq0NxliGvQwe5rb8rEd5KEfm', 'space@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (17, 'unitedla', '$2a$10$fgkrOZbVzbqxeML.DuRxG.ukgjmouycSCi8iDmG3kSkXA4dpSV7Qa', 'united@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (18, 'blueorigin', '$2a$10$4bKqqXfQl8yDCzM/.cpGOuczQ.EbmpHG2m8ek/yNnXW4T9lisAPhG', 'borigin@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (19, 'virgingalactic', '$2a$10$HKBDrZBwO0Hq1nIkDzp/CO24OQY3zuOSmG0X17Kmy1YxCn3lBpL7G', 'vgalactic@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (20, 'northgrum', '$2a$10$fi1Wnar/8YucvwJiXCD5b.2BycCDeeGD7TfCNX187s/OJ2QtmWTfO', 'nortgrum@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (21, 'nasa', '$2a$10$KoVtUyHGJpRmRNpvGKhoh.OFgZ7s7IZZH0/gvMOMsCQxvBDW4eznW', 'nasa@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (22, 'bigelow', '$2a$10$vvbtoTkA5w/fMIhf60O/l.V5k6KpgUkRhCwo4x0IKmucSLirtl8Iq', 'bigelow@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (23, 'jglen', '$2a$10$.2OFGUApvuofjfYV8GltquxbkfTHo8fVIQAozgQHh9WcYJSSz8Y36', 'jglen@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (24, 'gbluford', '$2a$10$94nh341NNQVzfysq6ydOzOxDhjI32KYzQ3h4djdwntEMtzfCEnJTO', 'gbluford@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (25, 'blightyear', '$2a$10$0x5qCO/ZFCZOjeQAwwlEg.WVlaFn4oK0YAacKXYI1VkzIZ5nLFOn2', 'blightyear@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (26, 'sride', '$2a$10$6sXYqUmbFMppdFnl/9VtZewHH1nK2SnoIEsTb.3T9rnESkyGIplB2', 'sride@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (27, 'jwilliams', '$2a$10$eCf1aFhp60Gz0ApXop5xSuVqSqMN6wIFiwOrK2k7rj5RnpTK54Hcy', 'jwilliams@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (28, 'boeing', '$2a$10$fqEZEXZUMzPYxI5KsDhDMuv1XnrM7w7OYxWH/ixCPtIH0An7rr9RS', 'boeing@orbtmail.com', 1, 'standard');
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (29, 'sierranc', '$2a$10$L6f2Nd33Seyk1PLAeI1uEeL73D.pCCltItbY6lpTu4A9gE1woeOHS', 'sierranc@orbtmail.com', 1, 'standard');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (16, 'spacex', '$2a$10$TTJonTEg88AA/tz.U/RKCO31PqoGlDq0NxliGvQwe5rb8rEd5KEfm', 'space@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (17, 'unitedla', '$2a$10$fgkrOZbVzbqxeML.DuRxG.ukgjmouycSCi8iDmG3kSkXA4dpSV7Qa', 'united@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (18, 'blueorigin', '$2a$10$4bKqqXfQl8yDCzM/.cpGOuczQ.EbmpHG2m8ek/yNnXW4T9lisAPhG', 'borigin@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (19, 'virgingalactic', '$2a$10$HKBDrZBwO0Hq1nIkDzp/CO24OQY3zuOSmG0X17Kmy1YxCn3lBpL7G', 'vgalactic@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (21, 'nasa', '$2a$10$KoVtUyHGJpRmRNpvGKhoh.OFgZ7s7IZZH0/gvMOMsCQxvBDW4eznW', 'nasa@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (22, 'bigelow', '$2a$10$vvbtoTkA5w/fMIhf60O/l.V5k6KpgUkRhCwo4x0IKmucSLirtl8Iq', 'bigelow@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (23, 'jglen', '$2a$10$.2OFGUApvuofjfYV8GltquxbkfTHo8fVIQAozgQHh9WcYJSSz8Y36', 'jglen@orbtmail.com', 1, 'traveler');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (24, 'gbluford', '$2a$10$94nh341NNQVzfysq6ydOzOxDhjI32KYzQ3h4djdwntEMtzfCEnJTO', 'gbluford@orbtmail.com', 1, 'traveler');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (25, 'blightyear', '$2a$10$0x5qCO/ZFCZOjeQAwwlEg.WVlaFn4oK0YAacKXYI1VkzIZ5nLFOn2', 'blightyear@orbtmail.com', 1, 'traveler');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (26, 'sride', '$2a$10$6sXYqUmbFMppdFnl/9VtZewHH1nK2SnoIEsTb.3T9rnESkyGIplB2', 'sride@orbtmail.com', 1, 'traveler');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (27, 'jwilliams', '$2a$10$eCf1aFhp60Gz0ApXop5xSuVqSqMN6wIFiwOrK2k7rj5RnpTK54Hcy', 'jwilliams@orbtmail.com', 1, 'traveler');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (28, 'boeing', '$2a$10$fqEZEXZUMzPYxI5KsDhDMuv1XnrM7w7OYxWH/ixCPtIH0An7rr9RS', 'boeing@orbtmail.com', 1, 'company');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (29, 'sierranc', '$2a$10$L6f2Nd33Seyk1PLAeI1uEeL73D.pCCltItbY6lpTu4A9gE1woeOHS', 'sierranc@orbtmail.com', 1, 'company');
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `enabled`, `role`) VALUES (30, 'admin', '$2a$10$Z0XPwJ2y3n.wkHcjNjRHkeiMSEL.bNwgtdDYQ4/CYzAHlmqzva9K.', 'admin@orbtmail.com', 1, 'admin');
 
 COMMIT;
@@ -221,7 +220,6 @@ INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES 
 INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (2, 17, 'United Launch Alliance', 'assets/img/ula.jpg', 'https://www.ulalaunch.com/');
 INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (3, 18, 'Blue Origin', 'assets/img/blueOrigin.jpeg', 'https://www.blueorigin.com/');
 INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (4, 19, 'Virgin Galactic', 'assets/img/virginGal.jpeg', 'https://www.virgingalactic.com');
-INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (5, 20, 'Northrup Grumman ', 'assets/img/ngorbital.jpg', 'https://www.northropgrumman.com/MediaResources/MediaKits/Space/Home.aspx?utm_source=DigitalAd&utm_medium=Redirect&utm_campaign=SpaceOrig+Redirect');
 INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (6, 21, 'NASA', 'assets/img/nasa.jpg', 'www.nasa.gov');
 INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (7, 22, 'Bigelow Aerospace ', 'assets/img/bigelow.jpeg', 'https://bigelowaerospace.com/');
 INSERT INTO `companies` (`id`, `user_id`, `name`, `logo_url`, `web_url`) VALUES (8, 28, 'Boeing', 'assets/img/boeing.jpeg', 'https://www.boeing.com/space/');
@@ -242,7 +240,6 @@ INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `ran
 INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (5, 8, 'Starship', 'passenger', 'passenger and crew transports to Mars', 'Mars', 100, NULL);
 INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (6, 1, 'Dragon', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
 INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (7, 3, 'New Shepard', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
-INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (8, 5, 'Omega', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 15, NULL);
 
 COMMIT;
 
