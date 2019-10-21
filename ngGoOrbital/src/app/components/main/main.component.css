@@ -1,0 +1,28 @@
+.header {
+  text-align: left;
+  margin-left: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(46, 130, 213);
+  text-shadow: 0.5px 0.5px #6a6767;
+}
+
+.searchBody {
+  text-align: left;
+  line-height: 40px;
+  margin-left: 60px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(46, 130, 213);
+  text-shadow: 0.5px 0.5px #6a6767;
+  letter-spacing: 0.1em;
+}
+
+.caro {
+  align-content: left;
+  align-items: left;
+  text-align: left;
+}
+body {
+  /* background-image: url("/assets/img/catSpace5.jpg"); */
+  background-image: url("/assets/img/earth.jpeg");
+  background-size: cover;
+}
