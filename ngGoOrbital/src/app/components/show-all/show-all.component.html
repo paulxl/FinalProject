@@ -1,35 +1,106 @@
-<p>details works!</p>
-<!-- need to insert ngFor loop with variable.
-  need to replace image with {{trip.photoUrl}} -->
-  <body>
-<h3 align="center">See All Trips </h3>
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head></head>
+<body class="w3-content" style="max-width:1200px">
 
-<!--creates a list of users trips -->
-  <!--Insert loop here *ngFor="let trip of trips" -->
-  <div class="card">
-    <div class="row no-gutters">
-      <div class="col-md-4"  >
-        <img src="assets/img/SpaceHotel.jpg" style="max-height: auto;" class="card-img" alt="{{trip.photoUrl}}">
-      </div>
-      <div class="col-md-4" style="float: left">
-        <div class="card-body">
-          <h5 class="card-title">Title {{trip.title}}</h5>
-          <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Length {{ trip.length }}</p>
-          <p class="card-text">Price:EUD (Earth, US Dollars) {{ trip.cost }}</p>
-          <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
+ <div align="center">TITLE GOES HERE {{trip.title}}</div>
+
+<br>
+  <div class="column1">
+    <div class="w3-display-container w3-text-white">
+      <img src="assets/img/SpaceHotel.jpg" alt="{{trip.photoUrl}}" style="height:100%">
+      <div class="w3-xlarge w3-display-bottomleft w3-padding">Luxury trip.name</div>
+      <div class="w3-xlarge w3-display-bottomright w3-padding">LONDON 60&deg; F</div>
+
+      <div class="subcolumn">
+        <div class="w3-third w3-center">
+          <h3>{{trip.provider}}</h3>
+          <img height = 100px src="assets/img/StarshipSpaceX.jpg" alt ="{{trip.vehicleId}}">
         </div>
-      </div>
-      <div class="col-md-4" style="float: right">
-        <div class="card-body">
-          <h5 class="card-title">Cost {{trip.cost}}</h5>
-          <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Length {{ trip.length }}</p>
-          <p class="card-text">Price:EUD (Earth, US Dollars) {{ trip.cost }}</p>
-          <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
-          <!-- <button  (click)="viewMore(trip.id)">View More</button> -->
+        <div class="subcolumn">
+          <h3>{{trip.provider}}</h3>
+          <img height = 100px src="assets/img/SpaceXLogo.jpg" alt ="{{trip.providerId}}">
+
+        </div>
+        <div class="subcolumn">
+          <h3>{{trip.provider}}</h3>
         </div>
       </div>
     </div>
+
+    <!-- Second Grid: Resent -->
+    <span class="column2">
+      <div class="subcolumn2">
+        <h4>MOST RECENT WORK:</h4>
+        <p>{{trip.provider}}</p>
+        <div class="subcolumn2">
+          <p>{{trip.details}}</p>
+        </div>
+        <div class="subcolumn2">
+          <p>{{trip.description}}</p>
+        </div>
+      </div>
+    </span>
   </div>
 
+  <br>
+  <hr>
+  <div column=12>
+    <div>
+      <table>
+        <tr>
+          <th>Departure Date</th>
+          <th> Trip Length</th>
+        </tr>
+        <tr>
+          <th>Departure Date</th>
+          <th> Trip Length</th>
+        </tr>
+      </table>
+      <span>
+        <select>Passengers :
+          <option value="1">1 Adult</option>
+          <option value="2">2 Adult</option>
+          <option value="3">3 Adult</option>
+          <option value="4">4 Adult</option>
+        </select>
+      </span>
+
+    </div>
+    </div>
+    <hr>
+    <br><br><br><br>
+    <!-- Footer -->
+    <div class="w3-row w3-section">
+      <div class="w3-third w3-container w3-black w3-large" style="height:250px">
+        <h2>Contact Info</h2>
+        <p><i class="fa fa-map-marker" style="width:30px"></i> Chicago, US</p>
+        <p><i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515</p>
+        <p><i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com</p>
+      </div>
+      <div class="w3-third w3-center w3-large w3-dark-grey w3-text-white" style="height:250px">
+        <h2>Contact Us</h2>
+        <p>If you have an idea.</p>
+        <p>What are you waiting for?</p>
+      </div>
+      <div class="w3-third w3-center w3-large w3-grey w3-text-white" style="height:250px">
+        <h2>Like Us</h2>
+        <i class="w3-xlarge fa fa-facebook-official"></i><br>
+        <i class="w3-xlarge fa fa-pinterest-p"></i><br>
+        <i class="w3-xlarge fa fa-twitter"></i><br>
+        <i class="w3-xlarge fa fa-flickr"></i><br>
+        <i class="w3-xlarge fa fa-linkedin"></i>
+      </div>
+    </div>
+    <div class="w3-container w3-text-grey">
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+
+</body>
+
+</html>

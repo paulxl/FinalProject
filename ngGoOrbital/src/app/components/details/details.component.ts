@@ -17,8 +17,9 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
   }
 
-  viewMore(id: number) {
+  showDetailById(id: number) {
 
+  console.log("entering showDetailById = " + id);
 
   }
 

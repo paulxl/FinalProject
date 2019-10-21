@@ -1,0 +1,24 @@
+.column1 {
+  float: left;
+  column-count: 7;
+}
+.column2 {
+  column-count: 3;
+}
+div {
+  column-gap: 40px;
+}
+.subcolumn {
+  float: left;
+  width: 33%;
+}
+.subcolumn2 {
+  float: left;
+  width: 33%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

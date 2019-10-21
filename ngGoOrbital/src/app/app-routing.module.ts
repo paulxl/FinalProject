@@ -1,3 +1,4 @@
+import { ShowAllComponent } from './components/show-all/show-all.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { TripListComponent } from './components/trip-list/trip-list.component';
 import { TravelerListComponent } from './components/traveler-list/traveler-list.component';
@@ -28,6 +29,8 @@ const routes: Routes = [
 { path: 'traveler-list', component: TravelerListComponent },
 { path: 'trip-list', component: TripListComponent },
 { path: 'user-list', component: UserListComponent },
+{ path: 'showall', component: ShowAllComponent },
+
 
 ];
 
