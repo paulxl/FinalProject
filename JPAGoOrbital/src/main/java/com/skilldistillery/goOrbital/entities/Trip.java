@@ -24,7 +24,7 @@ public class Trip {
 	
 	@JsonBackReference(value = "companiesTrips")
 	@ManyToOne
-	@JoinColumn(name = "companies_id")
+	@JoinColumn(name = "provider_id")
 	private Companies companies;
 	
 	@JsonBackReference(value = "vehicleTrips")

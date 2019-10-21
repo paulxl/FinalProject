@@ -95,6 +95,11 @@ public class User {
 		this.enabled = enabled;
 		this.role = role;
 	}
+	public User(String password, String username, String email) {
+		this.password = password;
+		this.username = username;
+		this.email = email;
+	}
 	
 
 }

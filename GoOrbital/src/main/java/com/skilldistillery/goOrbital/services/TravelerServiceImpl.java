@@ -14,7 +14,7 @@ public class TravelerServiceImpl implements TravelerService {
 
 	@Autowired
 	public TravelerRepository repo;
-
+	
 	@Override
 	public List<Traveler> index() {
 		List<Traveler> traveler = repo.findAll();

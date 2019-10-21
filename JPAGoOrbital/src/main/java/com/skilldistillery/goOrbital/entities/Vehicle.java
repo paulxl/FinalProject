@@ -37,7 +37,7 @@ public class Vehicle {
 	
 	@JsonBackReference(value = "companiesVehicles")
 	@ManyToOne
-	@JoinColumn(name = "companies_id")
+	@JoinColumn(name = "provider_id")
 	private Companies companies;
 	
 	@JsonManagedReference(value = "vehicleTrips")

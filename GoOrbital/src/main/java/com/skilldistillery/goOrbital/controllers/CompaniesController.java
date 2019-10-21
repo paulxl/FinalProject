@@ -44,7 +44,6 @@ public class CompaniesController {
 	@GetMapping(path ="companies/{cid}")
 	public Companies getById(@PathVariable("cid") Integer cid, HttpServletResponse resp) {
 		Companies companies;
-		
 		try {
 			companies = svr.findById(cid);
 			if (companies != null) {
@@ -64,9 +63,12 @@ public class CompaniesController {
 
 	
 	@PostMapping(path ="companies")
-	public Companies create(@RequestBody Companies companies, HttpServletResponse resp, HttpServletRequest req) {
+	public Companies create(@RequestBody Companies company, HttpServletResponse resp, HttpServletRequest req) {
+		Companies companies;
 		try {
-			svr.create(companies);
+			System.err.println("inside of create company comp controller");
+			System.err.println(company);
+			companies = svr.create(company);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/");

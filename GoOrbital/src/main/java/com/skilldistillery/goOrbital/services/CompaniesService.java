@@ -9,7 +9,7 @@ public interface CompaniesService {
 	
 	Companies findById(int id);
 	
-	Companies create(Companies provider);
+	Companies create(Companies company);
 
 	Companies update(Companies provider, int id);
 
