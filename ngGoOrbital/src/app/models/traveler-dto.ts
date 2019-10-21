@@ -5,7 +5,6 @@ export class TravelerDTO {
     firstName: string;
     lastName: string;
     photoUrl: string;
-    role: string;
 
     constructor(
         username?: string,

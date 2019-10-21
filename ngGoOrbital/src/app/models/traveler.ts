@@ -16,14 +16,17 @@ export class Traveler {
   id: number;
   firstName: string;
   lastName: string;
-  photoURL: string;
-  tripRecord: TripRecord;
+  photoUrl: string;
 
-  constructor({ id, firstName, lastName, photoURL}: {id?: number; firstName?: string; lastName?: string; photoURL?: string; }= {}) {
+  constructor(
+    id?: number,
+    firstName?: string,
+    lastName?: string,
+    photoUrl?: string
+  ) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.photoURL = photoURL;
+    this.photoUrl = photoUrl;
   }
-
 }

@@ -28,11 +28,12 @@ export class CompaniesService {
     );
   }
 
-  /** GET Provider by id. Return `undefined` when id not found */
+
+  /** GET Company by id. Return `undefined` when id not found */
   getCompaniesNo404<Data>(id: number): Observable<Companies> {
     const url = `${this.url}/?id=${id}`;
     return this.http.get<Companies[]>(url).pipe(
-      map(providers => Companies[0]), // returns a {0|1} element array
+      map(Companys => Companies[0]), // returns a {0|1} element array
       tap(h => {
         const outcome = h ? `fetched` : `did not find`;
         this.log(`${outcome} Companies id=${id}`);
@@ -50,10 +51,11 @@ export class CompaniesService {
     );
   }
 
+
   /* GET Providers whose name contains search term */
   searchCompanies(term: string): Observable<Companies[]> {
     if (!term.trim()) {
-      // if not search term, return empty Provider array.
+      // if not search term, return empty Company array.
       return of([]);
     }
     return this.http.get<Companies[]>(`${this.url}/?name=${term}`).pipe(
@@ -64,7 +66,8 @@ export class CompaniesService {
 
   //////// Save methods //////////
 
-  /** POST: add a new Provider to the server */
+
+  /** POST: add a new Company to the server */
   addCompanies(companies: Companies): Observable<Companies> {
     console.log("inside of add companies service method");
 
@@ -90,6 +93,7 @@ export class CompaniesService {
     );
   }
 
+
   /** PUT: update the Provider on the server */
   updateCompanies(companies: Companies): Observable<any> {
     return this.http.put(this.url, companies, this.httpOptions).pipe(
@@ -106,7 +110,7 @@ export class CompaniesService {
       return of(result as T);
     };
   }
-  /** Log a ProviderService message with the MessageService */
+  /** Log a CompanyService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`CompanyService: ${message}`);
   }

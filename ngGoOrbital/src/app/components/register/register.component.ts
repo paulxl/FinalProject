@@ -1,15 +1,17 @@
-import { UserService } from 'src/app/services/user.service';
-import { TravelerService } from './../../services/traveler.service';
-import { AuthService } from './../../services/auth.service';
-import { CompanyDTO } from './../../models/company-dto';
-import { Component, OnInit } from '@angular/core';
-import { Traveler } from 'src/app/models/traveler';
-import { Companies } from 'src/app/models/companies';
-import { CompaniesService } from 'src/app/services/companies.service';
-import { User } from 'src/app/models/user';
-import { NgForm } from '@angular/forms';
-import { TravelerDTO } from 'src/app/models/traveler-dto';
-import { Router } from '@angular/router';
+import { TravelerListComponent } from "./../traveler-list/traveler-list.component";
+import { TravelerService } from "./../../services/traveler.service";
+import { AuthService } from "./../../services/auth.service";
+import { CompanyDTO } from "./../../models/company-dto";
+import { Component, OnInit } from "@angular/core";
+import { Traveler } from "src/app/models/traveler";
+import { Companies } from "src/app/models/companies";
+import { UserService } from "src/app/services/user.service";
+import { CompaniesService } from "src/app/services/companies.service";
+import { User } from "src/app/models/user";
+import { NgForm } from "@angular/forms";
+import { TravelerDTO } from "src/app/models/traveler-dto";
+import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-register',
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private travServ: TravelerService,
     private userServ: UserService
+
   ) {}
 
   // Methods
@@ -38,6 +41,7 @@ export class RegisterComponent implements OnInit {
     this.newTraveler = null;
     this.newCompany = null;
   }
+
 
   // addUser(user: User) {
   //   this.auth.(user).subscribe(
@@ -93,6 +97,7 @@ export class RegisterComponent implements OnInit {
 
   addNewCompany(form: NgForm) {
     const dto: CompanyDTO = form.value;
+
     const user: User = new User();
     user.email = form.value.email;
     user.password = form.value.password;

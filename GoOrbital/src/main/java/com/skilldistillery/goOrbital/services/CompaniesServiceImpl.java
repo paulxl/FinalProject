@@ -14,7 +14,7 @@ public class CompaniesServiceImpl implements CompaniesService {
 
 	@Autowired
 	private ProviderRepository repo;
-
+	
 	@Override
 	public List<Companies> index() {
 		List<Companies> provider = repo.findAll();
@@ -32,8 +32,8 @@ public class CompaniesServiceImpl implements CompaniesService {
 	}
 
 	@Override
-	public Companies create(Companies provider) {
-		return repo.saveAndFlush(provider);
+	public Companies create(Companies company) {
+		return repo.saveAndFlush(company);
 	}
 
 	@Override
