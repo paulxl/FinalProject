@@ -1,10 +1,13 @@
+
 import { TripRecord } from './traveler-trip';
 import { User } from './user';
+
 
 export class Traveler {
   id: number;
   firstName: string;
   lastName: string;
+
   user: User;
   photoURL: string;
   tripRecord: TripRecord;
@@ -19,6 +22,6 @@ export class Traveler {
     this.user = user;
     this.photoURL = photoURL;
     this.tripRecord = tripRecord;
-  }
 
+  }
 }

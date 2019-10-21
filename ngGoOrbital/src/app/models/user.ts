@@ -6,7 +6,6 @@ export class User {
   email: string;
   enabled: boolean;
   role: string;
-  value: any;
 
   constructor(
     id?: number,

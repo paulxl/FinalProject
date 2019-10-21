@@ -14,7 +14,7 @@ public class TravelerServiceImpl implements TravelerService {
 
 	@Autowired
 	public TravelerRepository repo;
-
+	
 	@Override
 	public List<Traveler> index() {
 		List<Traveler> traveler = repo.findAll();
@@ -44,6 +44,7 @@ public class TravelerServiceImpl implements TravelerService {
 			trav.setFirstName(traveler.getFirstName());
 			trav.setLastName(traveler.getLastName());
 			trav.setPhotoUrl(traveler.getPhotoUrl());
+			trav.setTrips(traveler.getTrips());
 		}
 		return repo.saveAndFlush(trav);
 	}
