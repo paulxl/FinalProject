@@ -11,5 +11,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  //   ngAfterViewInit(): void {
+  //     // @ts-ignore
+  //     twttr.widgets.load();
+  // }
 }
