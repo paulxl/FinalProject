@@ -27,6 +27,8 @@ import { TravelerComponent } from "./components/traveler/traveler.component";
 import { LoginComponent } from "./components/login/login.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { FormsModule } from "@angular/forms";
+import { ShowAllComponent } from './components/show-all/show-all.component';
+import { AccordianComponent } from './components/show-all/accordian/accordian.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { FormsModule } from "@angular/forms";
     CompaniesComponent,
     TravelerComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    ShowAllComponent,
+    AccordianComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
 

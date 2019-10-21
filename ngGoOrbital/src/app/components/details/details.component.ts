@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-details',
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
+
+  currentRate = 8;
+
   trip: any;   // variable
   trips: any;  // array of variables;
   constructor() { }
@@ -14,6 +18,9 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
   }
 
-  viewMore(id: number) { }
+  viewMore(id: number) {
+
+
+  }
 
 }
