@@ -1,1 +1,73 @@
-<router-outlet></router-outlet>
+<body>
+  <br>
+<div class="header">
+  <!-- <h5>Space Travel to the moon and back or beyond!</h5> -->
+  <h4>Vacation in Space</h4>
+<br>
+</div>
+
+<div class="searchBody">
+
+<h5>
+    <form action="" method="POST" name="SearchByDestination">
+    <div align="left">Trips By Destination  <select name="mydropdown">
+    <option value="leo">Fly-By LEO (Low Earth Orbit)</option>
+    <option value="geo">GEO (Geostationary Orbit)</option>
+    <option value="geo">Space Hotel (L.E.O.)</option>
+    <option value="geo">International Space Station (I.S.S.)</option>
+    <option value="mars">MARS (Martian Colony)</option>
+    <option value="moon">Moon (Moon Base AFB)</option>
+    <option value="venus">Venus (Cloud City)</option>
+    </select></div>
+    </form>
+<br>
+    <form action="" method="POST" name="myform">
+      <div align="left">Trips By Company  <select name="mydropdown">
+      <option value="leo">Space X</option>
+      <option value="geo">United Launch Alliance </option>
+      <option value="geo">Blue Origin </option>
+      <option value="geo">Virgin Galactic</option>
+      <option value="mars">Northrup Grumman</option>
+      <option value="moon">NASA</option>
+      <option value="venus">Bigelow Aerospace </option>
+      <option value="venus">Boeing </option>
+      <option value="venus">Sierra Nevada Corporation </option>
+      </select></div>
+      </form>
+    </h5>
+    </div>
+    <br>
+
+<div class="caro">
+  <ngb-carousel>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img src="/assets/img/StarshipOnMoonBase.jpg" width="600px" alt="Random first slide">
+        </div>
+        <div class="carousel-caption">
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+        <div class="picsum-img-wrapper">
+          <img src="/assets/img/SpaceHotel.jpg" width="600px" alt="Random second slide">
+        </div>
+        <div class="carousel-caption">
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </ng-template>
+      <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+              <img src="/assets/img/MartianColony.jpg" width="600px" alt="Random third slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>Third slide label</h3>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+
+    </body>

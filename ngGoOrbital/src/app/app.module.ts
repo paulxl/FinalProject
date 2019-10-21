@@ -3,13 +3,15 @@ import { MessageService } from './services/message.service';
 import { CompaniesService } from './services/companies.service';
 import { TripService } from './services/trip.service';
 // import { ProviderService } from './services/provider.service';
-import { UserService } from './services/user.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { UserService } from "./services/user.service";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
+
 
 import { TravelerService } from './services/traveler.service';
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -25,11 +27,14 @@ import { CompaniesComponent } from './components/companies/companies.component';
 
 import { TravelerComponent } from './components/traveler/traveler.component';
 
+
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './template/footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -47,8 +52,9 @@ import { MenuComponent } from './components/menu/menu.component';
     LoginComponent,
     LogoutComponent,
     MenuComponent
+    FooterComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule],
 
   providers: [TravelerService, UserService, CompaniesService, TripService, AuthService,
     { provide: HTTP_INTERCEPTORS,
