@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(150) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `enabled` TINYINT NOT NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   `role` VARCHAR(45) NOT NULL DEFAULT 'standard',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `vehicle` ;
 
 CREATE TABLE IF NOT EXISTS `vehicle` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `provider_id` INT NOT NULL,
+  `companies_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   `type` VARCHAR(45) NULL,
   `description` VARCHAR(100) NULL,
@@ -67,9 +67,9 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `capacity` INT NULL,
   `photo_url` VARCHAR(750) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_vehicle_provider1_idx` (`provider_id` ASC),
+  INDEX `fk_vehicle_provider1_idx` (`companies_id` ASC),
   CONSTRAINT `fk_vehicle_provider1`
-    FOREIGN KEY (`provider_id`)
+    FOREIGN KEY (`companies_id`)
     REFERENCES `companies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -97,7 +97,7 @@ DROP TABLE IF EXISTS `trip` ;
 
 CREATE TABLE IF NOT EXISTS `trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `provider_id` INT NOT NULL,
+  `companies_id` INT NOT NULL,
   `vehicle_id` INT NOT NULL,
   `launchport_id` INT NOT NULL,
   `title` VARCHAR(100) NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `photo_url` VARCHAR(1000) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
-  INDEX `fktrip_provider_idx` (`provider_id` ASC),
+  INDEX `fktrip_provider_idx` (`companies_id` ASC),
   INDEX `fk_trip_launchport1_idx` (`launchport_id` ASC),
   CONSTRAINT `fk_trip_vehicle1`
     FOREIGN KEY (`vehicle_id`)
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fktrip_provider`
-    FOREIGN KEY (`provider_id`)
+    FOREIGN KEY (`companies_id`)
     REFERENCES `companies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -235,14 +235,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (1, 3, 'Bionic Space Vehicle', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 8, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (2, 8, 'CST-100', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (3, 9, 'Dream Chaser', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (4, 8, 'Dragon 2', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (5, 8, 'Starship', 'passenger', 'passenger and crew transports to Mars', 'Mars', 100, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (6, 1, 'Dragon', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (7, 3, 'New Shepard', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
-INSERT INTO `vehicle` (`id`, `provider_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (8, 5, 'Omega', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 15, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (1, 3, 'Bionic Space Vehicle', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 8, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (2, 8, 'CST-100', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (3, 9, 'Dream Chaser', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (4, 8, 'Dragon 2', 'passenger', 'passenger and crew transports within low earth orbit', 'LEO', 7, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (5, 8, 'Starship', 'passenger', 'passenger and crew transports to Mars', 'Mars', 100, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (6, 1, 'Dragon', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (7, 3, 'New Shepard', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 6, NULL);
+INSERT INTO `vehicle` (`id`, `companies_id`, `name`, `type`, `description`, `range`, `capacity`, `photo_url`) VALUES (8, 5, 'Omega', 'passenger', 'passenger and crew transports within low earth orbit', 'Suborbital', 15, NULL);
 
 COMMIT;
 
@@ -263,8 +263,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'Earth return', 15000, 1, NULL, NULL);
-INSERT INTO `trip` (`id`, `provider_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (2, 2, 2, 2, 'Mars', 'Mars for a while', 54000, 720, NULL, NULL);
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'Earth return', 15000, 1, NULL, NULL);
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (2, 2, 2, 2, 'Mars', 'Mars for a while', 54000, 720, NULL, NULL);
 
 COMMIT;
 

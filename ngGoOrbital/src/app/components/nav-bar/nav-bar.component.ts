@@ -10,12 +10,21 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class NavBarComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
+  // Fields
+  loginDo = false;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  // Constructor
+
+
+
+  // Methods
+
+
+
+  toggleNavbar() {
+    this.loginDo = this.loginDo;
+  }
+
 
 }
