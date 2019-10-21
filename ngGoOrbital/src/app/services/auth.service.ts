@@ -1,3 +1,8 @@
+import { TravelerDTO } from "src/app/models/traveler-dto";
+import { User } from "./../models/user";
+import { CompanyDTO } from "./../models/company-dto";
+import { Companies } from "src/app/models/companies";
+import { Traveler } from "./../models/traveler";
 import { catchError, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -23,7 +28,7 @@ export class AuthService {
     };
 
     // create request to authenticate credentials
-    return this.http.get(this.baseUrl + "authenticate", httpOptions).pipe(
+    return this.http.get(this.baseUrl + "login", httpOptions).pipe(
       tap(res => {
         localStorage.setItem("credentials", credentials);
         return res;
@@ -43,6 +48,34 @@ export class AuthService {
       catchError((err: any) => {
         console.log(err);
         return throwError("AuthService.register(): error registering user.");
+      })
+    );
+  }
+
+  registerTraveler(dto: TravelerDTO) {
+    console.log("inside of register traveler method");
+
+    // create request to register a new account
+    return this.http.post(this.baseUrl + "register/traveler", dto).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          "AuthService.registerTraveler(): error registering traveler."
+        );
+      })
+    );
+  }
+
+  registerCompany(dto: CompanyDTO) {
+    // create request to register a new account
+    console.log("inside of register company method auth service");
+
+    return this.http.post(this.baseUrl + "register/company", dto).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          "AuthService.registerCompany(): error registering company."
+        );
       })
     );
   }

@@ -25,7 +25,14 @@ public class CreateTravelerDTO {
 
 	public CreateTravelerDTO() {
 	}
-
+	
+	public User makeUser() {
+		return new User(this.username,this.password,this.email);
+	}
+	
+	public Traveler getTraveler() {
+		return new Traveler(this.firstName, this.lastName,this.makeUser(), this.photoUrl);
+	}
 
 	public String getUsername() {
 		return username;

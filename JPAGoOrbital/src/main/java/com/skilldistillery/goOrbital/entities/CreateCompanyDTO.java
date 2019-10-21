@@ -13,7 +13,7 @@ public class CreateCompanyDTO {
 	public CreateCompanyDTO() {
 	}
 
-	// Create Company
+	// Create CompanyDTO
 	public CreateCompanyDTO(String username, String password, String email, String name, String logoUrl, String webUrl) {
 		this.username = username;
 		this.password = password;
@@ -21,6 +21,16 @@ public class CreateCompanyDTO {
 		this.name = name;
 		this.logoUrl = logoUrl;
 		this.webUrl = webUrl;
+	}
+	
+	public User makeUser() {
+		return new User(this.username,this.password,this.email);
+	}
+	
+	public Companies getCompany() {
+		Companies company = new Companies(this.name,this.logoUrl,this.webUrl);
+		company.setUser(this.makeUser());
+		return company;
 	}
 
 	public String getUsername() {
