@@ -28,3 +28,4 @@ export class Trip implements Deserializable {
   }
 
 }
+

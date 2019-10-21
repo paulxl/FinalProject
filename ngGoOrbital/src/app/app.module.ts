@@ -34,7 +34,6 @@ import { CompaniesComponent } from './components/companies/companies.component';
     TripListComponent,
     MainComponent,
     RegisterComponent,
-    
     SearchComponent,
     DetailsComponent,
     CompaniesComponent
