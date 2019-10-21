@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
+  trip: any;   // variable
+  trips: any;  // array of variables;
   constructor() { }
 
   ngOnInit() {
   }
+
+  viewMore(id: number) { }
 
 }

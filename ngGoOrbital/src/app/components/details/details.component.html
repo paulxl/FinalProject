@@ -1,1 +1,45 @@
 <p>details works!</p>
+<!-- need to insert ngFor loop with variable.
+  need to replace image with {{trip.photoUrl}} -->
+
+
+<h3 align="center">See All Trips </h3>
+
+<!--creates a list of users trips -->
+<div *ngFor="let number of [0,1,2,3,4,5,6]">
+  <!--Insert loop here *ngFor="let trip of trips" -->
+  <div class="card">
+    <div class="row no-gutters">
+      <div class="col-md-4"  >
+        <img src="assets/img/SpaceHotel.jpg" style="max-height: auto;" class="card-img" alt="{{trip.photoUrl}}">
+      </div>
+      <div class="col-md-4" style="float: left">
+        <div class="card-body">
+          <h5 class="card-title">Title {{trip.title}}</h5>
+          <p class="card-text">Destination {{ trip.destination }}</p>
+          <p class="card-text">Length {{ trip.length }}</p>
+          <p class="card-text">Price:EUD (Earth, US Dollars) {{ trip.cost }}</p>
+          <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
+        </div>
+      </div>
+      <div class="col-md-4" style="float: right">
+        <div class="card-body">
+          <h5 class="card-title">Cost {{trip.cost}}</h5>
+          <p class="card-text">Destination {{ trip.destination }}</p>
+          <p class="card-text">Length {{ trip.length }}</p>
+          <p class="card-text">Price:EUD (Earth, US Dollars) {{ trip.cost }}</p>
+          <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
+          <!-- <button  (click)="viewMore(trip.id)">View More</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<body ng-app="ngAnimate">
+
+  Hide the DIV: <input type="checkbox" ng-model="myCheck">
+
+  <div ng-hide="myCheck"></div>
+
+  </body>
