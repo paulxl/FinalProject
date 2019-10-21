@@ -4,10 +4,10 @@ import { TripService } from "./services/trip.service";
 // import { ProviderService } from './services/provider.service';
 import { UserService } from "./services/user.service";
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 
 import { TravelerService } from "./services/traveler.service";
@@ -27,8 +27,7 @@ import { TravelerComponent } from "./components/traveler/traveler.component";
 import { LoginComponent } from "./components/login/login.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { FormsModule } from "@angular/forms";
-import { ShowAllComponent } from './components/show-all/show-all.component';
-import { AccordianComponent } from './components/show-all/accordian/accordian.component';
+import { FooterComponent } from './template/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,7 @@ import { AccordianComponent } from './components/show-all/accordian/accordian.co
     ShowAllComponent,
     AccordianComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule],
 
   providers: [TravelerService, UserService, CompaniesService, TripService],
   bootstrap: [AppComponent]

@@ -1,4 +1,7 @@
 <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;"> -->
+    <nav class="navbar navbar-expand-sm navbar-dark content-center" style="background-color: #000000;">
+    <span class="navbar-brand mb-0 h1">Go Orbital!</span>
+        <a [routerLink]="['/main']">Main</a> |
 
   <nav class="navbar navbar-expand-lg navbar-inverse bg-dark">
       | <a [routerLink]="['/main']">Main</a> |
@@ -12,31 +15,17 @@
       <a [routerLink]="['/showall']">Show All</a> |
   </nav>
 
+        <form #loginForm="ngForm" *ngIf="!loginDo">
+          <input type="text" name="userName" placeholder="user name" ngModel />
+          <input type="password" name="password" placeholder="password" ngModel />
+          <input type="submit" value="login" (click)="loginDo"/>
+        </form>
+        <a  [routerLink]="['/register']">Register</a> |
+       <a [routerLink]="['/search']">Search</a> |
+    <!-- <div id='logoutButton' *ngIf="loginDo"</div> -->
+      <form #logout="ngForm" *ngIf="loginDo">
+        <p>Welcome, User {{ user.name }}</p>
+        <a  [routerLink]="['/logout']">Logout</a>
 
-<!-- <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>ngGoOrbital</span>
-    </mat-toolbar>
-    Add Content Here
-   </mat-sidenav-content>
-</mat-sidenav-container>  -->
+      </form>
+        </nav>
