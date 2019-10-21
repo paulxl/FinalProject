@@ -1,23 +1,14 @@
+import { User } from "src/app/models/user";
 export class Companies {
-  id: number;
-  userId: number;
   name: string;
-  logoURL: string;
-  webURL: string;
+  logoUrl: string;
+  webUrl: string;
+  user: User;
 
-  constructor(
-    id?: number,
-    userId?: number,
-    name?: string,
-    logoURL?: string,
-    webURL?: string
-  ) {
-    {
-      this.id = id;
-      this.userId = userId;
-      this.name = name;
-      this.logoURL = logoURL;
-      this.webURL = webURL;
-    }
+  constructor(name?: string, logoUrl?: string, webUrl?: string, user?: User) {
+    this.name = name;
+    this.logoUrl = logoUrl;
+    this.webUrl = webUrl;
+    this.user = user;
   }
 }

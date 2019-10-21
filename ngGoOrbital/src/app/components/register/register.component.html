@@ -1,41 +1,41 @@
-<div id="travelerOrCompanies" *ngIf="true">
-    <h2>Registeration Page For New Users</h2><br>
-    <h4>Click the button that applies.</h4>
-    <form>
-        <button (click)="setTraveler()" style="margin: 20px">New Traveler</button>
-        <button (click)="setCompany()" style='margin: 20px'>New Company / Provider</button>
-    </form>
+<div id="travelerOrCompanies" *ngIf="!newCompany && !newTraveler">
+  <h2>Registeration Page For New Users</h2><br>
+  <h4>Click the button that applies.</h4>
+  <form>
+    <button (click)="newTraveler = true" style="margin: 20px">New Traveler</button>
+    <button (click)="newCompany = true" style='margin: 20px'>New Company / Provider</button>
+  </form>
 </div>
 
-<div id="newCompany" *ngIf="true">
-    <h3>Companies Information :</h3>
-    <form #createNewCompany="ngForm">
-        <input type="text" name="userName" ngModel placeholder="User Name"><br>
-        <input type="password" name="password" ngModel placeholder="Password"><br>
-        <input type="text" name="email" ngModel placeholder="Email Address"><br>
-        <input type="text" name="companyName" ngModel placeholder="Company Name"><br>
-        <input type="text" name="logoUrl" ngModel placeholder="Upload a Company Logo URL"><br>
-        <input type="text" name="webUrl" ngModel placeholder="Upload a Company Web URL"><br>
-        <button type='submit' (click)="addNewCompany(createNewCompany)" name="createCompany">Click To Submit</button>
+<div id="newCompany" *ngIf="newCompany">
+  <h3>Companies Information :</h3>
+  <form #createNewCompany="ngForm">
+    <input type="text" name="username" ngModel placeholder="UserName"><br>
+    <input type="password" name="password" ngModel placeholder="Password"><br>
+    <input type="text" name="email" ngModel placeholder="Email Address"><br>
+    <input type="text" name="name" ngModel placeholder="Company Name"><br>
+    <input type="text" name="logoUrl" ngModel placeholder="Upload a Company Logo URL"><br>
+    <input type="text" name="webUrl" ngModel placeholder="Upload a Company Web URL"><br>
+    <button type='submit' (click)="addNewCompany(createNewCompany)">Click To Submit</button>
 
-    </form>
+  </form>
 
 
 </div>
 
-<div id="newTraveler" *ngIf="true">
-    <h3>Traveler's Information :</h3>
-    <form #createNewTraveler="ngForm">
-        <input type="text" name='userName' ngModel placeholder="User Name"><br>
-        <input type="password" name="password" ngModel placeholder="Password"><br>
-        <input type="text" name="email" ngModel placeholder="Email Address"><br>
-        <input type="text" name="firstName" ngModel placeholder="First Name"><br>
-        <input type="text" name="lastName" ngModel placeholder="Last Name"><br>
-        <input type="text" name="photoUrl" ngModel placeholder="Upload a Photo URL"><br>
-        <button type='submit' (click)="addNewTraveler(createNewTraveler)" name="createTraveler">Click To Submit</button>
+<div id="newTraveler" *ngIf="newTraveler">
+  <h3>Traveler's Information :</h3>
+  <form #createNewTraveler="ngForm">
+    <input type="text" name='userName' ngModel placeholder="User Name"><br>
+    <input type="password" name="password" ngModel placeholder="Password"><br>
+    <input type="text" name="email" ngModel placeholder="Email Address"><br>
+    <input type="text" name="firstName" ngModel placeholder="First Name"><br>
+    <input type="text" name="lastName" ngModel placeholder="Last Name"><br>
+    <input type="text" name="photoUrl" ngModel placeholder="Upload a Photo URL"><br>
+    <button type='submit' (click)="addNewTraveler(createNewTraveler)">Click To Submit</button>
 
 
-    </form>
+  </form>
 
 
 </div>

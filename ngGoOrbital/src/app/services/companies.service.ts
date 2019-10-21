@@ -1,14 +1,13 @@
-
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MessageService } from "./message.service";
 import { environment } from "src/environments/environment";
 import { Observable, of } from "rxjs";
 import { tap, catchError, map } from "rxjs/operators";
-import { Companies } from '../models/companies';
+import { Companies } from "../models/companies";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class CompaniesService {
   constructor(
@@ -67,12 +66,18 @@ export class CompaniesService {
 
   /** POST: add a new Provider to the server */
   addCompanies(companies: Companies): Observable<Companies> {
-    return this.http.post<Companies>(this.url, companies, this.httpOptions).pipe(
-      tap((newCompanies: Companies) =>
-        this.log(`added Companies w/ id=${newCompanies.id}`)
-      ),
-      catchError(this.handleError<Companies>("addCompanies"))
-    );
+    console.log("inside of add companies service method");
+
+    console.log(companies);
+
+    return this.http
+      .post<Companies>(this.url, companies, this.httpOptions)
+      .pipe(
+        tap((newCompanies: Companies) =>
+          this.log(`added Companies w/ id=${newCompanies.id}`)
+        ),
+        catchError(this.handleError<Companies>("addCompanies"))
+      );
   }
 
   /** DELETE: delete the Provider from the server */

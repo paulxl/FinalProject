@@ -1,16 +1,15 @@
-import { catchError, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from "rxjs/operators";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, throwError } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class AuthService {
-  private baseUrl = 'http://localhost:8085/';
+  private baseUrl = "http://localhost:8085/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(username, password) {
     // Make credentials
@@ -18,43 +17,42 @@ export class AuthService {
     // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': `Basic ${credentials}`,
-        'X-Requested-With': 'XMLHttpRequest'
+        Authorization: `Basic ${credentials}`,
+        "X-Requested-With": "XMLHttpRequest"
       })
     };
 
     // create request to authenticate credentials
-    return this.http
-      .get(this.baseUrl + 'authenticate', httpOptions)
-      .pipe(
-        tap((res) => {
-          localStorage.setItem('credentials' , credentials);
-          return res;
-        }),
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('AuthService.login(): Error logging in.');
-        })
-      );
+    return this.http.get(this.baseUrl + "authenticate", httpOptions).pipe(
+      tap(res => {
+        localStorage.setItem("credentials", credentials);
+        return res;
+      }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError("AuthService.login(): Error logging in.");
+      })
+    );
   }
 
   register(user) {
     // create request to register a new account
-    return this.http.post(this.baseUrl + 'register', user)
-    .pipe(
+    console.log(user);
+
+    return this.http.post(this.baseUrl + "register", user).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('AuthService.register(): error registering user.');
+        return throwError("AuthService.register(): error registering user.");
       })
     );
   }
 
   logout() {
-    localStorage.removeItem('credentials');
+    localStorage.removeItem("credentials");
   }
 
   checkLogin() {
-    if (localStorage.getItem('credentials')) {
+    if (localStorage.getItem("credentials")) {
       return true;
     }
     return false;
@@ -65,6 +63,6 @@ export class AuthService {
   }
 
   getCredentials() {
-    return localStorage.getItem('credentials');
+    return localStorage.getItem("credentials");
   }
 }
