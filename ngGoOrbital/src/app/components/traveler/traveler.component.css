@@ -27,13 +27,7 @@ h4 {
 }
 
 body {
-    background-image: url('/assets/img/moon.jpg');
+    background-image: url('/assets/img/MoonTrans.png');
     background-size: cover;
     text-shadow: 0.5px 0.5px #f00a0a;
 }
-
-
-/* img {
-    background-size: cover;
-    opacity: 0.75;
-} */
