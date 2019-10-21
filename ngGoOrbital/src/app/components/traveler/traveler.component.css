@@ -1,0 +1,39 @@
+h1,
+h2,
+h3,
+h4 {
+    text-align: center;
+}
+
+.center-container {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+.editTraveler {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+}
+
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    color: red;
+}
+
+body {
+    background-image: url('/assets/img/moon.jpg');
+    background-size: cover;
+    text-shadow: 0.5px 0.5px #f00a0a;
+}
+
+
+/* img {
+    background-size: cover;
+    opacity: 0.75;
+} */
