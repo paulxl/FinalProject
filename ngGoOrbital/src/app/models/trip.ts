@@ -1,10 +1,7 @@
 import { Companies } from "src/app/models/companies";
-// import { Deserializable } from './../interfaces/deserializable';
 import { Launchport } from "./launchport";
-// import { Provider } from './provider';
 import { Vehicle } from "./vehicle";
 import { Traveler } from "./traveler";
-import { Identifiers } from "@angular/compiler/src/render3/r3_identifiers";
 
 export class Trip {
   id: number;
