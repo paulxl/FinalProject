@@ -1,4 +1,5 @@
-//import { Traveler } from './traveler';
+import { TripRecord } from './trip-record';
+// import { Traveler } from './traveler';
 // import { TravelerService } from './../services/traveler.service';
 // import { Deserializable } from './../interfaces/deserializable';
 // export class Traveler implements Deserializable {

@@ -28,6 +28,7 @@ export class CompaniesService {
     );
   }
 
+
   /** GET Company by id. Return `undefined` when id not found */
   getCompaniesNo404<Data>(id: number): Observable<Companies> {
     const url = `${this.url}/?id=${id}`;
@@ -41,7 +42,7 @@ export class CompaniesService {
     );
   }
 
-  /** GET Company by id. Will 404 if id not found */
+  /** GET Provider by id. Will 404 if id not found */
   getCompanies(id: number): Observable<Companies> {
     const url = `${this.url}/${id}`;
     return this.http.get<Companies>(url).pipe(
@@ -50,7 +51,8 @@ export class CompaniesService {
     );
   }
 
-  /* GET Companys whose name contains search term */
+
+  /* GET Providers whose name contains search term */
   searchCompanies(term: string): Observable<Companies[]> {
     if (!term.trim()) {
       // if not search term, return empty Company array.
@@ -63,6 +65,7 @@ export class CompaniesService {
   }
 
   //////// Save methods //////////
+
 
   /** POST: add a new Company to the server */
   addCompanies(companies: Companies): Observable<Companies> {
@@ -80,7 +83,7 @@ export class CompaniesService {
       );
   }
 
-  /** DELETE: delete the Company from the server */
+  /** DELETE: delete the Provider from the server */
   deleteCompanies(companies: Companies | number): Observable<Companies> {
     const id = typeof companies === "number" ? companies : companies.id;
     const url = `${this.url}/${id}`;
@@ -90,7 +93,8 @@ export class CompaniesService {
     );
   }
 
-  /** PUT: update the Company on the server */
+
+  /** PUT: update the Provider on the server */
   updateCompanies(companies: Companies): Observable<any> {
     return this.http.put(this.url, companies, this.httpOptions).pipe(
       tap(_ => this.log(`updated Companies id=${companies.id}`)),

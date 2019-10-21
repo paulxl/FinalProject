@@ -6,6 +6,7 @@ export class Companies {
   webUrl: string;
   user: User;
 
+
   constructor(
     id?: number,
     name?: string,
@@ -13,10 +14,10 @@ export class Companies {
     webUrl?: string,
     user?: User
   ) {
-    this.id = id;
     this.name = name;
     this.logoUrl = logoUrl;
     this.webUrl = webUrl;
     this.user = user;
+    this.id = id;
   }
 }

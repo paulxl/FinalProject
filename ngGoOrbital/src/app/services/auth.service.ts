@@ -7,50 +7,98 @@ import { catchError, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
+import { UserService } from "src/app/services/user.service";
+import { map, catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
+import { User } from "../models/user";
+
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
+
+  USER_NAME_SESSION_ATTRIBUTE_NAME = "inSessionUser";
+  USER_NAME_SESSION_ATTRIBUTE_ROLE = "inSessionRole";
+
   private baseUrl = "http://localhost:8085/";
+  public username: string;
+  public password: string;
+  public role: string;
 
-  constructor(private http: HttpClient) {}
-
-  login(username, password) {
-    // Make credentials
-    const credentials = this.generateBasicAuthCredentials(username, password);
-    // Send credentials as Authorization header (this is spring security convention for basic auth)
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: `Basic ${credentials}`,
-        "X-Requested-With": "XMLHttpRequest"
+  constructor(private http: HttpClient, private userServ: UserService) {}
+  authenticationService(username: string, password: string) {
+    return this.http
+      .get(`http://localhost:8085/auth`, {
+        headers: {
+          authorization: this.createBasicAuthToken(username, password)
+        }
       })
-    };
+      .pipe(
+        map(res => {
+          this.username = username;
+          this.password = password;
 
-    // create request to authenticate credentials
-    return this.http.get(this.baseUrl + "login", httpOptions).pipe(
-      tap(res => {
-        localStorage.setItem("credentials", credentials);
-        return res;
-      }),
-      catchError((err: any) => {
-        console.log(err);
-        return throwError("AuthService.login(): Error logging in.");
-      })
-    );
+          this.registerSuccessfulLogin(username);
+        })
+      );
   }
 
-  register(user) {
-    // create request to register a new account
-    console.log(user);
-
-    return this.http.post(this.baseUrl + "register", user).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError("AuthService.register(): error registering user.");
-      })
-    );
+  createBasicAuthToken(username: string, password: string) {
+    return "Basic " + window.btoa(username + ":" + password);
   }
+
+  registerSuccessfulLogin(username) {
+    sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username);
+    this.userServ.getUserByName(username).subscribe({
+      next(user) {
+        console.log("Current User ", user);
+        const currentUser: User = user;
+        sessionStorage.setItem(
+          this.USER_NAME_SESSION_ATTRIBUTE_ROLE,
+          currentUser.role
+        );
+      },
+      error(msg) {
+        console.log("Error Getting user: ", msg);
+      }
+    });
+  }
+
+  logout() {
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE);
+    this.username = null;
+    this.password = null;
+  }
+
+  isUserLoggedIn() {
+    const user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    if (user === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getLoggedInUserName() {
+    const user = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    if (user === null) {
+      return "";
+    }
+    return user;
+  }
+
+  //    login(username, password) {
+  //     // Make credentials
+  //     const credentials = this.generateBasicAuthCredentials(username, password);
+  //     // Send credentials as Authorization header (this is spring security convention for basic auth)
+  //     const httpOptions = {
+  //       headers: new HttpHeaders({
+  //         Authorization: `Basic ${credentials}`,
+  //         "X-Requested-With": "XMLHttpRequest"
+  //       })
+  //     };
 
   registerTraveler(dto: TravelerDTO) {
     console.log("inside of register traveler method");
@@ -78,24 +126,5 @@ export class AuthService {
         );
       })
     );
-  }
-
-  logout() {
-    localStorage.removeItem("credentials");
-  }
-
-  checkLogin() {
-    if (localStorage.getItem("credentials")) {
-      return true;
-    }
-    return false;
-  }
-
-  generateBasicAuthCredentials(username, password) {
-    return btoa(`${username}:${password}`);
-  }
-
-  getCredentials() {
-    return localStorage.getItem("credentials");
   }
 }

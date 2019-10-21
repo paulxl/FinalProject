@@ -1,30 +1,30 @@
-import { Injectable } from "@angular/core";
-import { MessageService } from "./message.service";
-import { environment } from "src/environments/environment";
-import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { Traveler } from "../models/traveler";
-import { tap, catchError, map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { MessageService } from './message.service';
+import { environment } from 'src/environments/environment';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { Traveler } from '../models/traveler';
+import { tap, catchError, map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TravelerService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) {}
-  private url = environment.serverURL + "api/traveler";
+  private url = environment.serverURL + 'api/traveler';
 
   httpOptions = {
     headers: new HttpHeaders({
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     })
   };
   getTravelers(): Observable<Traveler[]> {
     return this.http.get<Traveler[]>(this.url).pipe(
-      tap(_ => this.log("fetched traveler")),
-      catchError(this.handleError<Traveler[]>("getTravelers", []))
+      tap(_ => this.log('fetched traveler')),
+      catchError(this.handleError<Traveler[]>('getTravelers', []))
     );
   }
 
@@ -58,7 +58,7 @@ export class TravelerService {
     }
     return this.http.get<Traveler[]>(`${this.url}/?name=${term}`).pipe(
       tap(_ => this.log(`found traveler matching "${term}"`)),
-      catchError(this.handleError<Traveler[]>("searchTravelers", []))
+      catchError(this.handleError<Traveler[]>('searchTravelers', []))
     );
   }
 
@@ -70,17 +70,17 @@ export class TravelerService {
       tap((newTraveler: Traveler) =>
         this.log(`added Traveler w/ id=${newTraveler.id}`)
       ),
-      catchError(this.handleError<Traveler>("addTraveler"))
+      catchError(this.handleError<Traveler>('addTraveler'))
     );
   }
 
   /** DELETE: delete the Traveler from the server */
   deleteTraveler(traveler: Traveler | number): Observable<Traveler> {
-    const id = typeof traveler === "number" ? traveler : traveler.id;
+    const id = typeof traveler === 'number' ? traveler : traveler.id;
     const url = `${this.url}/${id}`;
     return this.http.delete<Traveler>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted Traveler id=${id}`)),
-      catchError(this.handleError<Traveler>("deleteTraveler"))
+      catchError(this.handleError<Traveler>('deleteTraveler'))
     );
   }
 
@@ -88,11 +88,11 @@ export class TravelerService {
   updateTraveler(traveler: Traveler): Observable<any> {
     return this.http.put(this.url, traveler, this.httpOptions).pipe(
       tap(_ => this.log(`updated traveler id=${traveler.id}`)),
-      catchError(this.handleError<any>("updateTraveler"))
+      catchError(this.handleError<any>('updateTraveler'))
     );
   }
 
-  private handleError<T>(operation = "operation", result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
