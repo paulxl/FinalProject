@@ -31,7 +31,6 @@ public class TravelerTrip {
 	@Column(name = "trip_note")
 	private String tripNote;
 	
-	@JsonBackReference(value = "TTrTrip")
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;

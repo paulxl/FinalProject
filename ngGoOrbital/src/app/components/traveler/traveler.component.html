@@ -1,156 +1,128 @@
+<body>
+    <!-- <img src='/assets/img/moon.jpg'> -->
+    <h1> Welcome {{selected.firstName}} &nbsp {{selected.lastName}}</h1>
+    <h3>This is your account page.</h3>
+    <div class="center-container">
+        <!--begins a container to center page / ends at bottom-->
+        <!--ADD *ngIf="selected"  after things work, currently no traveler sent in-->
+        <div class="start">
+            <form>
+                <a> Get My Trips :<button (click)="setDisplayMyTrips()" style="margin: 20px">VIEW TRIPS</button><br></a>
 
-<!-- companies form for creating a provider or updating -->
-<!-- NEEDS TO AUTO POPULATE with User Id to create Provider -->
-
-<!-- Adding or updating company information -->
-<h3>Traveler Details </h3>
-<!-- user Read-only details -->
-
-<h4>Welcome [insert name],  My Account Details </h4>
-
-
-<div>
-    <table *ngIf="!selectedUser"> <!-- shows user details-->
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>First Name</td>
-          <td>Last Name </td>
-          <td>Profile Picture</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr > <!--creates a list of users trips -->
-          <td>{{ traveler.id }}</td>
-          <td>{{ traveler.firstName }}</td>
-          <td>{{ traveler.lastName }}</td>
-          <td>{{ traveler.photoUrl }}</td> <!-- this needs to be a img href -->
-
-          <td><button (click)="updateTraveler(user.id)">Update Profile</button>
-              <button (click)="deleteTraveler(user.id)">Delete Profile</button></td>
-        </tr>
-      </tbody>
-    </table>
+                <a> Update Personal Information :<button (click)="setEditTraveler()" style="margin: 20px">EDIT MY INFO</button><br></a>
+            </form>
+        </div>
     </div>
 
-<h4>Update Profile Account Information</h4>
-<form > <!-- #newTraveler="ngForm" -->
-  <input type="number" name="id" ngModel placeholder="Id"> <br>
-  <input type="text" name="firstName" ngModel placeholder="First name..."> <br>
-  <input type="text" name="lastName" ngModel placeholder="Last name..."> <br>
-  <input type="text" name="photoUrl" ngModel placeholder="Profile photo Url"> <br>
-  <input type="submit" value="Update Profile" (click)="updateTraveler()"> <!--argument needed in updateTraveler()-->
-</form>
-
-
-<hr>
-<br>
-
-<div>
-    <table *ngIf="!selectedUser"> <!-- shows user details-->
-      <thead>
-        <tr>
-          <td>My Account ID</td>
-          <td>Username</td>
-          <td>Password</td>
-          <td>email</td>
-          <td>enabled</td>
-          <td>role</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr > <!--creates a list of users trips -->
-          <td>{{ user.id }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.password }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.enabled }}</td>
-          <td>{{ user.role }}</td>
-          <td>
-            <!-- <img [src]='${trip.photoUrl}' /> -->
-          </td>
-          <td><button (click)="updateTraveler(user.id)">Update Account</button>
-              <button (click)="deleteTraveler(user.id)">Delete Account</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="editTraveler">
+        <!-- *ngIf="selected && editTraveler to ngIf-->
+        <form #updateTraveler='ngForm'>
+            <table align="center">
+                <tr>
+                    <td>User Name </td>
+                    <td><input type='text' name='editUserName' ngModel size='40' placeholder={{selected.user.username}}/></td>
+                </tr>
+                <tr>
+                    <td>User Password </td>
+                    <td> <input type='password' name='editPassword' ngModel size='40' placeholder={{selected.user.password}}/> </td>
+                </tr>
+                <tr>
+                    <td>Email </td>
+                    <td><input type='text' name='editEmail' ngModel size='40' placeholder={{selected.user.email}}/> </td>
+                </tr>
+                <tr>
+                    <td>First Name </td>
+                    <td><input type='text' name='editFirstName' ngModel size='40' placeholder={{selected.firstName}}/> </td>
+                </tr>
+                <tr>
+                    <td>Last Name </td>
+                    <td><input type='text' name='editLastName' ngModel size='40' placeholder={{selected.lastName}}/> </td>
+                </tr>
+                <tr>
+                    <td>Photo Url</td>
+                    <td><input type='text' name='editPhotoUrl' ngModel size='40' placeholder={{selected.photoURL}}/> </td>
+                </tr>
+            </table>
+            <br><button type='submit' (click)='changeTraveler(updateTraveler)'>UPDATE MY INFO</button>
+        </form>
     </div>
 
+    <div class="displayTrips" align='center'>
+        <!-- add *ngIf="selected && displayTrips-->
 
-
-<h4>Update User Security Account Information</h4>
-<form > <!-- #newTraveler="ngForm" -->
-  <input type="number" name="id" ngModel placeholder="Id"> <br>
-  <input type="text" name="firstName" ngModel placeholder="First name..."> <br>
-  <input type="text" name="lastName" ngModel placeholder="Last name..."> <br>
-  <input type="text" name="photoUrl" ngModel placeholder="Profile photo Url"> <br>
-  <input type="submit" value="Add New Traveler" (click)="addNewTraveler()"> <!--argument needed in addNewVehicle-->
-</form>
-
-<!-- VEHICLES Detail Tables for Traveler (displays list Traveler vehicles) -->
-
-
-<h3> List of Your Reviewed Trips</h3>
-
-<div>
-<table *ngIf="!selectedReview"> <!-- creates list of reviews-->
-  <thead>
-    <tr>
-      <td>ID</td>
-      <td>Rating</td>
-      <td>Review</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let trip of trips"> <!--creates a list of users trips -->
-      <td>{{ trip.id }}</td>
-      <td>{{ trip.rating }}</td>
-      <td>{{ trip.review }}</td>
-      <td><button (click)="updateTraveler(trip.id)">Update</button>
-          <button (click)="deleteTraveler(trip.id)">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-<h3> List of Your Trips</h3>
-
-<div>
-<table *ngIf="!selectedTrip">
-  <thead>
-    <tr>
-      <td>ID</td>
-      <td>Traveler ID</td>
-      <td>Trip ID</td>
-      <td>Date Completed</td>
-      <td>Rating</td>
-      <td>Review</td>
-      <td>Trip Notes</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let trip of trips"> <!--creates a list of users trips -->
-      <td>{{ trip.id }}</td>
-      <td>{{ trip.tripId }}</td>
-      <td>{{ trip.travelerId }}</td>
-      <td>{{ trip.dateCompleted }}</td>
-      <td>{{ trip.rating }}</td>
-      <td>{{ trip.review }}</td>
-      <td>{{ trip.tripNote }}</td>
-      <td>
-        <!-- <img [src]='${trip.photoUrl}' /> -->
-      </td>
-      <td><button (click)="updateTraveler(trip.id)">Update</button>
-          <button (click)="deleteTraveler(trip.id)">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<button>Continue shopping for another Trip</button>
-<hr>
-<button>Return Home</button>
-<!--need to add routing to puchase another trip -->
-<br>
+        <table align='center' *ngFor='let tripRecord of tripRecords'>
+            <tr>
+                <td>Review ID</td>
+                <td>{{selected.tripRecord.id}}"></td>
+            </tr>
+            <tr>
+                <td>Trip ID</td>
+                <td>{{selected.tripRecord.trip.id}}</td>
+            </tr>
+            <tr>
+                <td>Destination</td>
+                <td>{{selected.tripRecord.trip.destination}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{selected.tripRecord.trip.description}}</td>
+            </tr>
+            <tr>
+                <td>Date Completed</td>
+                <td>{{selected.tripRecord.dateCompleted}}</td>
+            </tr>
+            <tr>
+                <td>Rating</td>
+                <td>{{selected.tripRecord.rating}}</td>
+            </tr>
+            <tr>
+                <td>My Review</td>
+                <td>{{selected.tripRecord.review}}</td>
+            </tr>
+            <tr>
+                <td>My Notes</td>
+                <td>{{selected.tripRecord.notes}}</td>
+            </tr>
+            <tr>
+                <td (click)='editTripRecord(selected.id)' type='button' style=background-color:greenyellow>EDIT THIS ENTRY</td>
+            </tr>
+        </table>
+    </div>
+    <div class="editTripRecord">
+        <!--add *ngIf='editTripReview && displayTrips'-->
+        <form #editReview='ngForm'>
+            <table align='center'>
+                <tr>
+                    <td>My Trip Rating</td>
+                    <td align='center'>
+                        <fieldset class='rating' ngModel>
+                            <input type="radio" id="5stars" name='rating' value='5' size='20' />
+                            <label for='star5' title='text'>5 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="4stars" name='rating' value='4' />
+                            <label for='star4' title='text'>4 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="3stars" name='rating' value='3' />
+                            <label for='star3' title='text'>3 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="2stars" name='rating' value='2' />
+                            <label for='star2' title='text'>2 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="1stars" name='rating' value='1' />
+                            <label for='star1' title='text'>1 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>My Review</td>
+                    <td>
+                        <textarea type='text' id='review_textbox' name='review' rows='10' cols='80' ngModel placeholder={{selected.tripRecord.review}}></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>My Trip Notes</td>
+                    <td>
+                        <textarea type='text' id='review_textbox' name='myNotes' rows='10' cols='80' ngModel placeholder={{selected.tripRecord.notes}}></textarea>
+                    </td>
+                </tr>
+            </table>
+            <button (click)='updateReview(editReview)'></button>
+        </form>
+    </div>
+</body>

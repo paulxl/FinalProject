@@ -5,12 +5,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@JsonIgnore
 	private String password; 
 	
 	private String username;
@@ -94,6 +97,11 @@ public class User {
 		this.username = username;
 		this.enabled = enabled;
 		this.role = role;
+	}
+	public User(String password, String username, String email) {
+		this.password = password;
+		this.username = username;
+		this.email = email;
 	}
 	
 
