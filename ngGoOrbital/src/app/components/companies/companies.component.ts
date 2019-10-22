@@ -1,3 +1,4 @@
+import { Vehicle } from './../../models/vehicle';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -19,9 +20,9 @@ export class CompaniesComponent implements OnInit {
 
   deleteVehicle(id: number) { }
 
-  addNewVehicle(vehicle: any) { }
+  addNewVehicle(vehicle: Vehicle) { }
 
   updateVehicle(id: number) { }
 
-  addNewCompany(vehicle: any) { }
+  addNewCompany(vehicle: Vehicle) { }
 }
