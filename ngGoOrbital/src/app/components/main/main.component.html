@@ -14,7 +14,7 @@
 
 <div class="searchBody" *ngIf="!selected"></div>
  <div ng-controller="byDestin" >
-       <select ng-model="destination" ng-options="trip.destination for trip in trips">
+       <select ng-model="trip.destination" ng-options="trip.destination for trip in trips">
        </select>
 
 
