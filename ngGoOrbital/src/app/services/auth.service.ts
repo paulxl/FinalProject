@@ -7,15 +7,12 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { UserService } from "src/app/services/user.service";
-import { map, catchError } from "rxjs/operators";
-
-
+import { map, catchError, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-
   USER_NAME_SESSION_ATTRIBUTE_NAME = "inSessionUser";
   USER_NAME_SESSION_ATTRIBUTE_ROLE = "inSessionRole";
 
@@ -64,8 +61,9 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
-    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE);
+    console.log("inside of auth service logout");
+
+    sessionStorage.removeItem("inSessionUser");
     this.username = null;
     this.password = null;
   }

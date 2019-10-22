@@ -1,42 +1,69 @@
 <body>
-  <br>
+    <br>
+
 <div class="header">
   <!-- <h5>Space Travel to the moon and back or beyond!</h5> -->
   <h4>Vacation in Space</h4>
-<br>
+
 </div>
-
-<div class="searchBody">
-
-<h5>
-    <form action="" method="POST" name="SearchByDestination">
-    <div align="left">Trips By Destination  <select name="mydropdown">
-    <option value="leo">Fly-By LEO (Low Earth Orbit)</option>
-    <option value="geo">GEO (Geostationary Orbit)</option>
-    <option value="geo">Space Hotel (L.E.O.)</option>
-    <option value="geo">International Space Station (I.S.S.)</option>
-    <option value="mars">MARS (Martian Colony)</option>
-    <option value="moon">Moon (Moon Base AFB)</option>
-    <option value="venus">Venus (Cloud City)</option>
-    </select></div>
-    </form>
-<br>
-    <form action="" method="POST" name="myform">
-      <div align="left">Trips By Company  <select name="mydropdown">
-      <option value="leo">Space X</option>
-      <option value="geo">United Launch Alliance </option>
-      <option value="geo">Blue Origin </option>
-      <option value="geo">Virgin Galactic</option>
-      <option value="mars">Northrup Grumman</option>
-      <option value="moon">NASA</option>
-      <option value="venus">Bigelow Aerospace </option>
-      <option value="venus">Boeing </option>
-      <option value="venus">Sierra Nevada Corporation </option>
-      </select></div>
-      </form>
-    </h5>
+<div class="row">
+    <div class="col-sm-2">
+  <!-- space twitter feed -->
     </div>
-    <br>
+<div class="col-sm-8">
+
+  <!-- <div *ngFor="let trip of trips">
+    <p>
+    {{trip.title}} <br>
+    {{trip.companies}} <br>
+    ${{trip.cost}} <br>
+    {{trip.length}} <br>
+    {{trip.destination}} <br>
+  </p>
+    <hr>
+    </div> -->
+
+<div class="searchBody" *ngIf="!selected"></div>
+
+<form name='searchByDestination'>
+    <select name="destination" ngModel>
+      <h5>Search by Destination:</h5>
+      <option value="">---select a destination---</option>
+      <option *ngFor="let trip of trips"value="{{trip.destination}}">{{trip.destination}}</option>
+    </select>
+  </form>
+
+  <!-- <p>
+      {{selected.title}} <br>
+      {{selected.companies}} <br>
+      ${{selected.cost}} <br>
+      {{selected.length}} <br>
+      {{selected.destination}} <br>
+    </p> -->
+
+    <form name='searchByComapany'>
+        <select name="companies" ngModel>
+          <option value="">---select a company---</option>
+          <option *ngFor="let trip of trips"value="{{companies.name}}">{{companies.name}}</option>
+        </select>
+      </form>
+
+
+
+ <!-- <div ng-controller="byDestin" >
+       <select ng-model="trip.destination" ng-options="trip.destination as trip.destination for trip.destination for trip in trips">
+       </select> -->
+
+
+
+
+   <!-- <form name="byDestination">
+     <select name="destination" [(ngModel)]="trip.destination">
+       <option ng-repeat="trip in trips" value="{{trip.destination}}"></option>
+<button type="submit" (click)="searchByDest()" name="searchDest">Click</button>
+</select>
+</form>
+  </div> -->
 
 <div class="caro">
   <ngb-carousel>
@@ -69,5 +96,6 @@
           </ng-template>
         </ngb-carousel>
       </div>
-
-    </body>
+    </div>
+      <div class="col-sm-2"></div>
+    </div>
