@@ -39,11 +39,30 @@ import com.skilldistillery.goOrbital.services.UserService;
 //		Return Type	user	GET api/user/{id}	Gets one user by id
 		@GetMapping("user/{id}")
 		public User getUserById(@PathVariable int id, HttpServletResponse resp) {
-			
 			User user;
 			
 			try {
 				user = serv.findById(id);
+				if (user == null) {
+					resp.setStatus(400);
+				}else {
+					resp.setStatus(200);
+				}
+			} catch (Exception e) {
+				resp.setStatus(404);
+				e.printStackTrace();
+				user = null;
+			}
+			
+			return user;
+		}
+//		Return Type	user	GET api/user/{keyword}	Gets one user by id
+		@GetMapping("user/{id}")
+		public User getUserByKeyword(@PathVariable String keyword, HttpServletResponse resp) {
+			User user;
+			
+			try {
+				user = serv.findByUsername(keyword);
 				if (user == null) {
 					resp.setStatus(400);
 				}else {

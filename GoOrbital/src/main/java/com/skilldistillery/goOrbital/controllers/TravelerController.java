@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.goOrbital.entities.Traveler;
+import com.skilldistillery.goOrbital.entities.TravelerTrip;
 import com.skilldistillery.goOrbital.services.TravelerService;
 
 	@RestController
@@ -54,6 +55,25 @@ import com.skilldistillery.goOrbital.services.TravelerService;
 			}
 			
 			return traveler;
+		}
+//		Return Type	traveler	GET api/traveler/{id}	Gets one traveler by id
+		@GetMapping("traveler/{id}/travelerTrip")
+		public List<TravelerTrip> getTravelerTrips(@PathVariable int id, HttpServletResponse resp) {
+			Traveler traveler;
+			try {
+				traveler = serv.findById(id);
+				if (traveler == null) {
+					resp.setStatus(400);
+				}else {
+					resp.setStatus(200);
+				}
+			} catch (Exception e) {
+				resp.setStatus(404);
+				e.printStackTrace();
+				traveler = null;
+			}
+			
+			return traveler.getTrips();
 		}
 
 //		Return Type	traveler	POST api/travelers	Creates a new traveler

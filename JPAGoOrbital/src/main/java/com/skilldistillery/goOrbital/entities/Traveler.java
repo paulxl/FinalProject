@@ -58,6 +58,13 @@ public class Traveler {
 		this.trips = trips;
 	}
 
+	public Traveler(String firstName, String lastName, User user, String photoUrl) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.user = user;
+		this.photoUrl = photoUrl;
+	}
+
 	@Override
 	public String toString() {
 		return "Traveler [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", user=" + user

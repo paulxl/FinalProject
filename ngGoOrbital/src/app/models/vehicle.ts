@@ -1,6 +1,5 @@
 import { Companies } from "src/app/models/companies";
-// import { Deserializable } from './../interfaces/deserializable';
-// import { Provider } from './provider';
+import { Trip } from './trip';
 
 export class Vehicle {
   id: number;
@@ -11,6 +10,7 @@ export class Vehicle {
   range: number;
   capactity: number;
   photoURL: string;
+  trips: Trip[];
 
   constructor(
     id?: number,
@@ -20,7 +20,8 @@ export class Vehicle {
     description?: string,
     range?: number,
     capactity?: number,
-    photoURL?: string
+    photoURL?: string,
+    trips?: Trip[],
   ) {
     this.id = id;
     this.companies = companies;
@@ -30,22 +31,7 @@ export class Vehicle {
     this.range = range;
     this.capactity = capactity;
     this.photoURL = photoURL;
+    this.trips = trips;
   }
 }
 
-// export class Vehicle implements Deserializable {
-// id: number;
-// provider: Provider;
-// name: string;
-// type: string;
-// description: string;
-// range: number;
-// capactity: number;
-// photoURL: string;
-
-// deserialize(input: any): this {
-//   Object.assign(this, input);
-//   this.provider = new Provider().deserialize(input.provider);
-//   return this;
-//   }
-// }

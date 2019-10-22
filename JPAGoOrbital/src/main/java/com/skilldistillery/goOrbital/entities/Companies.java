@@ -87,6 +87,12 @@ public class Companies {
 		this.trips = trips;
 	}
 
+	public Companies(String name,String logoUrl, String webUrl) {
+		this.name = name;
+		this.logoUrl = logoUrl;
+		this.webUrl = webUrl;
+	}
+
 	public Companies() {
 	}
 
