@@ -1,3 +1,7 @@
+<!-- Page shows ALL Details of ONE trip.   -->
+<!-- Goal: functionality:  Can purchase trip. -->
+
+
 <!DOCTYPE html>
 <html>
 <title>W3.CSS Template</title>
@@ -140,7 +144,7 @@
     <br>
     <div align="right" >
         <button class="nav-item nav-link-edit" [routerLink]="['../details']"><i class="material-icons"> arrow_back</i>CANCEL</button >
-        <button (click)="purchase(trip)" class="button fancy-button"><i class="material-icons"> flight_takeoff</i>PURCHASE</button>
+        <button class="nav-item nav-link-edit" [routerLink]="['../traveler']" (click)="purchase(trip)" class="button fancy-button"><i class="material-icons"> flight_takeoff</i>PURCHASE</button>
       </div>
     <hr>
 
