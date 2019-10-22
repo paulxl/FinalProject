@@ -10,50 +10,30 @@
     <div class="col-sm-2">
   <!-- space twitter feed -->
     </div>
-    <div class="col-sm-8">
+<div class="col-sm-8">
 
-<div class="searchBody">
+<div class="searchBody" *ngIf="!selected"></div>
+ <div ng-controller="byDestin" >
+       <select ng-model="destination" ng-options="trip.destination for trip in trips">
+       </select>
 
-    <div *ngFor='let trip of trips'>
-        <h3>{{trip.destination}}</h3>
-        </div>
 
-<div ng-controller="destinationSelect" *ngIf="!selected">
 
-  <form name="tripDSearch">
-    <label for="selectDestination">Search by destination</label>
-    <select name="destination" ng-model="trip.destination">
-      <!-- <option value="leo">{{ destination }}</option> -->
-      <option value="geo">GEO (Geostationary Orbit)</option>
-      <option value="geo">Space Hotel (L.E.O.)</option>
-      <option value="geo">International Space Station (I.S.S.)</option>
-      <option value="mars">MARS (Martian Colony)</option>
-      <option value="moon">Moon (Moon Base AFB)</option>
-      <option value="venus">Venus (Cloud City)</option>
-      <!-- routing to searchResultsDestination(destination) -->
-    </select>
-  </form>
-</div>
 
-<!-- <tr class="table-info" *ngFor="let todo of todos">
-    <td (click)="displayTodo(todo)">{{ todo.task }}</td> -->
-
-<!-- <div ng-controller="companiesSelect" *ngIf="!selected">
-    <form name="companiesSelect">
-      <label for="selectCompanies">Search by company   </label>
-      <select name="company" ng-model="companies.name">
-        <option value="{{searchResultsCompanies()}}">{{companies.name}}</option> -->
-        <!-- <option value="geo">United Launch Alliance</option>
-        <option value="geo">Blue Origin</option>
-        <option value="geo">Virgin Galactic</option>
-        <option value="mars">Northrup Grumman</option>
-        <option value="moon">NASA</option>
-        <option value="venus">Bigelow Aerospace</option>
-        <option value="venus">Boeing</option>
-        <option value="venus">Sierra Nevada Corporation</option> -->
-      <!-- </select>
-    </form>
+   <!-- <form name="byDestination">
+     <select name="destination" [(ngModel)]="trip.destination">
+       <option ng-repeat="trip in trips" value="{{trip.destination}}"></option>
+<button type="submit" (click)="searchByDest()" name="searchDest">Click</button>
+</select>
+</form>
   </div> -->
+
+
+
+
+
+
+
 
 <div class="caro">
   <ngb-carousel>

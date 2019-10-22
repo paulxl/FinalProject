@@ -26,11 +26,25 @@ export class MainComponent implements OnInit {
 
   // Methods
 
-getTrips(trip: Trip) {
-  this.selected = trip;
-}
-
   ngOnInit() {
+    this.reload();
   }
+  reload() {
+    this.tripService.getTrips()
+    .subscribe(
+      data => (this.trips = data),
+      err => console.error('Observer got an error:' + err)
+    );
+  }
+
+  getTrips(trip: Trip) {
+    this.selected = trip;
+  }
+
+  // searchByDest() {
+  //   this.tripService.getTrips(this.selected.trip.destination).subscribe()
+  // }
+
+
 
 }
