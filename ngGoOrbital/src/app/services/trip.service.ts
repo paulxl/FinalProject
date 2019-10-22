@@ -22,6 +22,7 @@ private url = environment.serverURL + 'api/trip';
     headers: new HttpHeaders({
       'Content-Type': 'application/json' })
   };
+
 getTrips(): Observable<Trip[]> {
     return this.http.get<Trip[]>(this.url)
       .pipe(

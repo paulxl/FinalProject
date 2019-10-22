@@ -38,7 +38,11 @@ export class TravelerComponent implements OnInit {
     )
   }
 
+<<<<<<< HEAD
   setEditTraveler() {
+=======
+  setEditTraveler(){
+>>>>>>> b59879584db74fcb4f1fe19670c12e8e82cb2c3d
     this.editTraveler = Object.assign({}, this.selected);
 
   }
@@ -49,8 +53,12 @@ export class TravelerComponent implements OnInit {
         this.ngOnInit();
       },
       err => {
+<<<<<<< HEAD
         console.error('Error on update traveler info ' + err);
       }
+=======
+        console.error('Error on update traveler info '+ err);}
+>>>>>>> b59879584db74fcb4f1fe19670c12e8e82cb2c3d
     )
   }
   setReviewTrips() {
