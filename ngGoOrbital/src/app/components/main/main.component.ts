@@ -1,3 +1,4 @@
+import { CompaniesService } from 'src/app/services/companies.service';
 import { CompaniesService } from './../../services/companies.service';
 import { TripService } from './../../services/trip.service';
 import { Companies } from './../../models/companies';
@@ -18,10 +19,11 @@ export class MainComponent implements OnInit {
   newCompanies: Companies = new Companies();
   selected: Trip = null;
   trips: Trip[] = [];
+  companiess: Companies[] = [];
 
 
   // Constructors
-  constructor(private tripService: TripService) { }
+  constructor(private tripService: TripService, private compService: CompaniesService) { }
 
 
   // Methods
@@ -29,10 +31,16 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.reload();
   }
+
   reload() {
     this.tripService.getTrips()
     .subscribe(
       data => (this.trips = data),
+      err => console.error('Observer got an error:' + err)
+    );
+    this.compService.getCompany()
+    .subscribe(
+      data => (this.companiess = data),
       err => console.error('Observer got an error:' + err)
     );
   }
@@ -41,9 +49,16 @@ export class MainComponent implements OnInit {
     this.selected = trip;
   }
 
-  // searchByDest() {
-  //   this.tripService.getTrips(this.selected.trip.destination).subscribe()
-  // }
+
+
+  searchByDest(trip: Trip) {
+    this.selected = trip;
+    this.tripService.getTrips()
+    .subscribe(data => (this.trips = data),
+    err => console.error('Observer got an error:' + err)
+  );
+
+  }
 
 
 
