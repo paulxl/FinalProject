@@ -11,6 +11,7 @@ export class Companies {
   webURL: string;
   vehicles: Vehicle;
   trips: Trip;
+  editTrip: Companies;
 
   constructor(
     id?: number,

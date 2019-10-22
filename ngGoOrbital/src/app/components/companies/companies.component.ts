@@ -18,6 +18,9 @@ export class CompaniesComponent implements OnInit {
   companies: Companies;
   editTrip: Trip = null;
   tripselector = null;
+  addNewTrip = null;
+
+  // addTrip: Trip = null;
   
 
 
@@ -34,8 +37,15 @@ export class CompaniesComponent implements OnInit {
     this.editCompanies = Object.assign({}, this.selected);
   }
   
-  addTrip() {
-    
+  addAnotherTrip(form: NgForm) {
+    const addTrip = form.value;
+    this.tripServ.addTrip(addTrip).subscribe(
+      data => {
+        this.ngOnInit();
+      },
+      err => {
+        console.error('error in creating trip');}
+    )
   }
   setEditTrip(trip : Trip) {
     this.companies.editTrip = Object.assign({}, this.selected);
@@ -75,8 +85,8 @@ export class CompaniesComponent implements OnInit {
 
   // deleteVehicle(id: number) { }
 
-  addNewVehicle(vehicle: any) { }
+  // addNewVehicle(vehicle: any) { }
 
-  updateVehicle(id: number) { }
+  // updateVehicle(id: number) { }
 
 }
