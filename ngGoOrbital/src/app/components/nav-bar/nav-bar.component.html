@@ -1,21 +1,19 @@
 <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;"> -->
-    <nav class="navbar navbar-expand-sm navbar-dark content-center" style="background-color: #000000;">
-    <span class="navbar-brand mb-0 h1">Go Orbital!</span>
-        <a [routerLink]="['/main']">Main</a> |
-
-    <!-- <div id='loginForm' *ngIf="!loginDo"></div> -->
-
-        <form #loginForm="ngForm" *ngIf="!loginDo">
-          <input type="text" name="userName" placeholder="user name" ngModel />
-          <input type="password" name="password" placeholder="password" ngModel />
-          <input type="submit" value="login" (click)="loginDo"/>
-        </form>
-        <a  [routerLink]="['/register']">Register</a> |
-       <a [routerLink]="['/search']">Search</a> |
-    <!-- <div id='logoutButton' *ngIf="loginDo"</div> -->
-      <form #logout="ngForm" *ngIf="loginDo">
-        <p>Welcome, User {{ user.name }}</p>
-        <a  [routerLink]="['/logout']">Logout</a>
-
-      </form>
-        </nav>
+<nav class="navbar navbar-expand-sm navbar-dark content-center" style="background-color: #000000;">
+  <span class="navbar-brand mb-0 h1">Go Orbital!</span>
+  <a [routerLink]="['/main']">Main</a> |
+  <!-- <div id='loginForm' *ngIf="!loginDo"></div> -->
+  <form #loginForm="ngForm" *ngIf="!loginDo">
+    <input type="text" name="userName" placeholder="user name" ngModel />
+    <input type="password" name="password" placeholder="password" ngModel />
+    <input type="submit" value="login" (click)="loginDo" />
+  </form>
+  <a [routerLink]="['/register']">Register</a> |
+  <a [routerLink]="['/search']">Search</a> |
+  <app-logout></app-logout>
+  <!-- <div id='logoutButton' *ngIf="loginDo"</div> -->
+  <form #logout="ngForm" *ngIf="loginDo">
+    <!-- <p>Welcome, User {{ user.name }}</p> -->
+    <!-- <a [routerLink]="['/logout']">Logout</a> -->
+  </form>
+</nav>
