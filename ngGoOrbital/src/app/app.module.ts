@@ -28,26 +28,30 @@ import { LoginComponent } from "./components/login/login.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { FormsModule } from "@angular/forms";
 import { FooterComponent } from './template/footer/footer.component';
+import { ShowAllComponent } from './components/show-all/show-all.component';
+import { AccordianComponent } from './components/show-all/accordian/accordian.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
-    UserListComponent,
-    TravelerListComponent,
-    TripListComponent,
-    MainComponent,
-    RegisterComponent,
-    SearchComponent,
-    DetailsComponent,
     CompaniesComponent,
-    TravelerComponent,
+    DetailsComponent,
+    FooterComponent,
+    MainComponent,
+    NavBarComponent,
     LoginComponent,
     LogoutComponent,
+    RegisterComponent,
+    SearchComponent,
     ShowAllComponent,
+    TripListComponent,
+    TravelerListComponent,
+    TravelerComponent,
+    UserListComponent,
     AccordianComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule, BrowserAnimationsModule],
 
   providers: [TravelerService, UserService, CompaniesService, TripService],
   bootstrap: [AppComponent]

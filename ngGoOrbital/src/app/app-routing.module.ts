@@ -17,6 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'main' },
+  { path: 'detail', pathMatch: 'full', redirectTo: 'traveler' },
 { path: 'main', component: MainComponent },
 { path: 'companies', component: CompaniesComponent },
 { path: 'details', component: DetailsComponent },

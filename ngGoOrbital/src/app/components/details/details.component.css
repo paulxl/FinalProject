@@ -8,7 +8,7 @@
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  opacity:0.5;
+  opacity:0.9;
 }
 
 /* Add some padding inside the card container */
@@ -21,3 +21,12 @@ button {
 }
 
 body {background-color: #92a8d1;}
+
+#currency{
+  content:"$";
+  color:green;
+}
+
+div {
+  animation-timing-function: ease-in;
+}

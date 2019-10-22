@@ -5,33 +5,91 @@
 <h3 align="center">See All Trips </h3>
 
 
+<aside >
+    <p>Filter  3</p>
+    <div class="card" >
+      <article class="card-group-item">
+        <header class="card-header">
+          <h6 class="title">Range input </h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+          <div class="form-row">
+          <div class="form-group col-md-1">
+            <label>Min</label>
+            <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+          </div>
+          <div class="form-group col-md-1 text-right">
+            <label>Max</label>
+            <input type="number" class="form-control" placeholder="$1,0000">
+          </div>
+          </div>
+          </div> <!-- card-body.// -->
+        </div>
+      </article> <!-- card-group-item.// -->
+      <article class="card-group-item">
+        <header class="card-header">
+          <h6 class="title" class="col-md-1">Selection </h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">52</span>
+                <input type="checkbox" class="custom-control-input" id="Check1">
+                <label class="custom-control-label" for="Check1">Samsung</label>
+            </div> <!-- form-check.// -->
+
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">132</span>
+                <input type="checkbox" class="custom-control-input" id="Check2">
+               <label class="custom-control-label" for="Check2">Black berry</label>
+            </div> <!-- form-check.// -->
+
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">17</span>
+                <input type="checkbox" class="custom-control-input" id="Check3">
+                <label class="custom-control-label" for="Check3">Samsung</label>
+            </div> <!-- form-check.// -->
+
+            <div class="custom-control custom-checkbox">
+              <span class="float-right badge badge-light round">7</span>
+                <input type="checkbox" class="custom-control-input" id="Check4">
+                <label class="custom-control-label" for="Check4">Other Brand</label>
+            </div> <!-- form-check.// -->
+          </div> <!-- card-body.// -->
+        </div>
+      </article> <!-- card-group-item.// -->
+    </div> <!-- card.// -->
+
 <!--creates a list of users trips -->
-<div *ngFor="let number of [0,1,2,3,4,5,6]" (click)="showDetailById(number)" > <!-- need to update button to refect variable ID-->
+<span *ngFor="let trip of trips" (click)="showDetailById(trip)" > <!-- need to update button to refect variable ID-->
   <!--Insert loop here *ngFor="let trip of trips" -->
   <div class="card">
     <div class="row no-gutters">
       <div class="col-md-3"  >
-        <img src="assets/img/SpaceHotel.jpg" style="max-height: auto;" class="card-img" alt="{{trip.photoUrl}}">
-      </div>
+          <img src="assests/img/SpaceHotel.jpg" style="max-height: auto;" class="card-img" alt="{{trip.photoURL}}">
+        </div>
       <div class="col-md-3" style="float: left">
         <div class="card-body">
           <h5 class="card-title">Title {{trip.title}}</h5>
           <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Length {{ trip.length }}</p>
+          <p class="card-text">Length {{ trip.tripLength }}</p>
           <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
         </div>
       </div>
-      <div class="col-md-3" style="float: right">
+      <div class="col-md-3" style="float: right" align="right">
         <div class="card-body">
-          <h5 class="card-title">Cost {{trip.cost}}</h5>
-          <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Price:EUD (Earth, US Dollars) {{ trip.cost }}</p>
-          <button align ="bottom right" (click)="showDetailById(number)">View More</button> <!-- need to update button to refect variable ID-->
+            <h5 id="currency" class="card-title">Price ${{trip.cost}}</h5>
+            <p class="card-text"> <em>Currency: </em> <strong>E.U.D. (Martian & US Dollars accepted)</strong> </p>
+            <p class="card-text">restrictions:  {{ trip.destination }}</p>
+            <button class="nav-item nav-link-edit" [routerLink]="['']">Back</button >
+              <button class="nav-item nav-link-edit" [routerLink]="['showall']">Details</button >
+          <button align ="bottom right" (click)="showDetailById(trip.id)">View More</button> <!-- need to update button to refect variable ID-->
         </div>
       </div>
     </div>
   </div>
-</div>
+</span>
 
 
 
@@ -91,10 +149,6 @@
       </div>
     </article> <!-- card-group-item.// -->
   </div> <!-- card.// -->
-
-
-  <hr>
-  <button> Buy</button>
 
 
 
