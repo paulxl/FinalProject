@@ -1,4 +1,3 @@
-import { Vehicle } from './../../models/vehicle';
 import { Component, OnInit } from '@angular/core';
 import { Companies } from 'src/app/models/companies';
 import { Trip } from 'src/app/models/trip';
@@ -21,7 +20,7 @@ export class CompaniesComponent implements OnInit {
   tripselector = null;
   addNewTrip = null;
 
-  // addTrip: Trip = null;
+  
   
 
 
@@ -86,16 +85,8 @@ export class CompaniesComponent implements OnInit {
 
   // deleteVehicle(id: number) { }
 
-<<<<<<< HEAD
   // addNewVehicle(vehicle: any) { }
-=======
-  addNewVehicle(vehicle: Vehicle) { }
->>>>>>> 5f18948636716bf4bcb2a2eb4304deeb553b490f
 
   // updateVehicle(id: number) { }
 
-<<<<<<< HEAD
-=======
-  addNewCompany(vehicle: Vehicle) { }
->>>>>>> 5f18948636716bf4bcb2a2eb4304deeb553b490f
 }
