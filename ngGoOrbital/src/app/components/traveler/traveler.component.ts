@@ -37,10 +37,10 @@ export class TravelerComponent implements OnInit {
       err => { console.error('trouble in get traveler info to display trips');}
     )
   }
-  
+
   setEditTraveler(){
     this.editTraveler = Object.assign({}, this.selected);
-    
+
   }
   changeTraveler(form: NgForm) {
     const changeTraveler: Traveler = form.value;
@@ -50,7 +50,7 @@ export class TravelerComponent implements OnInit {
       },
       err => {
         console.error('Error on update traveler info '+ err);}
-    ) 
+    )
   }
   setReviewTrips() {
     this.travServ.getTraveler(this.selected.id).subscribe(

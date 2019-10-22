@@ -23,7 +23,7 @@ export class AuthService {
   public password: string;
   public role: string;
 
-  constructor(private http: HttpClient, private userServ: UserService) {}
+  constructor(private http: HttpClient, private userServ: UserService) { }
   authenticationService(username: string, password: string) {
     return this.http
       .get(`http://localhost:8085/auth`, {

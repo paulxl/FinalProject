@@ -57,7 +57,7 @@ import com.skilldistillery.goOrbital.services.UserService;
 			return user;
 		}
 //		Return Type	user	GET api/user/{keyword}	Gets one user by id
-		@GetMapping("user/{id}")
+		@GetMapping("user/{keyword}")
 		public User getUserByKeyword(@PathVariable String keyword, HttpServletResponse resp) {
 			User user;
 			
