@@ -1,7 +1,9 @@
+
 import { TravelerListComponent } from "./../traveler-list/traveler-list.component";
 import { TravelerService } from "./../../services/traveler.service";
 import { AuthService } from "./../../services/auth.service";
 import { CompanyDTO } from "./../../models/company-dto";
+
 import { Component, OnInit } from "@angular/core";
 import { Traveler } from "src/app/models/traveler";
 import { Companies } from "src/app/models/companies";
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
     private compServ: CompaniesService,
     private auth: AuthService,
     private router: Router,
+
     private travServ: TravelerService,
     private userServ: UserService
 
@@ -92,16 +95,19 @@ export class RegisterComponent implements OnInit {
         console.error(err);
       }
     );
+
     this.newTraveler = null;
   }
 
   addNewCompany(form: NgForm) {
+
     const dto: CompanyDTO = form.value;
 
     const user: User = new User();
     user.email = form.value.email;
     user.password = form.value.password;
     user.username = form.value.username;
+
     this.auth.registerCompany(dto).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
@@ -129,3 +135,4 @@ export class RegisterComponent implements OnInit {
   }
 
 }
+
