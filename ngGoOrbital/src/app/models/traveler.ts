@@ -1,5 +1,5 @@
 
-import { TripRecord } from './traveler-trip';
+import { TravelerTrip } from './traveler-trip';
 import { User } from './user';
 
 
@@ -10,10 +10,10 @@ export class Traveler {
 
   user: User;
   photoURL: string;
-  tripRecord: TripRecord;
+  travelerTrip: TravelerTrip;
   value: any;
 
-  constructor({ id, firstName, lastName, user, photoURL, tripRecord, }: { id?: number; firstName?: string; lastName?:  string; user?: User; photoURL?: string; tripRecord?: TripRecord;  }={})
+  constructor({ id, firstName, lastName, user, photoURL, travelerTrip, }: { id?: number; firstName?: string; lastName?:  string; user?: User; photoURL?: string; travelerTrip?: TravelerTrip;  }={})
 
   {
     this.id = id;
@@ -21,7 +21,7 @@ export class Traveler {
     this.lastName = lastName;
     this.user = user;
     this.photoURL = photoURL;
-    this.tripRecord = tripRecord;
+    this.travelerTrip = travelerTrip;
 
   }
 }

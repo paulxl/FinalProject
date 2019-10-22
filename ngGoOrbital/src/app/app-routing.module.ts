@@ -1,3 +1,4 @@
+import { ShowAllComponent } from './components/show-all/show-all.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { TripListComponent } from './components/trip-list/trip-list.component';
 import { TravelerListComponent } from './components/traveler-list/traveler-list.component';
@@ -12,10 +13,11 @@ import { CompaniesComponent } from './components/companies/companies.component';
 import { MainComponent } from './components/main/main.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'main' },
+  { path: 'detail', pathMatch: 'full', redirectTo: 'traveler' },
 { path: 'main', component: MainComponent },
 { path: 'companies', component: CompaniesComponent },
 { path: 'details', component: DetailsComponent },
@@ -28,11 +30,13 @@ const routes: Routes = [
 { path: 'traveler-list', component: TravelerListComponent },
 { path: 'trip-list', component: TripListComponent },
 { path: 'user-list', component: UserListComponent },
+{ path: 'showall', component: ShowAllComponent },
+
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [NgbModule, RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
