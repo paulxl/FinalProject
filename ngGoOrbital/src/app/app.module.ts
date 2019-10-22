@@ -51,7 +51,7 @@ import { FooterComponent } from './template/footer/footer.component';
     TravelerComponent,
     LoginComponent,
     LogoutComponent,
-    MenuComponent
+    MenuComponent,
     FooterComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule],

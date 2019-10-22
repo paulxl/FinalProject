@@ -3,14 +3,11 @@ import { User } from "./../models/user";
 import { CompanyDTO } from "./../models/company-dto";
 import { Companies } from "src/app/models/companies";
 import { Traveler } from "./../models/traveler";
-import { catchError, tap } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { UserService } from "src/app/services/user.service";
 import { map, catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
-import { User } from "../models/user";
 
 
 @Injectable({

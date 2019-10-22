@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Companies } from 'src/app/models/companies';
+import { Trip } from 'src/app/models/trip';
+import { CompaniesService } from 'src/app/services/companies.service';
+import { TripService } from 'src/app/services/trip.service';
 
 @Component({
   selector: 'app-companies',
@@ -7,15 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompaniesComponent implements OnInit {
 
-  TestVehicle = ['Really Smart', 'Super Flexible',
-    'Super Hot', 'Weather Changer'];
+  // FIELDS----------
+  selected: Companies = null;
+  editCompanies: Companies = null;
+  companies: Companies;
+  editTrips: Trip = null;
+  
 
-  vehicles: any;
-  constructor() { }
+
+  // CONTRRUCTOR-------
+  constructor(private compServ : CompaniesService, private tripServ : TripService) { }
+
+  // METHODS ----------
 
   ngOnInit() {
     // this.loadCompany();
   }
+
+  compInfo() {
+    
+  }
+  setTrips() {
+    
+  }
+  addTrip() {
+    
+  }
+
+
+
 
   deleteVehicle(id: number) { }
 

@@ -59,7 +59,7 @@ export class TravelerComponent implements OnInit {
     )
   }
   editTripRecord(id: number) {
-    this.editTraveler.tripRecord = Object.assign({}, this.selected);
+    this.editTraveler = Object.assign({}, this.selected);
   }
   updateReview(form: NgForm) {
     const updateReview: Traveler = form.value;
