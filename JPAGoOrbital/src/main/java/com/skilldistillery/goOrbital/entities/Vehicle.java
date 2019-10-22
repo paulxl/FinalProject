@@ -47,7 +47,6 @@ public class Vehicle {
 	public List<Trip> getTrips() {
 		return trips;
 	}
-
 	public void setTrips(List<Trip> trips) {
 		this.trips = trips;
 	}
