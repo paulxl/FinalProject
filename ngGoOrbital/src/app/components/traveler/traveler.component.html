@@ -47,10 +47,10 @@
         </form>
     </div>
 
-    <div class="displayTrips" align='center'>
+    <div class="displayTrips" align='center' *ngIf="selected && setDisplayMyTrips">
         <!-- add *ngIf="selected && displayTrips-->
 
-        <table align='center' *ngFor='let tripRecord of tripRecords'>
+        <table align='center' *ngFor='let trip of trips'>
             <tr>
                 <td>Review ID</td>
                 <td>{{selected.travelerTrip.id}}"></td>
@@ -112,13 +112,13 @@
                 <tr>
                     <td>My Review</td>
                     <td>
-                        <textarea type='text' id='review_textbox' name='review' rows='10' cols='80' ngModel placeholder={{selected.tripRecord.review}}></textarea>
+                        <textarea type='text' id='review_textbox' name='review' rows='10' cols='80' ngModel placeholder={{selected.travelerTrip.review}}></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>My Trip Notes</td>
                     <td>
-                        <textarea type='text' id='review_textbox' name='myNotes' rows='10' cols='80' ngModel placeholder={{selected.tripRecord.notes}}></textarea>
+                        <textarea type='text' id='review_textbox' name='myNotes' rows='10' cols='80' ngModel placeholder={{selected.travelerTrip.tripNote}}></textarea>
                     </td>
                 </tr>
             </table>
