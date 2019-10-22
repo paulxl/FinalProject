@@ -12,10 +12,47 @@
     </div>
 <div class="col-sm-8">
 
+  <!-- <div *ngFor="let trip of trips">
+    <p>
+    {{trip.title}} <br>
+    {{trip.companies}} <br>
+    ${{trip.cost}} <br>
+    {{trip.length}} <br>
+    {{trip.destination}} <br>
+  </p>
+    <hr>
+    </div> -->
+
 <div class="searchBody" *ngIf="!selected"></div>
- <div ng-controller="byDestin" >
-       <select ng-model="trip.destination" ng-options="trip.destination for trip in trips">
-       </select>
+
+<form name='searchByDestination'>
+    <select name="destination" ngModel>
+      <h5>Search by Destination:</h5>
+      <option value="">---select a destination---</option>
+      <option *ngFor="let trip of trips"value="{{trip.destination}}">{{trip.destination}}</option>
+    </select>
+  </form>
+
+  <!-- <p>
+      {{selected.title}} <br>
+      {{selected.companies}} <br>
+      ${{selected.cost}} <br>
+      {{selected.length}} <br>
+      {{selected.destination}} <br>
+    </p> -->
+
+    <form name='searchByComapany'>
+        <select name="companies" ngModel>
+          <option value="">---select a company---</option>
+          <option *ngFor="let trip of trips"value="{{companies.name}}">{{companies.name}}</option>
+        </select>
+      </form>
+
+
+
+ <!-- <div ng-controller="byDestin" >
+       <select ng-model="trip.destination" ng-options="trip.destination as trip.destination for trip.destination for trip in trips">
+       </select> -->
 
 
 
@@ -27,13 +64,6 @@
 </select>
 </form>
   </div> -->
-
-
-
-
-
-
-
 
 <div class="caro">
   <ngb-carousel>
