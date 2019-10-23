@@ -4,6 +4,7 @@ import { Vehicle } from "./vehicle";
 import { Traveler } from "./traveler";
 
 export class Trip {
+  [x: string]: any;
   id: number;
   travelers: Traveler[];
   companies: Companies;
