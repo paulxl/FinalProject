@@ -59,6 +59,45 @@ public class CompaniesController {
 		return companies;
 		
 	}
+	
+	// Get Company by user id
+	@GetMapping(path ="companies/user/{uid}")
+	public Companies getByUId(@PathVariable("uid") Integer uid, HttpServletResponse resp) {
+		Companies companies;
+		try {
+			companies = svr.findByUid(uid);
+			if (companies != null) {
+				resp.setStatus(200);
+			}else {
+				resp.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+			return null;
+		}
+		return companies;
+		
+	}
+	// Get Company by Name
+	@GetMapping(path ="companies/{name}")
+	public Companies getByUId(@PathVariable("name") String name, HttpServletResponse resp) {
+		Companies companies;
+		try {
+			companies = svr.findByName(name);
+			if (companies != null) {
+				resp.setStatus(200);
+			}else {
+				resp.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+			return null;
+		}
+		return companies;
+		
+	}
 
 
 	

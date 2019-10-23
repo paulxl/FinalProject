@@ -61,12 +61,12 @@ public class UserController {
 	}
 
 //		Return Type	user	GET api/user/{keyword}	Gets one user by id
-	@GetMapping("user/username/{keyword}")
-	public User getUserByKeyword(@PathVariable String keyword, HttpServletResponse resp, Principal principal) {
+	@GetMapping("api/user/username/{name}")
+	public User getUserByKeyword(@PathVariable String name, HttpServletResponse resp, Principal principal) {
 		User user;
 
 		try {
-			user = serv.findByUsername(keyword);
+			user = serv.findByUsername(name);
 			if (user == null) {
 				resp.setStatus(400);
 			} else {

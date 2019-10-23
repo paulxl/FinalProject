@@ -73,8 +73,8 @@
         <div class="card-body">
           <h5 class="card-title">Title {{trip.title}}</h5>
           <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Length {{ trip.tripLength }}</p>
-          <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
+          <p class="card-text">Length {{ trip.length }}</p>
+          <p class="card-text"><small class="text-muted">Departure Date: {{trip.date}}</small></p>
         </div>
       </div>
       <div class="col-md-3" style="float: right" align="right">
@@ -82,8 +82,7 @@
             <h5 id="currency" class="card-title">Price ${{trip.cost}}</h5>
             <p class="card-text"> <em>Currency: </em> <strong>E.U.D. (Martian & US Dollars accepted)</strong> </p>
             <p class="card-text">restrictions:  {{ trip.destination }}</p>
-            <button class="nav-item nav-link-edit" [routerLink]="['']">Back</button >
-              <button class="nav-item nav-link-edit" [routerLink]="['showall']">Details</button >
+            <button class="nav-item nav-link-edit" [routerLink]="['main']">Back</button >
           <button align ="bottom right" (click)="showDetailById(trip.id)">View More</button> <!-- need to update button to refect variable ID-->
         </div>
       </div>
