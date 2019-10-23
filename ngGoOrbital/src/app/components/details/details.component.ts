@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TripService } from './../../services/trip.service';
 import { Trip } from './../../models/trip';
 import { Component, OnInit } from '@angular/core';
@@ -9,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(private tripservice: TripService, ) { }
+  constructor(private router: Router,
+    private tripservice: TripService ) { }
 
   currentRate = 8;
    trip: Trip;   // variable
@@ -29,6 +31,9 @@ export class DetailsComponent implements OnInit {
   showDetailById(id: number) {
     this.tripservice.getTrip(id);
     console.log('entering showDetailById = ' + id + ' trip = ' + this.trip);
+    this.router.navigateByUrl('detail/id/' + id);
+
+
   }
   getTrips(): void {
     this.tripservice.getTrips()
