@@ -29,11 +29,18 @@ import { LoginComponent } from "./components/login/login.component";
 import { LogoutComponent } from "./components/logout/logout.component";
 import { FormsModule } from "@angular/forms";
 import { HttpInterceptorService } from "./services/http-interceptor.service";
-import { MenuComponent } from "./components/menu/menu.component";
+
 import { FooterComponent } from "./template/footer/footer.component";
 import { ShowAllComponent } from "./components/show-all/show-all.component";
-import { AccordianComponent } from "./components/show-all/accordian/accordian.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatLineModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [
@@ -52,9 +59,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     TravelerListComponent,
     TravelerComponent,
     UserListComponent,
-    AccordianComponent
+    SidenavComponent,
+    
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule, BrowserAnimationsModule,
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule, BrowserAnimationsModule, MatListModule, MatIconModule, MatLineModule, MatButtonModule, MatSidenavModule, MatToolbarModule
   ],
 
   providers: [
