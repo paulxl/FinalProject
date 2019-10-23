@@ -19,4 +19,6 @@ public interface TripService {
 	boolean delete(int id);
 
 	List<Trip> findByDestination(String dest);
+
+	List<Trip> findByCId(int cid);
 }

@@ -17,18 +17,18 @@ public class CompaniesServiceImpl implements CompaniesService {
 	
 	@Override
 	public List<Companies> index() {
-		List<Companies> provider = repo.findAll();
-		return provider;
+		List<Companies> company = repo.findAll();
+		return company;
 	}
 
 	@Override
 	public Companies findById(int id) {
 		Optional<Companies> optP = repo.findById(id);
-		Companies provider = null;
+		Companies company = null;
 		if (optP.isPresent()) {
-			provider = optP.get();
+			company = optP.get();
 		}
-		return provider;
+		return company;
 	}
 
 	@Override
@@ -37,13 +37,13 @@ public class CompaniesServiceImpl implements CompaniesService {
 	}
 
 	@Override
-	public Companies update(Companies provider, int id) {
+	public Companies update(Companies company, int id) {
 		Companies provid = findById(id);
 
 		if (provid != null) {
-			provid.setName(provider.getName());
-			provid.setLogoUrl(provider.getLogoUrl());
-			provid.setWebUrl(provider.getWebUrl());
+			provid.setName(company.getName());
+			provid.setLogoUrl(company.getLogoUrl());
+			provid.setWebUrl(company.getWebUrl());
 
 		}
 		return repo.saveAndFlush(provid);
@@ -51,11 +51,22 @@ public class CompaniesServiceImpl implements CompaniesService {
 
 	@Override
 	public boolean delete(int id) {
-		Optional<Companies> provider = repo.findById(id);
-		if (provider.isPresent()) {
+		Optional<Companies> company = repo.findById(id);
+		if (company.isPresent()) {
 			repo.deleteById(id);
 		}
 		return false;
+	}
+
+	@Override
+	public Companies findByUid(int uid) {
+		Companies company = repo.findByUser_Id(uid);
+		return company;
+	}
+
+	@Override
+	public Companies findByName(String name) {
+		return repo.findByName(name);
 	}
 
 }
