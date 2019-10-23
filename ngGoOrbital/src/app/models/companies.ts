@@ -7,29 +7,28 @@ export class Companies {
   id: number;
   name: string;
   user: User;
-  logoURL: string;
-  webURL: string;
-  vehicles: Vehicle;
-  trips: Trip;
-  editTrip: Companies;
+  logoUrl: string;
+  webUrl: string;
+  vehicles: Vehicle[];
+  trips: Trip[];
 
   constructor(
     id?: number,
     user?: User,
     name?: string,
-    logoURL?: string,
-    webURL?: string,
-    vehicles?: Vehicle,
-    trip?: Trip,
+    logoUrl?: string,
+    webUrl?: string,
+    vehicles?: Vehicle[],
+    trips?: Trip[],
   ) {
     {
       this.id = id;
       this.user = user;
       this.name = name;
-      this.logoURL = logoURL;
-      this.webURL = webURL;
+      this.logoUrl = logoUrl;
+      this.webUrl = webUrl;
       this.vehicles = vehicles;
-      this.trips = trip;
+      this.trips = trips;
     }
 
   }

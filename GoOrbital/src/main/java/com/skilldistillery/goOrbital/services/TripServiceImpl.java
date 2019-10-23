@@ -30,6 +30,11 @@ public class TripServiceImpl implements TripService {
 		}
 		return trip;
 	}
+	@Override
+	public List<Trip> findByCId(int id) {
+		List<Trip> trips = repo.findByCompanies_Id(id);
+		return trips;
+	}
 
 	@Override
 	public Trip create(Trip trip) {
