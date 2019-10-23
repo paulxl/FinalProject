@@ -24,7 +24,7 @@ export class MainComponent implements OnInit {
   show = false;
 
   // Constructors
-  constructor(private tripService: TripService, private compService: CompaniesService) { }
+  constructor(private router: Router, private tripService: TripService, private compService: CompaniesService) { }
   // Methods
 
   ngOnInit() {
@@ -91,4 +91,9 @@ export class MainComponent implements OnInit {
   }
 >>>>>>> 1c22dabc0e29bda0bdd18b77eba412dcf653c7eb
 
+  showDetailById(id: number) {
+    this.tripService.getTrip(id);
+    this.router.navigateByUrl('detail/id/' + id);
+
+  }
 }

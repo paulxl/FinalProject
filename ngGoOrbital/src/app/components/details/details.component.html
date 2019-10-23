@@ -67,7 +67,7 @@
   <div class="card">
     <div class="row no-gutters">
       <div class="col-md-3"  >
-          <img src="assests/img/SpaceHotel.jpg" style="max-height: auto;" class="card-img" alt="{{trip.photoURL}}">
+          <img src="assests/img/SpaceHotel.jpg" style="max-height: auto;" class="card-img" alt="trip.photoURL">
         </div>
       <div class="col-md-3" style="float: left">
         <div class="card-body">
@@ -82,8 +82,8 @@
             <h5 id="currency" class="card-title">Price ${{trip.cost}}</h5>
             <p class="card-text"> <em>Currency: </em> <strong>E.U.D. (Martian & US Dollars accepted)</strong> </p>
             <p class="card-text">restrictions:  {{ trip.destination }}</p>
-            <button class="nav-item nav-link-edit" [routerLink]="['main']">Back</button >
-          <button align ="bottom right" (click)="showDetailById(trip.id)">View More</button> <!-- need to update button to refect variable ID-->
+            <button class="nav-item nav-link-edit" [routerLink]="['']">Back</button >
+          <button align ="bottom right" (click)="showDetailById(trip.id)">View More</button>
         </div>
       </div>
     </div>
