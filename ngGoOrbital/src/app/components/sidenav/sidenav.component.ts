@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnDestroy, OnInit {
+  
     username: string;
   password: string;
   errorMessage = "Invalid Credentials";
@@ -19,9 +20,10 @@ export class SidenavComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
   isLoggedIn = false;
   loginDo = false;
+
   ngOnInit() {
     this.isLoggedIn = this.auth.isUserLoggedIn();
-    console.log("nav ->" + this.isLoggedIn);
+    console.log("navbar logged in: " + this.isLoggedIn);
   }
 
    constructor(private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private auth: AuthService, private router:Router) {
@@ -30,16 +32,17 @@ export class SidenavComponent implements OnDestroy, OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+  // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet`);
+  // fillerContent = Array.from({length: 50}, () =>
+  //     `Lorem ipsum dolor sit amet`);
 
     private _mobileQueryListener: () => void;
  
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
 handleLogin() {
     console.log(this.username + ":" + this.password);
 

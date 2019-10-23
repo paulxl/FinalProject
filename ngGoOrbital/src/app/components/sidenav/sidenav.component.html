@@ -15,12 +15,14 @@
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
                  {{login}}
       <mat-nav-list>
-          
-          <div class="container" >
+
+        
+          <!-- login form -->
+          <div class="container" *ngIf='!isLoggedIn'>
   <h1 class="text-center">Login</h1>
   <div class="card">
     <div class="card-body">
-      <form class="form-group">
+      <form class="form-group" >
         <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
         <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
         <div class="form-group">
@@ -38,6 +40,9 @@
     </div>
 </div>
 </div>
+   <!-- login form -->
+
+
       </mat-nav-list>
     </mat-sidenav>
     
