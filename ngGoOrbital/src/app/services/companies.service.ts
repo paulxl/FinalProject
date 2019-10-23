@@ -1,14 +1,14 @@
-import { AuthService } from "src/app/services/auth.service";
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { MessageService } from "./message.service";
-import { environment } from "src/environments/environment";
-import { Observable, of } from "rxjs";
-import { tap, catchError, map } from "rxjs/operators";
-import { Companies } from "../models/companies";
+import { AuthService } from 'src/app/services/auth.service';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MessageService } from './message.service';
+import { environment } from 'src/environments/environment';
+import { Observable, of } from 'rxjs';
+import { tap, catchError, map } from 'rxjs/operators';
+import { Companies } from '../models/companies';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CompaniesService {
   constructor(
@@ -16,12 +16,12 @@ export class CompaniesService {
     private messageService: MessageService,
     private authServ: AuthService
   ) {}
-  private url = environment.baseUrl + "api/companies";
+  private url = environment.baseUrl + 'api/companies';
 
   getCompany(): Observable<Companies[]> {
     return this.http.get<Companies[]>(this.url).pipe(
-      tap(_ => this.log("fetched Companies")),
-      catchError(this.handleError<Companies[]>("getCompanies", []))
+      tap(_ => this.log('fetched Companies')),
+      catchError(this.handleError<Companies[]>('getCompanies', []))
     );
   }
 
@@ -64,7 +64,7 @@ export class CompaniesService {
     }
     return this.http.get<Companies[]>(`${this.url}/?name=${term}`).pipe(
       tap(_ => this.log(`found Companies matching "${term}"`)),
-      catchError(this.handleError<Companies[]>("searchCompanies", []))
+      catchError(this.handleError<Companies[]>('searchCompanies', []))
     );
   }
 
@@ -72,7 +72,7 @@ export class CompaniesService {
 
   /** POST: add a new Company to the server */
   addCompanies(companies: Companies): Observable<Companies> {
-    console.log("inside of add companies service method");
+    console.log('inside of add companies service method');
 
     console.log(companies);
 
@@ -82,17 +82,17 @@ export class CompaniesService {
         tap((newCompanies: Companies) =>
           this.log(`added Companies w/ id=${newCompanies.id}`)
         ),
-        catchError(this.handleError<Companies>("addCompanies"))
+        catchError(this.handleError<Companies>('addCompanies'))
       );
   }
 
   /** DELETE: delete the Provider from the server */
   deleteCompanies(companies: Companies | number): Observable<Companies> {
-    const id = typeof companies === "number" ? companies : companies.id;
+    const id = typeof companies === 'number' ? companies : companies.id;
     const url = `${this.url}/${id}`;
     return this.http.delete<Companies>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`deleted Companies id=${id}`)),
-      catchError(this.handleError<Companies>("deleteCompanies"))
+      catchError(this.handleError<Companies>('deleteCompanies'))
     );
   }
 
@@ -100,11 +100,11 @@ export class CompaniesService {
   updateCompanies(companies: Companies): Observable<any> {
     return this.http.put(this.url, companies, this.httpOptions()).pipe(
       tap(_ => this.log(`updated Companies id=${companies.id}`)),
-      catchError(this.handleError<any>("updateCompanies"))
+      catchError(this.handleError<any>('updateCompanies'))
     );
   }
 
-  private handleError<T>(operation = "operation", result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       this.log(`${operation} failed: ${error.message}`);
@@ -120,8 +120,8 @@ export class CompaniesService {
     const cred = this.authServ.getCredentials();
     return {
       headers: {
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
         Authorization: cred
       }
     };
