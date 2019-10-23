@@ -168,6 +168,7 @@ export class CompaniesService {
       catchError(this.handleError<Companies>(`getCompanies id=${id}`))
     );
   }
+  
 
   /** GET Provider by id. Will 404 if id not found */
   getCompanies(id: number): Observable<Companies> {
