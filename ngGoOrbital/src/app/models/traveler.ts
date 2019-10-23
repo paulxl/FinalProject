@@ -1,7 +1,5 @@
-
-import { TravelerTrip } from './traveler-trip';
-import { User } from './user';
-
+import { TravelerTrip } from "./traveler-trip";
+import { User } from "./user";
 
 export class Traveler {
   id: number;

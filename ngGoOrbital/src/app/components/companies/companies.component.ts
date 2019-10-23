@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import { Component, OnInit } from "@angular/core";
 import { Companies } from "src/app/models/companies";
 import { Trip } from "src/app/models/trip";
 import { CompaniesService } from "src/app/services/companies.service";
 import { TripService } from "src/app/services/trip.service";
 import { NgForm } from "@angular/forms";
+=======
+import { Vehicle } from './../../models/vehicle';
+import { Component, OnInit } from '@angular/core';
+>>>>>>> 5f18948636716bf4bcb2a2eb4304deeb553b490f
 
 @Component({
   selector: "app-companies",
