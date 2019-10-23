@@ -47,6 +47,15 @@ export class CompaniesService {
       catchError(this.handleError<Companies>(`getCompanies id=${id}`))
     );
   }
+   /** GET Provider by id. Will 404 if id not found */
+ 
+    getCompanyByUserId(id: number){
+     const url = `${this.url}/user/${id}`;
+    return this.http.get<Companies>(url).pipe(
+      tap(_ => this.log(`fetched Companies userId=${id}`)),
+      catchError(this.handleError<Companies>(`getCompanies UserId=${id}`))
+    );
+    }
 
   /* GET Providers whose name contains search term */
   searchCompanies(term: string): Observable<Companies[]> {
