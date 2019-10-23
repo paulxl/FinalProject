@@ -68,4 +68,9 @@ public class TripServiceImpl implements TripService {
 		}
 	}
 
+	@Override
+	public List<Trip> findByDestination(String dest) {
+		return repo.findByDestination(dest);
+	}
+
 }
