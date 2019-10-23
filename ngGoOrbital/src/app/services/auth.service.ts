@@ -1,3 +1,4 @@
+import { environment } from "./../../environments/environment";
 import { TravelerDTO } from "src/app/models/traveler-dto";
 import { User } from "./../models/user";
 import { CompanyDTO } from "./../models/company-dto";
@@ -7,9 +8,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { UserService } from "src/app/services/user.service";
-
-import { map, catchError, tap } from "rxjs/operators";
-
+import { tap, map, catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -18,25 +17,47 @@ export class AuthService {
   USER_NAME_SESSION_ATTRIBUTE_NAME = "inSessionUser";
   USER_NAME_SESSION_ATTRIBUTE_ROLE = "inSessionRole";
 
-  private baseUrl = "http://localhost:8085/";
+  private baseUrl = environment.baseUrl;
+  private authUrl = this.baseUrl + "auth";
   public username: string;
   public password: string;
   public role: string;
 
-  constructor(private http: HttpClient, private userServ: UserService) {}
+  constructor(
+    private http: HttpClient // , private userServ: UserService
+  ) {}
+
   authenticationService(username: string, password: string) {
+    console.log(username + ":" + password);
+    const basicAuthToken = this.createBasicAuthToken(username, password);
+    console.log(basicAuthToken);
+
     return this.http
-      .get(`http://localhost:8085/auth`, {
+      .get(this.authUrl, {
         headers: {
-          authorization: this.createBasicAuthToken(username, password)
+          Authorization: basicAuthToken
         }
       })
       .pipe(
-        map(res => {
+        tap(res => {
           this.username = username;
           this.password = password;
+          console.log("In tap");
 
-          this.registerSuccessfulLogin(username);
+          this.registerSuccessfulLogin(username).subscribe(
+            user => {
+              console.log("Current User ", user);
+              const currentUser: User = user;
+              sessionStorage.setItem(
+                this.USER_NAME_SESSION_ATTRIBUTE_ROLE,
+                currentUser.role
+              );
+            },
+            bad => {
+              console.error("Error retrieving logged in user");
+              console.error(bad);
+            }
+          );
         })
       );
   }
@@ -45,27 +66,48 @@ export class AuthService {
     return "Basic " + window.btoa(username + ":" + password);
   }
 
+  getCredentials(): string {
+    return "Basic " + window.btoa(this.username + ":" + this.password);
+    // or
+    // return sessionStorage.getItem('credentials');
+  }
+
   registerSuccessfulLogin(username) {
     sessionStorage.setItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME, username);
-    this.userServ.getUserByName(username).subscribe({
-      next(user) {
-        console.log("Current User ", user);
-        const currentUser: User = user;
-        sessionStorage.setItem(
-          this.USER_NAME_SESSION_ATTRIBUTE_ROLE,
-          currentUser.role
-        );
-      },
-      error(msg) {
-        console.log("Error Getting user: ", msg);
-      }
-    });
+    sessionStorage.setItem("credentials", this.getCredentials());
+    console.log("In registerSuccessfulLogin()");
+    const url = `${this.baseUrl}api/user/username/${username}`;
+    console.log("Requesting " + url);
+
+    return this.http.get<User>(url, this.httpOptions()).pipe(
+      tap(result => {
+        console.log(`fetched User name=${username}`);
+        console.log(result);
+        return result;
+      }),
+      catchError(err => {
+        console.error(`registerSuccessfulLogin: name=${username}`);
+      })
+    );
+    // this.userServ.getUserByName(username).subscribe(
+    //   user => {
+    //     console.log("Current User ", user);
+    //     const currentUser: User = user;
+    //     sessionStorage.setItem(
+    //       this.USER_NAME_SESSION_ATTRIBUTE_ROLE,
+    //       currentUser.role
+    //     );
+    //   },
+    //   err => {
+    //     console.log("Error Getting user: ", err);
+    //   }
+    // );
   }
 
   logout() {
-    console.log("inside of auth service logout");
-
-    sessionStorage.removeItem("inSessionUser");
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE);
+    sessionStorage.removeItem("credentials");
     this.username = null;
     this.password = null;
   }
@@ -124,5 +166,16 @@ export class AuthService {
         );
       })
     );
+  }
+
+  private httpOptions() {
+    const cred = this.getCredentials();
+    return {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        Authorization: cred
+      }
+    };
   }
 }
