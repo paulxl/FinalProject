@@ -56,10 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AccordianComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule, BrowserAnimationsModule,
-  // LoginComponent,
-  // LogoutComponent,
-  // MenuComponent,
-  // FooterComponent
+ 
   ],
 
   providers: [

@@ -19,7 +19,10 @@ export class CompaniesComponent implements OnInit {
   editTrip: Trip = null;
   tripselector = null;
   addNewTrip = null;
+  eC = null;
+  eT = null;
 
+  start = null;
   
   
 
@@ -30,10 +33,12 @@ export class CompaniesComponent implements OnInit {
   // METHODS ----------
 
   ngOnInit() {
+    this.start = true;
     // this.loadCompany();
   }
 
   compInfo() {
+    this.eC = true;
     this.editCompanies = Object.assign({}, this.selected);
   }
   
@@ -46,8 +51,12 @@ export class CompaniesComponent implements OnInit {
       err => {
         console.error('error in creating trip');}
     )
+    this.addNewTrip = false;
+    this.ngOnInit();
   }
-  setEditTrip(trip : Trip) {
+  setEditTrip(trip: Trip) {
+    this.eT = true;
+    this.start = false;
     this.companies.editTrip = Object.assign({}, this.selected);
   }
 
@@ -60,6 +69,8 @@ export class CompaniesComponent implements OnInit {
       err => {
         console.error('error in update trip');}
     )
+    this.eT = false;
+    this.ngOnInit();
   }
   deleteTrip(id: number) {
     this.tripServ.deleteTrip(id).subscribe(
@@ -69,6 +80,8 @@ export class CompaniesComponent implements OnInit {
       err => {
         console.error('error in deleting trip');}
     )
+    this.tripselector = false;
+    this.ngOnInit();
   }
   updateCompany(form: NgForm) {
     const updateCompany = form.value;
@@ -79,6 +92,8 @@ export class CompaniesComponent implements OnInit {
       err => {
         console.error('error in updating company');}
     )
+    this.eC = false;
+    this.ngOnInit();
  }
 
 

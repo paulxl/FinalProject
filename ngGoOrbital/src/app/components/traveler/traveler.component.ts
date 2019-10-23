@@ -22,25 +22,31 @@ export class TravelerComponent implements OnInit {
   //trips: TravelerTrip[] = [];
   editUser: User = null;
   traveler: Traveler;
+  start = null;
+  dT = null;
+  eT = null;
 
 
   constructor(private travServ : TravelerService, private tripServ : TripService ) { }
 
   ngOnInit() {
+    this.start = true;
     const traveler = this.selected;
     // need to get traveler in after authentication
   }
 
-  setDisplayMyTrips(){
+  setDisplayMyTrips() {
+    this.dT = true;
     this.travServ.getTraveler(this.selected.id).subscribe(
       data => { this.traveler = data },
       err => { console.error('trouble in get traveler info to display trips');}
     )
+    this.start = false;
   }
 
   setEditTraveler(){
     this.editTraveler = Object.assign({}, this.selected);
-
+    this.eT = true;
   }
   changeTraveler(form: NgForm) {
     const changeTraveler: Traveler = form.value;
@@ -51,6 +57,8 @@ export class TravelerComponent implements OnInit {
       err => {
         console.error('Error on update traveler info '+ err);}
     )
+    this.eT = false;
+    this.ngOnInit();
   }
   setReviewTrips() {
     this.travServ.getTraveler(this.selected.id).subscribe(
@@ -60,6 +68,7 @@ export class TravelerComponent implements OnInit {
   }
   editTripRecord(id: number) {
     this.editTraveler = Object.assign({}, this.selected);
+    this.eT = true;
   }
   updateReview(form: NgForm) {
     const updateReview: Traveler = form.value;
@@ -70,5 +79,10 @@ export class TravelerComponent implements OnInit {
       err => {
         console.error('Error in update traveler ' + err);}
     )
+    this.eT = false;
+    this.dT = false;
+    this.ngOnInit();
   }
+  
+  
 }

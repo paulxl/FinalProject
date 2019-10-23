@@ -1,11 +1,10 @@
 <body>
-    <!-- <img src='/assets/img/moon.jpg'> -->
+
     <h1> Welcome {{selected.firstName}} &nbsp {{selected.lastName}}</h1>
     <h3>This is your account page.</h3>
     <div class="center-container">
-        <!--begins a container to center page / ends at bottom-->
-        <!--ADD *ngIf="selected"  after things work, currently no traveler sent in-->
-        <div class="start">
+
+        <div class="start" *ngIf='start=true'>
             <form>
                 <a> Get My Trips :<button (click)="setDisplayMyTrips()" style="margin: 20px">VIEW TRIPS</button><br></a>
 
@@ -14,8 +13,9 @@
         </div>
     </div>
 
-    <div class="editTraveler">
-        <!-- *ngIf="selected && editTraveler to ngIf-->
+    <div class="editTraveler" *ngIf='eT=true'>
+
+        <h2>Update My Information</h2>
         <form #updateTraveler='ngForm'>
             <table align="center">
                 <tr>
@@ -47,9 +47,9 @@
         </form>
     </div>
 
-    <div class="displayTrips" align='center' *ngIf="selected && setDisplayMyTrips">
-        <!-- add *ngIf="selected && displayTrips-->
+    <div class="displayTrips" align='center' *ngIf='dT=true'>
 
+        <h2>Display Trips</h2>
         <table align='center' *ngFor='let trip of trips'>
             <tr>
                 <td>Review ID</td>
@@ -88,8 +88,9 @@
             </tr>
         </table>
     </div>
-    <div class="editTripRecord">
-        <!--add *ngIf='editTripReview && displayTrips'-->
+    <div class="editTripRecord" align='center' *ngIf='eT=true'>
+
+        <h2>Edit/Create Reviews</h2>
         <form #editReview='ngForm'>
             <table align='center'>
                 <tr>
@@ -122,7 +123,7 @@
                     </td>
                 </tr>
             </table>
-            <button (click)='updateReview(editReview)'></button>
+            <button (click)='updateReview(editReview)'>Update / Submit</button>
         </form>
     </div>
 </body>

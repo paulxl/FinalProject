@@ -3,20 +3,18 @@
 <body>
     <h1>Hello {{selected.name}}</h1>
     <h3>This is your companies account page.</h3><br>
-    <div class="center-container">
-        <!--begins a container to center page / ends at bottom-->
-        <!--ADD *ngIf="selected"  after things work, currently no traveler sent in-->
+    <div class="center-container" *ngIf='start= true'>
+
         <div class="start">
             <form>
-                <a>To view and update your details :<button (click)="compInfo()" sytle="margin: 20px">Companies Info</button><br></a>
-                <a>To view/edit your offered Trips :<button (click)="tripselector=true" style="margin: 20px">Our Trips</button><br></a>
-                <a>To add a new Trips :<button (click)="addTripNew=true" style="margin: 20px">Add A Trip</button></a>
-
+                <a>To view and update your details <button (click)="compInfo()" sytle="margin: 20px">Companies Info</button><br></a>
+                <a>To view/edit your offered Trips <button (click)="tripselector=true" style="margin: 20px">Our Trips</button><br></a>
+                <a>To add a new Trips <button (click)="addTripNew=true" style="margin: 20px">Add A Trip</button></a>
             </form>
         </div>
     </div>
-    <div class="displayTrips" align='center'>
-        <!-- *ngIf="tripselector"  -->
+    <div class="displayTrips" align='center' *ngIf='tripselector=true'>
+
         <h2>Diplay All Trips By Company</h2>
         <table align='center' *ngFor='let trip of trips'>
             <tr>
@@ -63,10 +61,10 @@
             </tr>
         </table>
     </div>
-    <!-- <div class="center-container"> -->
-    <div class="editTrip" align='center'>
+
+    <div class="editTrip" align='center' *ngIf='eT=true'>
         <h2>Edit A Trip</h2>
-        <!-- add *ngIf='editTrip'-->
+
         <form #editTrip='ngForm'>
             <table align='center'>
                 <tr>
@@ -105,10 +103,9 @@
             <br><button type="submit" (click)='updateTrip(editTrip)'>UPDATE THIS TRIP</button>
         </form>
     </div>
-    <!-- </div> -->
-    <!-- <div class="center-container"> -->
-    <div class='editCompanies' align='center'>
-        <!-- *ngIf='selected && editCompanies' -->
+
+    <div class='editCompanies' align='center' *ngIf='eC= true'>
+
         <h2>Edit Company Info</h2>
         <form #editCompanies='ngForm'>
             <table align='center'>
@@ -128,10 +125,9 @@
             <button type="submit" (click)='updateCompany(editCompanies)'>UPDATE US</button>
         </form>
     </div>
-    <!-- </div> -->
-    <!-- <div class="center-container"> -->
-    <div class='addTrip' align='center'>
-        <!--*ngIf='addNewTrip'   -->
+
+    <div class='addTrip' align='center' *ngIf='addTripNew=true'>
+
         <h2>Add A Trip</h2>
         <form #addTrip='ngForm'>
             <table align='center'>
@@ -172,5 +168,5 @@
             <button type="submit" (click)='addAnotherTrip(addTrip)'>Create Trip</button>
         </form>
     </div>
-    <!-- </div> -->
+
 </body>
