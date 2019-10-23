@@ -64,6 +64,15 @@ export class TripService {
     );
   }
 
+  getTripsByCompanyId(id: number): Observable<Trip[]> {
+    const url = `${this.url}/companies/${id}`;
+    return this.http.get<Trip[]>(url).pipe(
+      tap(_ => this.log(`fetched trips Companies id=${id}`)),
+      catchError(this.handleError<Trip[]>(`get trips by Companies id=${id}`))
+    );
+  }
+
+
   //////// Save methods //////////
 
   /** POST: add a new trip to the server */

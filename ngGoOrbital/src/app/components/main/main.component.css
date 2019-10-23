@@ -9,6 +9,7 @@
 .searchBody {
   align-content: center;
   text-align: center;
+  align-items: center;
   line-height: 40px;
   /* margin-left: 60px; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -23,11 +24,7 @@
   text-align: center;
 }
 
-.border {
-  border-style: groove;
-  border-color: coral;
-  border-width: 7px;
-}
+
 body {
   /* background-image: url("/assets/img/catSpace5.jpg"); */
   /* background-image: url("/assets/img/earth.jpeg");

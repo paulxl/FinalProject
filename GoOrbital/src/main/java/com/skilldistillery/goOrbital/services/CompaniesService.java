@@ -14,5 +14,9 @@ public interface CompaniesService {
 	Companies update(Companies provider, int id);
 
 	boolean delete(int id);
+	
+	Companies findByUid(int id);
+
+	Companies findByName(String name);
 
 }

@@ -64,4 +64,10 @@ public class TravelerServiceImpl implements TravelerService {
 		}
 	}
 
+	@Override
+	public Traveler findByUid(int uid) {
+		Traveler traveler = repo.findByUser_Id(uid);
+		return traveler;
+	}
+
 }

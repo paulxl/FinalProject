@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
 	// this you get for free when you configure the db connection in
 	// application.properties file
 	@Autowired
@@ -50,4 +51,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery(userQuery)
 				.authoritiesByUsernameQuery(authQuery).passwordEncoder(encoder);
 	}
+
 }
