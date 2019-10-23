@@ -54,13 +54,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     UserListComponent,
     AccordianComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    NgbModule,
-    BrowserAnimationsModule
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule, BrowserAnimationsModule,
   ],
 
   providers: [

@@ -85,9 +85,10 @@ export class AuthService {
         console.log(result);
         return result;
       }),
-      catchError(err => {
-        console.error(`registerSuccessfulLogin: name=${username}`);
-        return throwError(`resgisterSuccessfulLogin: Error: name=${username}`);
+      catchError((err: any) => {
+        console.error(`registerSuccessfulLogin: Error: name=${username}`);
+        console.error(err);
+        return throwError(`registerSuccessfulLogin: Error: name=${username}`);
       })
     );
     // this.userServ.getUserByName(username).subscribe(
@@ -143,9 +144,11 @@ export class AuthService {
 
   registerTraveler(dto: TravelerDTO) {
     console.log("inside of register traveler method");
+    const url = this.baseUrl + "register/traveler";
+    console.log("posting to " + url);
 
     // create request to register a new account
-    return this.http.post(this.baseUrl + "register/traveler", dto).pipe(
+    return this.http.post(url, dto).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
