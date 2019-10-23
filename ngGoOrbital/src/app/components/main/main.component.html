@@ -7,17 +7,10 @@
   </div>
   <div class="row">
     <div class="col-sm-2">
-      <a
-        href="https://twitter.com/intent/tweet?button_hashtag=spacex&ref_src=twsrc%5Etfw"
-        class="twitter-hashtag-button"
-        data-url="https://twitter.com/SpaceX?s=17"
-        data-show-count="false"
-        >Tweet #spacex</a
-      ><script
-        async
-        src="https://platform.twitter.com/widgets.js"
-        charset="utf-8"
-      ></script>
+      <a href="https://twitter.com/intent/tweet?button_hashtag=spacex&ref_src=twsrc%5Etfw"
+        class="twitter-hashtag-button" data-url="https://twitter.com/SpaceX?s=17" data-show-count="false">Tweet
+        #spacex</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 
     <div class="col-sm-8">
@@ -30,12 +23,7 @@
             trip.destination
           }}</option>
         </select>
-        <button
-          type="submit"
-          (click)="searchByDest(byDest)"
-          name="searchDest"
-          id="btn2"
-        >
+        <button type="submit" (click)="searchByDest(byDest)" name="searchDest" id="btn2">
           Submit
         </button>
       </form>
@@ -43,31 +31,34 @@
       <form #byComp="ngForm" *ngIf="!selected && !show">
         <select name="companies" ngModel>
           <option value="">---select a company---</option>
-          <option
-            *ngFor="let companies of companiess"
-            value="{{ companies.name }}"
-            >{{ companies.name }}</option
-          >
+          <option *ngFor="let companies of companiess" value="{{ companies.name }}">{{ companies.name }}</option>
         </select>
-        <button
-          type="submit"
-          (click)="searchByComp(byComp)"
-          name="searchComp"
-          id="btn2"
-        >
+        <button type="submit" (click)="searchByComp(byComp)" name="searchComp" id="btn2">
           Submit
         </button>
       </form>
+
+      <!-- <div ng-controller="byDestin">
+        <select ng-model="trip.destination"
+          ng-options="trip.destination as trip.destination for trip.destination for trip in trips">
+        </select> -->
+
+
+
+
+      <!-- <form name="byDestination">
+     <select name="destination" [(ngModel)]="trip.destination">
+       <option ng-repeat="trip in trips" value="{{trip.destination}}"></option>
+<button type="submit" (click)="searchByDest()" name="searchDest">Click</button>
+</select>
+</form>
+  </div> -->
 
       <div class="caro" *ngIf="!selected && !show">
         <ngb-carousel>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img
-                src="/assets/img/StarshipOnMoonBase.jpg"
-                width="600px"
-                alt="Random first slide"
-              />
+              <img src="/assets/img/StarshipOnMoonBase.jpg" width="600px" alt="Random first slide" />
             </div>
             <div class="carousel-caption">
               <h3>First slide label</h3>
@@ -76,11 +67,7 @@
           </ng-template>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img
-                src="/assets/img/SpaceHotel.jpg"
-                width="600px"
-                alt="Random second slide"
-              />
+              <img src="/assets/img/SpaceHotel.jpg" width="600px" alt="Random second slide" />
             </div>
             <div class="carousel-caption">
               <h3>Second slide label</h3>
@@ -89,11 +76,7 @@
           </ng-template>
           <ng-template ngbSlide>
             <div class="picsum-img-wrapper">
-              <img
-                src="/assets/img/MartianColony.jpg"
-                width="600px"
-                alt="Random third slide"
-              />
+              <img src="/assets/img/MartianColony.jpg" width="600px" alt="Random third slide" />
             </div>
             <div class="carousel-caption">
               <h3>Third slide label</h3>
@@ -113,12 +96,7 @@
       <!-- need to update button to refect just companies or destinations-->
       <div class="card" style="width:800px">
         <div class="card-body">
-          <img
-            class="card-img-left"
-            src="{{ trip.photoURL }}"
-            style="width: 250px"
-            alt="space image"
-          />
+          <img class="card-img-left" src="{{ trip.photoUrl }}" style="width: 250px" alt="space image" />
           <h5 class="card-title">{{ trip.title }}</h5>
           <p class="card-text"><b>Destination:</b> {{ trip.destination }}</p>
           <p class="card-text"><b>Number of days: </b>{{ trip.length }}</p>
