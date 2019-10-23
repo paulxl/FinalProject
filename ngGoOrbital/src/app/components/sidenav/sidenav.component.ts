@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent implements OnDestroy {
+export class SidenavComponent implements OnDestroy, OnInit {
     username: string;
   password: string;
   errorMessage = "Invalid Credentials";
@@ -17,7 +17,12 @@ export class SidenavComponent implements OnDestroy {
   invalidLogin = false;
   loginSuccess = false;
   mobileQuery: MediaQueryList;
-
+  isLoggedIn = false;
+  loginDo = false;
+  ngOnInit() {
+    this.isLoggedIn = this.auth.isUserLoggedIn();
+    console.log("nav ->" + this.isLoggedIn);
+  }
 
    constructor(private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private auth: AuthService, private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');

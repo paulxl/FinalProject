@@ -52,7 +52,7 @@ export class MainComponent implements OnInit {
 
   searchByDest(byDest: NgForm) {
     this.show = true;
-    this.tripService.searchTrips(this.selected.trip)
+    this.tripService.searchTrips(this.selected.destination)
     .subscribe(
       data => (this.trips = data),
       err => console.error('Observer got an error:' + err)
@@ -60,13 +60,13 @@ export class MainComponent implements OnInit {
 
   }
 
-  searchByComp(byComp: NgForm) {
-    this.show = true;
-    this.tripService.searchTrips(this.selected.trip)
-    .subscribe(
-      data => (this.trips = data),
-      err => console.error('Observer got an error:' + err)
-    );
-  }
+  // searchByComp(byComp: NgForm) {
+  //   this.show = true;
+  //   this.tripService.searchTrips(this.selected.companies)
+  //   .subscribe(
+  //     data => (this.trips = data),
+  //     err => console.error('Observer got an error:' + err)
+  //   );
+  // }
 
 }
