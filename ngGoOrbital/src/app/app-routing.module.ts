@@ -14,6 +14,7 @@ import { MainComponent } from './components/main/main.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'main' },
@@ -31,8 +32,9 @@ const routes: Routes = [
 { path: 'trip-list', component: TripListComponent },
 { path: 'user-list', component: UserListComponent },
 { path: 'showall', component: ShowAllComponent },
+{ path: 'sidenav', component: SidenavComponent},
 
-
+{ path: 'detail/id/:id', component: ShowAllComponent}
 ];
 
 @NgModule({
