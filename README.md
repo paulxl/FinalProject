@@ -1,3 +1,32 @@
+<<<<<<< HEAD
+# NgGoOrbital
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+=======
 Skill Distillery: Final Project (Weeks 15-16)
 
 Team Name: Firefly Grapes
@@ -43,3 +72,4 @@ Don't work on on the master branch & always pull before you push.
 Communicate with team members often, effectively and with intent (be specific!) and attention to detail.
 Understand team members' strengths and weaknesses and utilize their strengths and "swarm" on the areas where that individual is "blocked". Retrain and teach where needed, however mission first, meet the deadline.
 Attempt to fully plan out the intended finished project with room for stretch goals within the database, otherwise it can be a challenge to alter data further along during project development we ran into this issue with user comments. and desired extra functionality.
+>>>>>>> 512237f7b74342babe74a62678cec6dbf97dd71d

@@ -1,7 +1,12 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="example-app-name">Go Orbital</h1>
+    <mat-toolbar-row>
+    <span><button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button></span>
+    <span><h1 class="example-app-name">Go Orbital</h1></span>
+    <span class="example-spacer"></span>
+    <span><app-logout></app-logout></span>
+  </mat-toolbar-row>
+  
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"
@@ -10,12 +15,14 @@
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
                  {{login}}
       <mat-nav-list>
-          
-          <div class="container col-lg-6">
+
+        
+          <!-- login form -->
+          <div class="container" *ngIf='!isLoggedIn'>
   <h1 class="text-center">Login</h1>
   <div class="card">
     <div class="card-body">
-      <form class="form-group">
+      <form class="form-group" >
         <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
         <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
         <div class="form-group">
@@ -33,9 +40,12 @@
     </div>
 </div>
 </div>
+   <!-- login form -->
+
+
       </mat-nav-list>
     </mat-sidenav>
-   
+    
     <mat-sidenav-content>
     <router-outlet></router-outlet>
     </mat-sidenav-content>

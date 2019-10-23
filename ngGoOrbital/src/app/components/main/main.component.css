@@ -1,15 +1,17 @@
 .header {
-  text-align: left;
-  margin-left: 120px;
+  text-align: center;
+  /* margin-left: 120px; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(46, 130, 213);
   text-shadow: 0.5px 0.5px #6a6767;
 }
 
 .searchBody {
-  text-align: left;
+  align-content: center;
+  text-align: center;
+  align-items: center;
   line-height: 40px;
-  margin-left: 60px;
+  /* margin-left: 60px; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: rgb(46, 130, 213);
   text-shadow: 0.5px 0.5px #a59898;
@@ -21,9 +23,12 @@
   align-items: center;
   text-align: center;
 }
+
+
 body {
   /* background-image: url("/assets/img/catSpace5.jpg"); */
-  background-image: url("/assets/img/earth.jpeg");
+  /* background-image: url("/assets/img/earth.jpeg");
   width: 100%;
-  background-size: cover;
+  background-size: cover; */
+  background-color: rgb(155, 153, 153);
 }
