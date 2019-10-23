@@ -1,6 +1,7 @@
 import { TripService } from './../../services/trip.service';
 import { Component, OnInit } from '@angular/core';
 import { Trip } from 'src/app/models/trip';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-all',
@@ -10,13 +11,24 @@ import { Trip } from 'src/app/models/trip';
 export class ShowAllComponent implements OnInit {
 
   currentRate = 8;
+  id: any;
+
+  // <a [routerLink]="['/search']">Search</a> |
+
 
   trip: any;   // variable
   trips: any;  // array of variables;
-  constructor(private tripService: TripService) { }
+  constructor(private route: ActivatedRoute,
+    private tripService: TripService,
+    private router: Router) {
+
+
+  }
 
   ngOnInit() {
     this.tripService.getTrip(1);
+    this.id =  this.route.snapshot.paramMap.get('id');
+    this.getTrip(this.id);
   }
   // sets the local variables
   setTripValues(trip: Trip) {

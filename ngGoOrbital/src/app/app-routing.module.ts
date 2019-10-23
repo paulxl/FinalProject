@@ -32,8 +32,9 @@ const routes: Routes = [
 { path: 'trip-list', component: TripListComponent },
 { path: 'user-list', component: UserListComponent },
 { path: 'showall', component: ShowAllComponent },
-{ path: 'sidenav', component: SidenavComponent}
+{ path: 'sidenav', component: SidenavComponent},
 
+{ path: 'detail/id/:id', component: ShowAllComponent}
 ];
 
 @NgModule({

@@ -17,7 +17,7 @@ display: flex;
 -ms-flex-align: center;
     align-items: center;
 font-family: 'Poppins', sans-serif;
-background: url("../../../assets/img/SLSRocket.jpg");
+/* background: url("../../../assets/img/SLSRocket.jpg"); */
 background-size: cover;
 /* background: no-repeat; */
 background-attachment: fixed;
