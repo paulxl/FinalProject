@@ -1,3 +1,5 @@
+import { Trip } from './trip';
+
 //import { Launchport } from './launchport';
 // import { Deserializable } from './../interfaces/deserializable';
 // export class Launchport implements Deserializable {
@@ -17,14 +19,16 @@ export class Launchport {
   name: string;
   latitude: number;
   longitude: number;
+  trips: Trip[];
 
-  constructor({ id, name, latitude, longitude}: {id?:number; name?: string; latitude?: number; longitude?: number;}={})
+  constructor({ id, name, latitude, longitude, trips}: {id?:number; name?: string; latitude?: number; longitude?: number; trips?: Trip[]}={})
 
   {
     this.id = id;
     this.name = name;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.trips = trips;
   }
 
 }
