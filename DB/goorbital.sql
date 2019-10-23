@@ -270,6 +270,7 @@ INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`
 INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (8, 3, 3, 1, 'Quick trip point to point', 'Earth to Earth (1 hour to anywhere)', 10000, 1, NULL, 'assets/img/earthToearth.png');
 INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (9, 4, 2, 1, 'Science excursion', 'ISS (International Space Station)', 25000, 21, NULL, 'assets/img/ISS.jpg');
 INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (10, 1, 6, 1, 'Dream Trip to Saturn', 'Saturn', 125000, 3000, NULL, 'assets/img/starshipSaturn.png');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (11, 1, 6, 2, 'Saturn the Outter Rings', 'Ring Planets', 135000, 3200, NULL, 'assets/img/starshipSaturn.png');
 
 COMMIT;
 

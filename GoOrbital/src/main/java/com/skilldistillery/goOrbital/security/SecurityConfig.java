@@ -16,43 +16,40 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // this you get for free when you configure the db connection in application.properties file
-    @Autowired
-    private DataSource dataSource;
 
-    // this bean is created in the application starter class if you're looking for it
-    @Autowired
-    private PasswordEncoder encoder;
+	// this you get for free when you configure the db connection in
+	// application.properties file
+	@Autowired
+	private DataSource dataSource;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-        .csrf().disable()
-        .authorizeRequests()
-        .antMatchers(HttpMethod.GET, "/api/trip/**").permitAll()
-        .antMatchers(HttpMethod.GET, "/api/companies/**").permitAll()
-//        .antMatchers(HttpMethod.POST,"/api/companies").permitAll()
-        .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
-        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
-        .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
-        .anyRequest().permitAll()               // All other requests are allowed without authorization.
-        .and()
-        .httpBasic();                           // Use HTTP Basic Authentication
+	// this bean is created in the application starter class if you're looking for
+	// it
+	@Autowired
+	private PasswordEncoder encoder;
 
-        http
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable()
+		.authorizeRequests()
+		.antMatchers(HttpMethod.GET, "/api/trip/**").permitAll()
+				.antMatchers(HttpMethod.GET, "/api/companies/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/companies").permitAll().antMatchers(HttpMethod.OPTIONS, "/api/**")
+				.permitAll() // For CORS, the preflight request
+				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // will hit the OPTIONS on the route
+//        .antMatchers(HttpMethod.POST, "/register/**").permitAll()     // will hit the OPTIONS on the route
+				.antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
+				.anyRequest().permitAll() // All other requests are allowed without authorization.
+				.and().httpBasic(); // Use HTTP Basic Authentication
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        String userQuery = "SELECT username, password, enabled FROM User WHERE username=?";
-        String authQuery = "SELECT username, role FROM User WHERE username=?";
-        auth
-        .jdbcAuthentication()
-        .dataSource(dataSource)
-        .usersByUsernameQuery(userQuery)
-        .authoritiesByUsernameQuery(authQuery)
-        .passwordEncoder(encoder);
-    }
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		String userQuery = "SELECT username, password, enabled FROM User WHERE username=?";
+		String authQuery = "SELECT username, role FROM User WHERE username=?";
+		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery(userQuery)
+				.authoritiesByUsernameQuery(authQuery).passwordEncoder(encoder);
+	}
+
 }

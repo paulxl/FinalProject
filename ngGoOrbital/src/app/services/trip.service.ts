@@ -52,12 +52,12 @@ export class TripService {
     );
   }
 
-  /* GET trips whose name contains search term */
+  /* GET trips whose dest contains search term */
   searchTrips(term: string): Observable<Trip[]> {
-    if (!term.trim()) {
-      // if not search term, return empty trip array.
-      return of([]);
-    }
+    // if (!term.trim()) {
+    //   // if not search term, return empty trip array.
+    //   return of([]);
+    // }
     return this.http.get<Trip[]>(`${this.url}/destination/dest=${term}`).pipe(
       tap(_ => this.log(`found trips matching "${term}"`)),
       catchError(this.handleError<Trip[]>('searchTrips', []))

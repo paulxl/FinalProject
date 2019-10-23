@@ -58,10 +58,10 @@ export class CompaniesService {
 
   /* GET Providers whose name contains search term */
   searchCompanies(term: string): Observable<Companies[]> {
-    if (!term.trim()) {
-      // if not search term, return empty Company array.
-      return of([]);
-    }
+    // if (!term.trim()) {
+    //   // if not search term, return empty Company array.
+    //   return of([]);
+    // }
     return this.http.get<Companies[]>(`${this.url}/?name=${term}`).pipe(
       tap(_ => this.log(`found Companies matching "${term}"`)),
       catchError(this.handleError<Companies[]>('searchCompanies', []))
