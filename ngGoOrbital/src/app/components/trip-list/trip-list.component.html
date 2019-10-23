@@ -1,9 +1,9 @@
 <div *ngFor="let trip of trips">
-    <img src='{{ trip.photoURL }}' alt="card image" />
+    <!-- <img src='{{ trip.photoURL }}' alt="card image" />
     <hr>
     <br>
-  <!-- need to update button to refect just companies or destinations-->
-  <div class="card" style="width:800px">
+  need to update button to refect just companies or destinations-->
+  <!-- <div class="card" style="width:800px">
 
     <div class="card-body">
       <h5 class="card-title">{{ trip.title }}</h5>
@@ -16,4 +16,22 @@
   <div class="card-body">
     <button align="bottom right">View More</button>
   </div>
-</div>
+</div> -->
+
+
+    <table align="center">
+      <thead class="thead">
+        <tr align="center">
+          <td>{{ trip.title }}</td>
+          <td>{{ trip.destination }}</td>
+          <td><img src='{{ trip.photoURL }}' alt="space photo"></td>
+          <td>${{ trip.cost }}</td></tr>
+          </thead>
+
+
+
+        <!-- <br> -->
+        <!-- <tr><td><img src='/assets/photos/PitcherWhite.jpg' style="width:350px"></td> -->
+        <!-- <tr align="right">
+            <button (click)="setEditWine()">Edit</button>
+        </tr> -->
