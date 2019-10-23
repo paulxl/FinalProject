@@ -1,18 +1,22 @@
 <body>
-    <br>
+  <br>
 
-<div class="header">
-  <!-- <h5>Space Travel to the moon and back or beyond!</h5> -->
-  <h4>Vacation in Space</h4>
+  <div class="header">
+    <!-- <h5>Space Travel to the moon and back or beyond!</h5> -->
+    <h4>Vacation in Space</h4>
 
-</div>
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col-sm-2">
-  <!-- space twitter feed -->
+      <!-- space twitter feed -->
+      <div class="taggbox-container" style=" width:100%;height:100%;overflow: auto;">
+        <script defer src="//web.taggbox.com/app/js/embed.min.js" type="text/javascript"></script>
+        <div class="taggbox-socialwall" data-wall-id="26266" view-url="https://taggbox.com/w/26266"> </div>
+      </div>
     </div>
-<div class="col-sm-8">
+    <div class="col-sm-8">
 
-  <!-- <div *ngFor="let trip of trips">
+      <!-- <div *ngFor="let trip of trips">
     <p>
     {{trip.title}} <br>
     {{trip.companies}} <br>
@@ -23,17 +27,17 @@
     <hr>
     </div> -->
 
-<div class="searchBody" *ngIf="!selected"></div>
+      <div class="searchBody" *ngIf="!selected"></div>
 
-<form name='searchByDestination'>
-    <select name="destination" ngModel>
-      <h5>Search by Destination:</h5>
-      <option value="">---select a destination---</option>
-      <option *ngFor="let trip of trips"value="{{trip.destination}}">{{trip.destination}}</option>
-    </select>
-  </form>
+      <form name='searchByDestination'>
+        <select name="destination" ngModel>
+          <h5>Search by Destination:</h5>
+          <option value="">---select a destination---</option>
+          <option *ngFor="let trip of trips" value="{{trip.destination}}">{{trip.destination}}</option>
+        </select>
+      </form>
 
-  <!-- <p>
+      <!-- <p>
       {{selected.title}} <br>
       {{selected.companies}} <br>
       ${{selected.cost}} <br>
@@ -41,23 +45,23 @@
       {{selected.destination}} <br>
     </p> -->
 
-    <form name='searchByComapany'>
+      <form name='searchByComapany'>
         <select name="companies" ngModel>
           <option value="">---select a company---</option>
-          <option *ngFor="let trip of trips"value="{{companies.name}}">{{companies.name}}</option>
+          <option *ngFor="let trip of trips" value="{{companies.name}}">{{companies.name}}</option>
         </select>
       </form>
 
 
 
- <!-- <div ng-controller="byDestin" >
+      <!-- <div ng-controller="byDestin" >
        <select ng-model="trip.destination" ng-options="trip.destination as trip.destination for trip.destination for trip in trips">
        </select> -->
 
 
 
 
-   <!-- <form name="byDestination">
+      <!-- <form name="byDestination">
      <select name="destination" [(ngModel)]="trip.destination">
        <option ng-repeat="trip in trips" value="{{trip.destination}}"></option>
 <button type="submit" (click)="searchByDest()" name="searchDest">Click</button>
@@ -65,28 +69,28 @@
 </form>
   </div> -->
 
-<div class="caro">
-  <ngb-carousel>
-      <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-          <img src="/assets/img/StarshipOnMoonBase.jpg" width="600px" alt="Random first slide">
-        </div>
-        <div class="carousel-caption">
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </div>
-      </ng-template>
-      <ng-template ngbSlide>
-        <div class="picsum-img-wrapper">
-          <img src="/assets/img/SpaceHotel.jpg" width="600px" alt="Random second slide">
-        </div>
-        <div class="carousel-caption">
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </ng-template>
-      <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
+      <div class="caro">
+        <ngb-carousel>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="/assets/img/StarshipOnMoonBase.jpg" width="600px" alt="Random first slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
+              <img src="/assets/img/SpaceHotel.jpg" width="600px" alt="Random second slide">
+            </div>
+            <div class="carousel-caption">
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="picsum-img-wrapper">
               <img src="/assets/img/MartianColony.jpg" width="600px" alt="Random third slide">
             </div>
             <div class="carousel-caption">
@@ -97,5 +101,5 @@
         </ngb-carousel>
       </div>
     </div>
-      <div class="col-sm-2"></div>
-    </div>
+    <div class="col-sm-2"></div>
+  </div>

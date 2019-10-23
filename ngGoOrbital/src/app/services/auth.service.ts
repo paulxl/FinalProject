@@ -87,6 +87,7 @@ export class AuthService {
       }),
       catchError(err => {
         console.error(`registerSuccessfulLogin: name=${username}`);
+        return throwError(`resgisterSuccessfulLogin: Error: name=${username}`);
       })
     );
     // this.userServ.getUserByName(username).subscribe(
