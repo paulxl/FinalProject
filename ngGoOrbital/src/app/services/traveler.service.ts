@@ -46,7 +46,13 @@ export class TravelerService {
       catchError(this.handleError<Traveler>(`getTraveler id=${id}`))
     );
   }
-
+  getTravelerByUserId(id: number){
+     const url = `${this.url}/user/${id}`;
+    return this.http.get<Traveler>(url).pipe(
+      tap(_ => this.log(`fetched Traveler userId=${id}`)),
+      catchError(this.handleError<Traveler>(`getTraveler UserId=${id}`))
+    );
+  }
   /* GET traveler whose name contains search term */
   searchTravelers(term: string): Observable<Traveler[]> {
     if (!term.trim()) {
