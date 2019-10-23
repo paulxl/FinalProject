@@ -32,7 +32,6 @@ import { HttpInterceptorService } from "./services/http-interceptor.service";
 import { MenuComponent } from "./components/menu/menu.component";
 import { FooterComponent } from "./template/footer/footer.component";
 import { ShowAllComponent } from "./components/show-all/show-all.component";
-import { AccordianComponent } from "./components/show-all/accordian/accordian.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -52,7 +51,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     TravelerListComponent,
     TravelerComponent,
     UserListComponent,
-    AccordianComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, NgbModule, BrowserAnimationsModule,
   ],
