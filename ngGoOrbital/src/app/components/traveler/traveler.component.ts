@@ -8,24 +8,33 @@ import { NgForm } from "@angular/forms";
 import { User } from "src/app/models/user";
 //import { Trip } from 'src/app/models/trip';
 
+
+
 @Component({
   selector: "app-traveler",
   templateUrl: "./traveler.component.html",
   styleUrls: ["./traveler.component.css"]
 })
+
+
+
 export class TravelerComponent implements OnInit {
   // traveler: any;
   // trips: any;  //is a list of trips
   // user: any; //ties to user profile (security-bypasser);
+
+
   editTraveler: Traveler = null;
   selected: Traveler = null;
   //trips: TravelerTrip[] = [];
   editUser: User = null;
   traveler: Traveler;
 
+  id: any;
+
   constructor(
     private travServ: TravelerService,
-    private tripServ: TripService
+    private tripServ: TripService,
   ) {}
 
   ngOnInit() {
@@ -39,7 +48,7 @@ export class TravelerComponent implements OnInit {
         this.traveler = data;
       },
       err => {
-        console.error("trouble in get traveler info to display trips");
+        console.error('trouble in get traveler info to display trips');
       }
     );
   }
