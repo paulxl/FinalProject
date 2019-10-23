@@ -50,19 +50,14 @@ export class UserService {
       catchError(this.handleError<User>(`getUser id=${id}`))
     );
   }
-  // getUserByName(name: string): Observable<User> {
-  //   httpOptions = {
-  //     headers: new HttpHeaders({
-  //       "Content-Type": "application/json",
-  //       Authorization: this.authService.getCredentials()
-  //     })
-  //   };
-  //   const url = `${this.url}/username/${name}`;
-  //   return this.http.get<User>(url).pipe(
-  //     tap(_ => this.log(`fetched User name=${name}`)),
-  //     catchError(this.handleError<User>(`getUser name=${name}`))
-  //   );
-  // }
+
+  getUserByName(name: string): Observable<User> {
+    const url = `${this.url}/username/${name}`;
+    return this.http.get<User>(url).pipe(
+      tap(_ => this.log(`fetched User name=${name}`)),
+      catchError(this.handleError<User>(`getUser name=${name}`))
+    );
+  }
 
   /* GET Users whose name contains search term */
   searchUsers(term: string): Observable<User[]> {
