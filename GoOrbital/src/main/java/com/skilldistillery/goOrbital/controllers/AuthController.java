@@ -50,7 +50,7 @@ public class AuthController {
 	@PostMapping("/register/traveler")
 	public User registerTraveler(@RequestBody CreateTravelerDTO dto, HttpServletResponse resp) {
 		User user= dto.makeUser();
-		user.setRole("traveler\\");
+		user.setRole("traveler");
 		System.err.println(user.getPassword());
 		System.err.println("inside of register traveler method auth controller");
 		Traveler traveler = dto.getTraveler();

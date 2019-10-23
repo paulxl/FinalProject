@@ -47,41 +47,41 @@
         </form>
     </div>
 
-    <div class="displayTrips" align='center'>
+    <div class="displayTrips" align='center' *ngIf="selected && setDisplayMyTrips">
         <!-- add *ngIf="selected && displayTrips-->
 
-        <table align='center' *ngFor='let tripRecord of tripRecords'>
+        <table align='center' *ngFor='let trip of trips'>
             <tr>
                 <td>Review ID</td>
-                <td>{{selected.tripRecord.id}}"></td>
+                <td>{{selected.travelerTrip.id}}"></td>
             </tr>
             <tr>
                 <td>Trip ID</td>
-                <td>{{selected.tripRecord.trip.id}}</td>
+                <td>{{selected.travelerTrip.trip.id}}</td>
             </tr>
             <tr>
                 <td>Destination</td>
-                <td>{{selected.tripRecord.trip.destination}}</td>
+                <td>{{selected.travelerTrip.trip.destination}}</td>
             </tr>
             <tr>
-                <td>Description</td>
-                <td>{{selected.tripRecord.trip.description}}</td>
+                <td>Description / Title</td>
+                <td>{{selected.travelerTrip.trip.title}}</td>
             </tr>
             <tr>
                 <td>Date Completed</td>
-                <td>{{selected.tripRecord.dateCompleted}}</td>
+                <td>{{selected.travelerTrip.dateCompleted}}</td>
             </tr>
             <tr>
                 <td>Rating</td>
-                <td>{{selected.tripRecord.rating}}</td>
+                <td>{{selected.travelerTrip.rating}}</td>
             </tr>
             <tr>
                 <td>My Review</td>
-                <td>{{selected.tripRecord.review}}</td>
+                <td>{{selected.travelerTrip.review}}</td>
             </tr>
             <tr>
                 <td>My Notes</td>
-                <td>{{selected.tripRecord.notes}}</td>
+                <td>{{selected.travelerTrip.tripNote}}</td>
             </tr>
             <tr>
                 <td (click)='editTripRecord(selected.id)' type='button' style=background-color:greenyellow>EDIT THIS ENTRY</td>
@@ -112,13 +112,13 @@
                 <tr>
                     <td>My Review</td>
                     <td>
-                        <textarea type='text' id='review_textbox' name='review' rows='10' cols='80' ngModel placeholder={{selected.tripRecord.review}}></textarea>
+                        <textarea type='text' id='review_textbox' name='review' rows='10' cols='80' ngModel placeholder={{selected.travelerTrip.review}}></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>My Trip Notes</td>
                     <td>
-                        <textarea type='text' id='review_textbox' name='myNotes' rows='10' cols='80' ngModel placeholder={{selected.tripRecord.notes}}></textarea>
+                        <textarea type='text' id='review_textbox' name='myNotes' rows='10' cols='80' ngModel placeholder={{selected.travelerTrip.tripNote}}></textarea>
                     </td>
                 </tr>
             </table>

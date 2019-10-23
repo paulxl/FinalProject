@@ -1,3 +1,4 @@
+import { AuthService } from "src/app/services/auth.service";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { MessageService } from "./message.service";
@@ -12,22 +13,17 @@ import { Companies } from "../models/companies";
 export class CompaniesService {
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authServ: AuthService
   ) {}
-  private url = environment.serverURL + "api/companies";
+  private url = environment.baseUrl + "api/companies";
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      "Content-Type": "application/json"
-    })
-  };
   getCompany(): Observable<Companies[]> {
     return this.http.get<Companies[]>(this.url).pipe(
       tap(_ => this.log("fetched Companies")),
       catchError(this.handleError<Companies[]>("getCompanies", []))
     );
   }
-
 
   /** GET Company by id. Return `undefined` when id not found */
   getCompaniesNo404<Data>(id: number): Observable<Companies> {
@@ -50,7 +46,15 @@ export class CompaniesService {
       catchError(this.handleError<Companies>(`getCompanies id=${id}`))
     );
   }
-
+   /** GET Provider by id. Will 404 if id not found */
+ 
+    getCompanyByUserId(id: number){
+     const url = `${this.url}/user/${id}`;
+    return this.http.get<Companies>(url).pipe(
+      tap(_ => this.log(`fetched Companies userId=${id}`)),
+      catchError(this.handleError<Companies>(`getCompanies UserId=${id}`))
+    );
+    }
 
   /* GET Providers whose name contains search term */
   searchCompanies(term: string): Observable<Companies[]> {
@@ -66,7 +70,6 @@ export class CompaniesService {
 
   //////// Save methods //////////
 
-
   /** POST: add a new Company to the server */
   addCompanies(companies: Companies): Observable<Companies> {
     console.log("inside of add companies service method");
@@ -74,7 +77,7 @@ export class CompaniesService {
     console.log(companies);
 
     return this.http
-      .post<Companies>(this.url, companies, this.httpOptions)
+      .post<Companies>(this.url, companies, this.httpOptions())
       .pipe(
         tap((newCompanies: Companies) =>
           this.log(`added Companies w/ id=${newCompanies.id}`)
@@ -87,16 +90,15 @@ export class CompaniesService {
   deleteCompanies(companies: Companies | number): Observable<Companies> {
     const id = typeof companies === "number" ? companies : companies.id;
     const url = `${this.url}/${id}`;
-    return this.http.delete<Companies>(url, this.httpOptions).pipe(
+    return this.http.delete<Companies>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`deleted Companies id=${id}`)),
       catchError(this.handleError<Companies>("deleteCompanies"))
     );
   }
 
-
   /** PUT: update the Provider on the server */
   updateCompanies(companies: Companies): Observable<any> {
-    return this.http.put(this.url, companies, this.httpOptions).pipe(
+    return this.http.put(this.url, companies, this.httpOptions()).pipe(
       tap(_ => this.log(`updated Companies id=${companies.id}`)),
       catchError(this.handleError<any>("updateCompanies"))
     );
@@ -113,5 +115,15 @@ export class CompaniesService {
   /** Log a CompanyService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`CompanyService: ${message}`);
+  }
+  private httpOptions() {
+    const cred = this.authServ.getCredentials();
+    return {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        Authorization: cred
+      }
+    };
   }
 }

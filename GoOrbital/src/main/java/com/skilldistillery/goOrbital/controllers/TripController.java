@@ -60,6 +60,27 @@ public class TripController {
 		}
 		return trip;
 	}
+	
+//	Return trip by id     GET api/trip/{Destination} 
+	@GetMapping("trip/destination/dest={dest}")
+	public List<Trip> getTripByDest(@PathVariable String dest, HttpServletResponse resp) {
+		
+		List<Trip> trips;
+		
+		try {
+			trips = svr.findByDestination(dest);
+			if (trips == null) {
+				resp.setStatus(400);
+			} else {
+				resp.setStatus(200);
+			}
+		} catch (Exception e) {
+			resp.setStatus(404);
+			e.printStackTrace();
+			trips = null;
+		}
+		return trips;
+	}
 
 //  Create new Trip   POST api/trip
 	@PostMapping("trip")

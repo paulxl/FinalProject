@@ -4,6 +4,7 @@ import { Vehicle } from "./vehicle";
 import { Traveler } from "./traveler";
 
 export class Trip {
+  [x: string]: any;
   id: number;
   travelers: Traveler[];
   companies: Companies;
@@ -14,7 +15,7 @@ export class Trip {
   cost: number;
   length: number;
   date: Date;
-  photoURL: string;
+  photoUrl: string;
 
   constructor(
     id?: number,
@@ -27,7 +28,7 @@ export class Trip {
     cost?: number,
     length?: number,
     date?: Date,
-    photoURL?: string,
+    photoUrl?: string,
   ) {
     this.id = id;
     this.travelers = travelers;
@@ -39,7 +40,7 @@ export class Trip {
     this.cost = cost;
     this.length = length;
     this.date = date;
-    this.photoURL = photoURL;
+    this.photoUrl = photoUrl;
   }
 }
 
