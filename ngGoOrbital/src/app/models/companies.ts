@@ -10,7 +10,7 @@ export class Companies {
   logoURL: string;
   webURL: string;
   vehicles: Vehicle;
-  trips: Trip;
+  trips: Trip[];
 
   constructor(
     id?: number,
@@ -19,7 +19,7 @@ export class Companies {
     logoURL?: string,
     webURL?: string,
     vehicles?: Vehicle,
-    trip?: Trip,
+    trips?: Trip[],
   ) {
     {
       this.id = id;
@@ -28,7 +28,7 @@ export class Companies {
       this.logoURL = logoURL;
       this.webURL = webURL;
       this.vehicles = vehicles;
-      this.trips = trip;
+      this.trips = trips;
     }
 
   }
