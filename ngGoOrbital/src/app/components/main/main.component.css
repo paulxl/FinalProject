@@ -23,6 +23,7 @@
 }
 body {
   /* background-image: url("/assets/img/catSpace5.jpg"); */
-  /* background-image: url("/assets/img/earth.jpeg");
-  background-size: cover; */
+  background-image: url("/assets/img/earth.jpeg");
+  width: 100%;
+  background-size: cover;
 }

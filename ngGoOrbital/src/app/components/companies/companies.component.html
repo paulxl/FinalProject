@@ -3,17 +3,17 @@
 <body>
     <h1>Hello {{selected.name}}</h1>
     <h3>This is your companies account page.</h3><br>
-    <div class="center-container" *ngIf='start= true'>
+    <div class="center-container" *ngIf='start'>
 
         <div class="start">
             <form>
                 <a>To view and update your details <button (click)="compInfo()" sytle="margin: 20px">Companies Info</button><br></a>
-                <a>To view/edit your offered Trips <button (click)="tripselector=true" style="margin: 20px">Our Trips</button><br></a>
-                <a>To add a new Trips <button (click)="addTripNew=true" style="margin: 20px">Add A Trip</button></a>
+                <a>To view/edit your offered Trips <button (click)="tripselector = true" style="margin: 20px">Our Trips</button><br></a>
+                <a>To add a new Trips <button (click)="addTripNew = true" style="margin: 20px">Add A Trip</button></a>
             </form>
         </div>
     </div>
-    <div class="displayTrips" align='center' *ngIf='tripselector=true'>
+    <div class="displayTrips" align='center' *ngIf='tripselector'>
 
         <h2>Diplay All Trips By Company</h2>
         <table align='center' *ngFor='let trip of trips'>
@@ -62,7 +62,7 @@
         </table>
     </div>
 
-    <div class="editTrip" align='center' *ngIf='eT=true'>
+    <div class="editTrip" align='center' *ngIf='eT'>
         <h2>Edit A Trip</h2>
 
         <form #editTrip='ngForm'>
@@ -104,7 +104,7 @@
         </form>
     </div>
 
-    <div class='editCompanies' align='center' *ngIf='eC= true'>
+    <div class='editCompanies' align='center' *ngIf='eC '>
 
         <h2>Edit Company Info</h2>
         <form #editCompanies='ngForm'>
@@ -126,7 +126,7 @@
         </form>
     </div>
 
-    <div class='addTrip' align='center' *ngIf='addTripNew=true'>
+    <div class='addTrip' align='center' *ngIf='addTripNew'>
 
         <h2>Add A Trip</h2>
         <form #addTrip='ngForm'>

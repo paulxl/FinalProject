@@ -4,7 +4,7 @@
     <h3>This is your account page.</h3>
     <div class="center-container">
 
-        <div class="start" *ngIf='start=true'>
+        <div class="start" *ngIf='start'>
             <form>
                 <a> Get My Trips :<button (click)="setDisplayMyTrips()" style="margin: 20px">VIEW TRIPS</button><br></a>
 
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="editTraveler" *ngIf='eT=true'>
+    <div class="editTraveler" *ngIf='eT'>
 
         <h2>Update My Information</h2>
         <form #updateTraveler='ngForm'>
@@ -47,7 +47,7 @@
         </form>
     </div>
 
-    <div class="displayTrips" align='center' *ngIf='dT=true'>
+    <div class="displayTrips" align='center' *ngIf='dT'>
 
         <h2>Display Trips</h2>
         <table align='center' *ngFor='let trip of trips'>
@@ -88,7 +88,7 @@
             </tr>
         </table>
     </div>
-    <div class="editTripRecord" align='center' *ngIf='eT=true'>
+    <div class="editTripRecord" align='center' *ngIf='eT'>
 
         <h2>Edit/Create Reviews</h2>
         <form #editReview='ngForm'>
