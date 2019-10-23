@@ -14,5 +14,7 @@ public interface TravelerService {
 	Traveler update(Traveler traveler, int id);
 
 	boolean delete(int id);
+	
+	Traveler findByUid(int id);
 
 }

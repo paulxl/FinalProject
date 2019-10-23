@@ -56,6 +56,26 @@ import com.skilldistillery.goOrbital.services.TravelerService;
 			
 			return traveler;
 		}
+		
+//		Return Type	traveler	GET api/traveler/{id}	Gets one traveler by id
+		@GetMapping("traveler/user/{uid}")
+		public Traveler getTravelerByUId(@PathVariable int uid, HttpServletResponse resp) {
+			Traveler traveler;
+			try {
+				traveler = serv.findByUid(uid);
+				if (traveler == null) {
+					resp.setStatus(400);
+				}else {
+					resp.setStatus(200);
+				}
+			} catch (Exception e) {
+				resp.setStatus(404);
+				e.printStackTrace();
+				traveler = null;
+			}
+			
+			return traveler;
+		}
 //		Return Type	traveler	GET api/traveler/{id}	Gets one traveler by id
 		@GetMapping("traveler/{id}/travelerTrip")
 		public List<TravelerTrip> getTravelerTrips(@PathVariable int id, HttpServletResponse resp) {

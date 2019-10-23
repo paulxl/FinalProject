@@ -60,6 +60,26 @@ public class TripController {
 		}
 		return trip;
 	}
+//	Return trip by cid     GET api/trip/{cid} 
+	@GetMapping("trip/companies/{cid}")
+	public List<Trip> getTripByCId(@PathVariable int cid, HttpServletResponse resp) {
+		
+		List<Trip> trip;
+		
+		try {
+			trip = svr.findByCId(cid);
+			if (trip == null) {
+				resp.setStatus(400);
+			} else {
+				resp.setStatus(200);
+			}
+		} catch (Exception e) {
+			resp.setStatus(404);
+			e.printStackTrace();
+			trip = null;
+		}
+		return trip;
+	}
 	
 //	Return trip by id     GET api/trip/{Destination} 
 	@GetMapping("trip/destination/dest={dest}")
