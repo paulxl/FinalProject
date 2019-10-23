@@ -39,6 +39,8 @@ export class CompaniesComponent implements OnInit {
   // METHODS ----------
 
   ngOnInit() {
+    this.start = true;
+    
      this.reload();
   }
     

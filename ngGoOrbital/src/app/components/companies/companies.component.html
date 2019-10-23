@@ -3,9 +3,9 @@
 <body>
     <h1>Hello {{selected.name}}</h1>
     <h3>This is your companies account page.</h3><br>
-    <div class="center-container" *ngIf='start'>
+    <div class="center-container">
 
-        <div class="start">
+        <div class="start" *ngIf='start'>
             <form>
                 <a>To view and update your details <button (click)="compInfo()" sytle="margin: 20px">Companies Info</button><br></a>
                 <a>To view/edit your offered Trips <button (click)="tripselector = true" style="margin: 20px">Our Trips</button><br></a>

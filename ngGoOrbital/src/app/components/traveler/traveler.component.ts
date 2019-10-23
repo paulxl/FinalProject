@@ -37,7 +37,8 @@ export class TravelerComponent implements OnInit {
 
   ngOnInit() {
     this.start = true;
-    const traveler = this.selected;
+    this.reload();
+   // const traveler = this.selected;
     // need to get traveler in after authentication
   }
   reload() {
