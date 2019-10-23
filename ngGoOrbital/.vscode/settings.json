@@ -1,5 +1,17 @@
 {
     "git.ignoreLimitWarning": true,
     "editor.defaultFormatter": "vscode.configuration-editing",
-    "editor.wordWrap": "on"
+    "editor.wordWrap": "on",
+    "eslint.alwaysShowStatus": true,
+    "eslint.lintTask.enable": true,
+    "eslint.autoFixOnSave": true,
+    "boot-java.change-detection.on": true,
+    "auto-close-tag.SublimeText3Mode": true,
+    "boot-java.support-spring-xml-config.on": true,
+    "bracketPairColorizer.forceUniqueOpeningColor": true,
+    "bracketPairColorizer.showBracketsInGutter": true,
+    "git.autoStash": true,
+    "git.enableSmartCommit": true,
+    "html-css-class-completion.enableEmmetSupport": true,
+    "java.saveActions.organizeImports": true
 }
