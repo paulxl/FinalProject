@@ -260,15 +260,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `goorbitaldb`;
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'LEO (Lower Earth Orbit)', 15000, 1, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (2, 2, 2, 2, 'Floating above Earth', 'LEO (Space Hotel) ', 54000, 14, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (3, 8, 3, 1, 'Above Earth', 'GEO (Geostationary Orbit)', 35000, 7, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (4, 1, 4, 2, 'Overnight in Space', 'Space Hotels', 15000, 4, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (5, 1, 5, 2, 'Go where Buzz went', 'Moon City', 45000, 14, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (6, 2, 6, 1, 'Matt was here first', 'Mars (Martian Colony)', 75000, 1200, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (7, 7, 7, 2, 'Balloning in Venus Gases', 'Venus Cloud City', 90000, 1400, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (8, 3, 3, 1, 'Quick trip point to point', 'Earth to Earth (1 hour to anywhere)', 10000, 1, NULL, NULL);
-INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (9, 4, 2, 1, 'Science excursion', 'ISS (International Space Station)', 25000, 21, NULL, NULL);
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (1, 3, 1, 1, 'Lower Earth Experience', 'LEO (Lower Earth Orbit)', 15000, 1, NULL, 'assets/img/blueOrigin.png');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (2, 2, 2, 2, 'Floating above Earth', 'LEO (Space Hotel) ', 54000, 14, NULL, 'assets/img/InteriorSpaceHotel2.jpg');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (3, 8, 3, 1, 'Above Earth', 'GEO (Geostationary Orbit)', 35000, 7, NULL, 'assets/img/spaceXDragon.jpg');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (4, 1, 4, 2, 'Overnight in Space', 'Space Hotels', 15000, 4, NULL, 'assets/img/spaceFloating.jpg');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (5, 1, 6, 2, 'Go where Buzz went', 'Moon City', 45000, 14, NULL, 'assets/img/spaceXmoon.jpg');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (6, 2, 6, 1, 'Matt was here first', 'Mars (Martian Colony)', 75000, 1200, NULL, 'assets/img/MarsColonybyMauricioPampin.jpg');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (7, 7, 7, 2, 'Balloning in Venus Gases', 'Venus Cloud City', 90000, 1400, NULL, 'assets/img/');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (8, 3, 3, 1, 'Quick trip point to point', 'Earth to Earth (1 hour to anywhere)', 10000, 1, NULL, 'assets/img/earthToearth.png');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (9, 4, 2, 1, 'Science excursion', 'ISS (International Space Station)', 25000, 21, NULL, 'assets/img/ISS.jpg');
+INSERT INTO `trip` (`id`, `companies_id`, `vehicle_id`, `launchport_id`, `title`, `destination`, `cost`, `length_trip`, `trip_date`, `photo_url`) VALUES (10, 1, 6, 1, 'Dream Trip to Saturn', 'Saturn', 125000, 3000, NULL, 'assets/img/starshipSaturn.png');
 
 COMMIT;
 

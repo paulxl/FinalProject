@@ -1,29 +1,19 @@
-<p>trip-list works!</p>
+<div *ngFor="let trip of trips">
+    <img src='{{ trip.photoURL }}' alt="card image" />
+    <hr>
+    <br>
+  <!-- need to update button to refect just companies or destinations-->
+  <div class="card" style="width:800px">
 
-<!--creates a list of users trips -->
-<div *ngFor="let trip of trips"> <!-- need to update button to refect variable ID-->
-  <!--Insert loop here *ngFor="let trip of trips" -->
-  <div class="card">
-    <div class="row no-gutters">
-      <div class="col-md-3"  >
-        <img src="{{trip.photoURL}}" style="max-height: auto;" class="card-img" alt="{{trip.photoURL}}">
-      </div>
-      <div class="col-md-3" style="float: left">
-        <div class="card-body">
-          <h5 class="card-title">Title {{trip.title}}</h5>
-          <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Length {{ trip.tripLength }}</p>
-          <p class="card-text"><small class="text-muted">Departure Date: {{trip.tripDate}}</small></p>
-        </div>
-      </div>
-      <div class="col-md-3" style="float: right">
-        <div class="card-body">
-          <h5 id="currency" class="card-title">Cost ${{trip.cost}}</h5>
-          <p class="card-text">Destination {{ trip.destination }}</p>
-          <p class="card-text">Price:EUD (Earth, US Dollars) {{ trip.cost }}</p>
-          <button align ="bottom right">View More</button> <!-- need to update button to refect variable ID-->
-        </div>
-      </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ trip.title }}</h5>
+      <p class="card-text"><b>Destination:</b> {{ trip.destination }}</p>
+      <p class="card-text"><b>Number of days: </b>{{ trip.length }}</p>
+      <p class="card-text"><b>Departure Date:</b> {{ trip.date }}</p>
+      <p class="card-text"><b>$</b>{{ trip.cost }}</p>
     </div>
+  </div>
+  <div class="card-body">
+    <button align="bottom right">View More</button>
   </div>
 </div>

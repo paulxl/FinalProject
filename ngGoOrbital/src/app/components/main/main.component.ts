@@ -1,5 +1,6 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { CompaniesService } from 'src/app/services/companies.service';
-import { CompaniesService } from './../../services/companies.service';
 import { TripService } from './../../services/trip.service';
 import { Companies } from './../../models/companies';
 import { Trip } from './../../models/trip';
@@ -20,12 +21,10 @@ export class MainComponent implements OnInit {
   selected: Trip = null;
   trips: Trip[] = [];
   companiess: Companies[] = [];
-
+  show = false;
 
   // Constructors
   constructor(private tripService: TripService, private compService: CompaniesService) { }
-
-
   // Methods
 
   ngOnInit() {
@@ -43,23 +42,31 @@ export class MainComponent implements OnInit {
       data => (this.companiess = data),
       err => console.error('Observer got an error:' + err)
     );
+    console.log(this.companiess.length);
+
   }
 
   getTrips(trip: Trip) {
     this.selected = trip;
   }
 
-
-
-  searchByDest(trip: Trip) {
-    this.selected = trip;
-    this.tripService.getTrips()
-    .subscribe(data => (this.trips = data),
-    err => console.error('Observer got an error:' + err)
-  );
+  searchByDest(byDest: NgForm) {
+    this.show = true;
+    this.tripService.searchTrips(this.selected.trip)
+    .subscribe(
+      data => (this.trips = data),
+      err => console.error('Observer got an error:' + err)
+    );
 
   }
 
-
+  searchByComp(byComp: NgForm) {
+    this.show = true;
+    this.tripService.searchTrips(this.selected.trip)
+    .subscribe(
+      data => (this.trips = data),
+      err => console.error('Observer got an error:' + err)
+    );
+  }
 
 }
