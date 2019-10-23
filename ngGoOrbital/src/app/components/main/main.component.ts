@@ -14,7 +14,6 @@ import { Component, OnInit } from '@angular/core';
 export class MainComponent implements OnInit {
 
   // Fields
-
   newTrip: Trip = new Trip();
   destinations: Trip['destination'][] = [];
   newCompanies: Companies = new Companies();
@@ -50,23 +49,23 @@ export class MainComponent implements OnInit {
     this.selected = trip;
   }
 
-  searchByDest(byDest: NgForm) {
-    this.show = true;
-    this.tripService.searchTrips(this.selected.trip)
-    .subscribe(
-      data => (this.trips = data),
-      err => console.error('Observer got an error:' + err)
-    );
+  // searchByDest(byDest: NgForm) {
+  //   this.show = true;
+  //   this.tripService.searchTrips(this.selected.trip)
+  //   .subscribe(
+  //     data => (this.trips = data),
+  //     err => console.error('Observer got an error:' + err)
+  //   );
 
-  }
+  // }
 
-  searchByComp(byComp: NgForm) {
-    this.show = true;
-    this.tripService.searchTrips(this.selected.trip)
-    .subscribe(
-      data => (this.trips = data),
-      err => console.error('Observer got an error:' + err)
-    );
-  }
+  // searchByComp(byComp: NgForm) {
+  //   this.show = true;
+  //   this.tripService.searchTrips(this.selected.trip)
+  //   .subscribe(
+  //     data => (this.trips = data),
+  //     err => console.error('Observer got an error:' + err)
+  //   );
+  // }
 
 }
