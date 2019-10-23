@@ -17,36 +17,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.goOrbital.entities.Launchport;
-import com.skilldistillery.goOrbital.entities.Provider;
 import com.skilldistillery.goOrbital.services.LaunchportService;
-import com.skilldistillery.goOrbital.services.ProviderService;
 
 @RequestMapping("api")
 @RestController
-@CrossOrigin({"*", "http://localhost:4210"})
+@CrossOrigin({ "*", "http://localhost:4210" })
 public class LaunchportController {
-	
+
 	@Autowired
 	private LaunchportService svr;
 
-	
 	@GetMapping("/launchport/ping")
-	public String ping(){ 
-		return "pong-pong-on-the-launchpad"; 
-		}
-	@GetMapping(path ="launchport")
+	public String ping() {
+		return "pong-pong-on-the-launchpad";
+	}
+
+	@GetMapping(path = "launchport")
 	public List<Launchport> index() {
 		return svr.index();
 	}
-	@GetMapping(path ="launchport/{lid}")
+
+	@GetMapping(path = "launchport/{lid}")
 	public Launchport getById(@PathVariable("lid") Integer lid, HttpServletResponse resp) {
 		Launchport lp;
-		
+
 		try {
 			lp = svr.findById(lid);
 			if (lp != null) {
 				resp.setStatus(200);
-			}else {
+			} else {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {
@@ -56,9 +55,10 @@ public class LaunchportController {
 		}
 		return lp;
 	}
-	@PostMapping(path ="launchport")
+
+	@PostMapping(path = "launchport")
 	public Launchport create(@RequestBody Launchport launchport, HttpServletResponse resp, HttpServletRequest req) {
-		
+
 		try {
 			svr.create(launchport);
 			resp.setStatus(201);
@@ -73,30 +73,31 @@ public class LaunchportController {
 		}
 		return launchport;
 	}
-	
-	@PutMapping(path ="launchport/{lid}")
-	public Launchport update(@PathVariable("lid") Integer pid, 
-			@RequestBody Launchport launchport, HttpServletResponse resp,
-			HttpServletRequest req) {
+
+	@PutMapping(path = "launchport/{lid}")
+	public Launchport update(@PathVariable("lid") Integer pid, @RequestBody Launchport launchport,
+			HttpServletResponse resp, HttpServletRequest req) {
 
 		try {
 			launchport.setId(pid);
-			launchport =  svr.update(launchport, pid);
-			
-			if (launchport == null) 
-			{resp.setStatus(404);}
-			
+			launchport = svr.update(launchport, pid);
+
+			if (launchport == null) {
+				resp.setStatus(404);
+			}
+
 		} catch (Exception e) {
 			resp.setStatus(400);
 			launchport = null;
 			e.printStackTrace();
 		}
-		return launchport;	
+		return launchport;
 	}
-	@DeleteMapping(path ="launchport/{lid}")
+
+	@DeleteMapping(path = "launchport/{lid}")
 	public void delete(@PathVariable Integer lid, HttpServletRequest req, HttpServletResponse resp) {
 		Boolean status;
-		
+
 		try {
 			status = svr.delete(lid);
 			if (status) {

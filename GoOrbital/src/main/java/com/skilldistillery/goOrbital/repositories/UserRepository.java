@@ -6,4 +6,5 @@ import com.skilldistillery.goOrbital.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+	User findByUsername(String keyword);
 }
