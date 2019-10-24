@@ -1,17 +1,17 @@
 import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from "@angular/core";
-import { Companies } from "src/app/models/companies";
-import { Trip } from "src/app/models/trip";
-import { CompaniesService } from "src/app/services/companies.service";
-import { TripService } from "src/app/services/trip.service";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { Companies } from 'src/app/models/companies';
+import { Trip } from 'src/app/models/trip';
+import { CompaniesService } from 'src/app/services/companies.service';
+import { TripService } from 'src/app/services/trip.service';
+import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
 
 @Component({
-  selector: "app-companies",
-  templateUrl: "./companies.component.html",
-  styleUrls: ["./companies.component.css"]
+  selector: 'app-companies',
+  templateUrl: './companies.component.html',
+  styleUrls: ['./companies.component.css']
 })
 export class CompaniesComponent implements OnInit {
   // FIELDS----------
@@ -26,7 +26,7 @@ export class CompaniesComponent implements OnInit {
   eT = null;
 
   start = null;
-  
+
 
   // CONTRRUCTOR-------
   constructor(
@@ -40,10 +40,10 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {
     this.start = true;
-    
-     this.reload();
+
+    this.reload();
   }
-    
+
   reload() {
     let user: User;
     const username = this.authServ.getLoggedInUserName();
@@ -53,7 +53,7 @@ export class CompaniesComponent implements OnInit {
       },
       bad => {
         console.error(bad);
-        
+
       }
     );
     this.compServ.getCompanies(user.id).subscribe(
@@ -61,7 +61,7 @@ export class CompaniesComponent implements OnInit {
         this.selected = good;
       },
       bad => {
-        console.error(bad)
+        console.error(bad);
       }
     );
     this.start = true;
@@ -71,7 +71,7 @@ export class CompaniesComponent implements OnInit {
     this.eC = true;
     this.editCompanies = Object.assign({}, this.selected);
   }
-  
+
   addAnotherTrip(form: NgForm) {
     const addTrip = form.value;
     this.tripServ.addTrip(addTrip).subscribe(
@@ -79,14 +79,15 @@ export class CompaniesComponent implements OnInit {
         this.ngOnInit();
       },
       err => {
-        console.error('error in creating trip');}
-    )
+        console.error('error in creating trip'); }
+    );
     this.addTripNew = false;
     this.ngOnInit();
   }
+
   setEditTrip(trip: Trip) {
     this.eT = true;
-    this.companies.editTrip = Object.assign({}, this.selected);
+    // this.editTrip = Object.assign({}, this.selected);
     this.start = false;
   }
 
@@ -97,8 +98,8 @@ export class CompaniesComponent implements OnInit {
         this.ngOnInit();
       },
       err => {
-        console.error('error in update trip');}
-    )
+        console.error('error in update trip'); }
+    );
     this.ngOnInit();
     this.eT = false;
   }
@@ -108,8 +109,8 @@ export class CompaniesComponent implements OnInit {
         this.ngOnInit();
       },
       err => {
-        console.error('error in deleting trip');}
-    )
+        console.error('error in deleting trip'); }
+    );
     this.ngOnInit();
     this.tripselector = false;
   }
@@ -120,8 +121,8 @@ export class CompaniesComponent implements OnInit {
         this.ngOnInit();
       },
       err => {
-        console.error('error in updating company');}
-    )
+        console.error('error in updating company'); }
+    );
     this.ngOnInit();
     this.eC = false;
  }

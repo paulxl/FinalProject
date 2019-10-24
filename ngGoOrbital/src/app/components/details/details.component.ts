@@ -12,7 +12,8 @@ import { TravelerService } from 'src/app/services/traveler.service';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private tripservice: TripService,
     private travelerService: TravelerService,
     private route: ActivatedRoute

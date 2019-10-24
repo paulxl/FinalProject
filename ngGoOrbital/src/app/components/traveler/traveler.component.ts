@@ -1,21 +1,21 @@
 import { UserService } from './../../services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Traveler } from "src/app/models/traveler";
-import { TravelerTrip } from "../../models/traveler-trip";
-import { Component, OnInit } from "@angular/core";
-import { TravelerService } from "src/app/services/traveler.service";
+import { Traveler } from 'src/app/models/traveler';
+import { TravelerTrip } from '../../models/traveler-trip';
+import { Component, OnInit } from '@angular/core';
+import { TravelerService } from 'src/app/services/traveler.service';
 
-import { TripService } from "src/app/services/trip.service";
-import { NgForm } from "@angular/forms";
-import { User } from "src/app/models/user";
-//import { Trip } from 'src/app/models/trip';
+import { TripService } from 'src/app/services/trip.service';
+import { NgForm } from '@angular/forms';
+import { User } from 'src/app/models/user';
+// import { Trip } from 'src/app/models/trip';
 
 
 
 @Component({
-  selector: "app-traveler",
-  templateUrl: "./traveler.component.html",
-  styleUrls: ["./traveler.component.css"]
+  selector: 'app-traveler',
+  templateUrl: './traveler.component.html',
+  styleUrls: ['./traveler.component.css']
 })
 
 
@@ -28,7 +28,7 @@ export class TravelerComponent implements OnInit {
 
   editTraveler: Traveler = null;
   selected: Traveler = null;
-  //trips: TravelerTrip[] = [];
+  // trips: TravelerTrip[] = [];
   editUser: User = null;
   traveler: Traveler;
   start = null;
@@ -66,7 +66,7 @@ export class TravelerComponent implements OnInit {
         this.selected = good;
       },
       bad => {
-        console.error(bad)
+        console.error(bad);
       }
     );
     this.start = true;
@@ -76,9 +76,9 @@ export class TravelerComponent implements OnInit {
 
     this.dT = true;
     this.travServ.getTraveler(this.selected.id).subscribe(
-      data => { this.traveler = data },
-      err => { console.error('trouble in get traveler info to display trips');}
-    )
+      data => { this.traveler = data; },
+      err => { console.error('trouble in get traveler info to display trips'); }
+    );
     this.start = false;
   }
 
@@ -107,7 +107,7 @@ export class TravelerComponent implements OnInit {
         this.traveler = data;
       },
       err => {
-        console.error("Loading travelerTrips got an error: " + err);
+        console.error('Loading travelerTrips got an error: ' + err);
       }
     );
   }

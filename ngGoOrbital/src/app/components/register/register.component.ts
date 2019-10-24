@@ -1,18 +1,18 @@
 
-import { TravelerListComponent } from "./../traveler-list/traveler-list.component";
-import { TravelerService } from "./../../services/traveler.service";
-import { AuthService } from "./../../services/auth.service";
-import { CompanyDTO } from "./../../models/company-dto";
+import { TravelerListComponent } from './../traveler-list/traveler-list.component';
+import { TravelerService } from './../../services/traveler.service';
+import { AuthService } from './../../services/auth.service';
+import { CompanyDTO } from './../../models/company-dto';
 
-import { Component, OnInit } from "@angular/core";
-import { Traveler } from "src/app/models/traveler";
-import { Companies } from "src/app/models/companies";
-import { UserService } from "src/app/services/user.service";
-import { CompaniesService } from "src/app/services/companies.service";
-import { User } from "src/app/models/user";
-import { NgForm } from "@angular/forms";
-import { TravelerDTO } from "src/app/models/traveler-dto";
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { Traveler } from 'src/app/models/traveler';
+import { Companies } from 'src/app/models/companies';
+import { UserService } from 'src/app/services/user.service';
+import { CompaniesService } from 'src/app/services/companies.service';
+import { User } from 'src/app/models/user';
+import { NgForm } from '@angular/forms';
+import { TravelerDTO } from 'src/app/models/traveler-dto';
+import { Router } from '@angular/router';
 
 
 @Component({

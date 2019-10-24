@@ -16,53 +16,53 @@
     <div class="displayTrips" align='center' *ngIf='tripselector'>
 
         <h2>Diplay All Trips By Company</h2>
-        <table align='center' *ngFor='let trip of trips'>
+        <table align='center' *ngFor='let trip of selected.trips'>
             <tr>
                 <td>Trip Id</td>
-                <td>{{selected.trips.id}}</td>
+                <td>{{trip.id}}</td>
             </tr>
             <tr>
                 <td>Vehicle Id</td>
-                <td>{{selected.trips.vehicle}}</td>
+                <td>{{trip.vehicle}}</td>
             </tr>
             <tr>
                 <td>Launchport Id</td>
-                <td>{{selected.trips.launchport}}</td>
+                <td>{{trip.launchport}}</td>
             </tr>
             <tr>
                 <td>Title </td>
-                <td>{{selected.trips.title}}</td>
+                <td>{{trip.title}}</td>
             </tr>
             <tr>
                 <td>Destination</td>
-                <td>{{selected.trips.destination}}</td>
+                <td>{{trip.destination}}</td>
             </tr>
             <tr>
                 <td>Cost</td>
-                <td>{{selected.trips.cost}}</td>
+                <td>{{trip.cost}}</td>
             </tr>
             <tr>
                 <td>Length of Trip</td>
-                <td>{{selected.trips.length}}</td>
+                <td>{{trip.length}}</td>
             </tr>
             <tr>
                 <td>Trip Date</td>
-                <td>{{selected.trips.date}}</td>
+                <td>{{trip.date}}</td>
             </tr>
             <tr>
                 <td>Photo URL</td>
-                <td>{{selected.trips.photoURL}}</td>
+                <td>{{trip.photoUrl}}</td>
             </tr>
             <tr>
-                <td (click)="setEditTrip(selected.trips)" type='button' style=background-color:greenyellow>EDIT THIS ENTRY</td>
+                <td (click)="setEditTrip(trip)" type='button' style=background-color:greenyellow>EDIT THIS ENTRY</td>
             </tr>
             <tr>
-                <td (click)='deleteTrip(selected.trips.id)' type='button' style=background-color:lightcoral>DELETE THIS TRIP</td>
+                <td (click)='deleteTrip(trip.id)' type='button' style=background-color:lightcoral>DELETE THIS TRIP</td>
             </tr>
         </table>
     </div>
 
-    <div class="editTrip" align='center' *ngIf='eT'>
+    <!-- <div class="editTrip" align='center' *ngIf='eT'>
         <h2>Edit A Trip</h2>
 
         <form #editTrip='ngForm'>
@@ -125,7 +125,7 @@
             <button type="submit" (click)='updateCompany(editCompanies)'>UPDATE US</button>
         </form>
     </div>
-
+ -->
     <div class='addTrip' align='center' *ngIf='addTripNew'>
 
         <h2>Add A Trip</h2>

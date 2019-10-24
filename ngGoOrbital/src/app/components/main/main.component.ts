@@ -42,7 +42,7 @@ export class MainComponent implements OnInit {
       data => (this.companiess = data),
       err => console.error('Observer got an error:' + err)
     );
-    console.log(this.companiess.length);
+    // console.log(this.companiess.length);
 
   }
 
@@ -53,11 +53,7 @@ export class MainComponent implements OnInit {
   searchByDest(form: NgForm) {
     const sbd: string = form.value.destination;
     this.show = true;
-<<<<<<< HEAD
-    this.tripService.searchTrips(this.selected.destination)
-=======
     this.tripService.searchTrips(sbd)
->>>>>>> 1c22dabc0e29bda0bdd18b77eba412dcf653c7eb
     .subscribe(
       data => {(this.trips = data);
                console.log(this.trips);
@@ -65,17 +61,6 @@ export class MainComponent implements OnInit {
       err => console.error('Observer got an error:' + err)
     );
   }
-<<<<<<< HEAD
-
-  // searchByComp(byComp: NgForm) {
-  //   this.show = true;
-  //   this.tripService.searchTrips(this.selected.companies)
-  //   .subscribe(
-  //     data => (this.trips = data),
-  //     err => console.error('Observer got an error:' + err)
-  //   );
-  // }
-=======
 // Change to new method inside of trip service
   searchByComp(form: NgForm) {
     const sbc: number = form.value;
@@ -89,7 +74,6 @@ export class MainComponent implements OnInit {
       err => console.error('Observer got an error:' + err)
     );
   }
->>>>>>> 1c22dabc0e29bda0bdd18b77eba412dcf653c7eb
 
   showDetailById(id: number) {
     this.tripService.getTrip(id);
