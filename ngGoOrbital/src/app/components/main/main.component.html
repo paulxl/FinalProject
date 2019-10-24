@@ -1,16 +1,17 @@
 <body>
-  <br>
+
   <div class="header">
-    <h2>Vacation in Space</h2>
+    <h1>Vacation in Space</h1>
     <h3>To the Moon and Back or Beyond</h3>
   </div>
-  <br>
+
   <div class="row">
     <div class="col-md-2">
     </div>
     <div class="col-md-8">
       <div class="searchBody"></div>
-      <form #byDest="ngForm" *ngIf="!selected && !show">
+
+      <form #byDest="ngForm" id="form1" *ngIf="!selected && !show">
         <select name="destination" ngModel>
           <option value="">---select a destination---</option>
           <!-- <option *ngFor="let trip of trips" value="{{ trip.destination }}">{{trip.destination}}</option> -->
@@ -20,6 +21,7 @@
           <option value="Space Hotels">Space Hotels</option>
           <option value="Moon">Moon</option>
           <option value="Venus">Venus</option>
+          <option value="Mars">Mars</option>
           <option value="Earth to Earth">Earth to Earth</option>
           <option value="ISS">International Space Station</option>
         </select>
@@ -27,7 +29,7 @@
           Submit
         </button>
       </form>
-      <form #byComp="ngForm" *ngIf="!selected && !show">
+      <form #byComp="ngForm" id="form2" *ngIf="!selected && !show">
         <select name="companies" ngModel>
           <option value="">---select a company---</option>
           <!-- <option *ngFor="let companies of companiess" value="{{ companies.name }}">{{ companies.name }}</option> -->
@@ -43,7 +45,7 @@
         <button type="submit" (click)="searchByComp(byComp)" style="margin: 20px" name="searchComp" id="btn3">Submit
         </button>
       </form>
-      <br><br>
+
       <div class="caro" *ngIf="!selected && !show">
         <ngb-carousel>
           <ng-template ngbSlide>

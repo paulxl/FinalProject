@@ -2,19 +2,35 @@
   text-align: center;
   /* margin-left: 120px; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(46, 130, 213);
-  text-shadow: 0.5px 0.5px #6a6767;
+  /* color: #4251AF; */
+  padding-top: 15px;
+  padding-bottom: 5px;
+  color: rgb(246, 248, 249);
+  text-shadow: 1.5px 1.5px #000000;
+}
+
+#form1 {
+  align-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+#form2 {
+  align-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 .searchBody {
   align-content: center;
   text-align: center;
   align-items: center;
-  line-height: 40px;
+
   /* margin-left: 60px; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(46, 130, 213);
-  text-shadow: 0.5px 0.5px #6a6767;
+  color: #4251AF;
+  /* text-shadow: 0.5px 0.5px #6a6767; */
+  text-shadow: 1.5px 1.5px #000000;
   letter-spacing: 0.1em;
 }
 
@@ -22,6 +38,7 @@
   align-content: center;
   align-items: center;
   text-align: center;
+  padding-bottom: 200px;
 }
 
 
@@ -30,5 +47,6 @@ body {
   /* background-image: url("/assets/img/earth.jpeg");
   width: 100%;
   background-size: cover; */
-  background-color: rgb(155, 153, 153);
+  /* background-color: rgb(155, 153, 153); */
+  background-color: #8c8c8c;
 }
