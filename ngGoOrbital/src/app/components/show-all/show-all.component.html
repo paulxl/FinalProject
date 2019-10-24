@@ -20,14 +20,14 @@
   <br>
   <div class="column1">
     <div class="w3-display-container w3-text-white">
-      <img src="assets/img/SpaceHotel.jpg" alt="{{trip.photoUrl}}" style="height:100%">
-      <div class="w3-xlarge w3-display-bottomleft w3-padding">Luxury {{trip.name}}</div>
+      <img src="/assets/img/StarshipOnMoonBase.jpg"alt="{{trip.photoUrl}}" style="height:100%">
+      <div class="w3-xlarge w3-display-bottomleft w3-padding">Luxury {{trip.title}}</div>
       <div class="w3-xlarge w3-display-bottomright w3-padding">LONDON 60&deg; F</div>
 
       <div class="subcolumn">
         <div class="w3-third w3-center">
-          <h3>{{trip.provider}}</h3>
-          <img height=100px src="{{assets/img/StarshipSpaceX.jpg}}" alt="{{trip.vehicleId}}">
+          <h3>{{trip.companies}}</h3>
+          <img height=100px src="assets/img/StarshipSpaceX.jpg" alt="{{trip.title}}">
         </div>
         <div class="subcolumn">
           <h3>{{trip.provider}}</h3>
@@ -67,8 +67,8 @@
           <th> Trip Length</th>
         </tr>
         <tr>
-          <th>Departure Date</th>
-          <th> Trip Length</th>
+          <th>{{trip.date}}</th>
+          <th> {{trip.length}}</th>
         </tr>
       </table>
       <span>
@@ -134,11 +134,11 @@
         <th><strong>Total</strong></th>
       </tr>
       <tr>
-        <td>trip.title</td>
-        <td>trip.tripDate</td>
-        <td>trip.tripLength</td>
+        <td>{{trip.title}}</td>
+        <td>{{trip.date</td>
+        <td>{{trip.length}}</td>
         <td>Passengers</td>
-        <th>trip.cost</th>
+        <th>{{trip.cost}}</th>
       </tr>
     </table>
     <br>

@@ -9,7 +9,7 @@ export class Vehicle {
   description: string;
   range: number;
   capactity: number;
-  photoURL: string;
+  photoUrl: string;
   trips: Trip[];
 
   constructor(
@@ -20,7 +20,7 @@ export class Vehicle {
     description?: string,
     range?: number,
     capactity?: number,
-    photoURL?: string,
+    photoUrl?: string,
     trips?: Trip[],
   ) {
     this.id = id;
@@ -30,7 +30,7 @@ export class Vehicle {
     this.description = description;
     this.range = range;
     this.capactity = capactity;
-    this.photoURL = photoURL;
+    this.photoUrl =  photoUrl;
     this.trips = trips;
   }
 }

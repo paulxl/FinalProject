@@ -5,10 +5,9 @@ export class Traveler {
   id: number;
   firstName: string;
   lastName: string;
-
   user: User;
-  photoURL: string;
-  travelerTrip: TravelerTrip;
+  photoUrl: string;
+  trips: TravelerTrip[];
   value: any;
 
   constructor({
@@ -16,21 +15,21 @@ export class Traveler {
     firstName,
     lastName,
     user,
-    photoURL,
-    travelerTrip
+    photoUrl,
+    trips
   }: {
     id?: number;
     firstName?: string;
     lastName?: string;
     user?: User;
-    photoURL?: string;
-    travelerTrip?: TravelerTrip;
+    photoUrl?: string;
+    trips?: TravelerTrip[];
   } = {}) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.user = user;
-    this.photoURL = photoURL;
-    this.travelerTrip = travelerTrip;
+    this.photoUrl = photoUrl;
+    this.trips = trips;
   }
 }
