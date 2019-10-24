@@ -1,11 +1,10 @@
 <body>
-    <!-- <img src='/assets/img/moon.jpg'> -->
+
     <h1> Welcome {{selected.firstName}} &nbsp {{selected.lastName}}</h1>
     <h3>This is your account page.</h3>
     <div class="center-container">
-        <!--begins a container to center page / ends at bottom-->
-        <!--ADD *ngIf="selected"  after things work, currently no traveler sent in-->
-        <div class="start">
+
+        <div class="start" *ngIf='start'>
             <form>
                 <a> Get My Trips :<button (click)="setDisplayMyTrips()" style="margin: 20px">VIEW TRIPS</button><br></a>
 
@@ -14,8 +13,9 @@
         </div>
     </div>
 
-    <div class="editTraveler">
-        <!-- *ngIf="selected && editTraveler to ngIf-->
+    <div class="editTraveler" *ngIf='eT'>
+
+        <h2>Update My Information</h2>
         <form #updateTraveler='ngForm'>
             <table align="center">
                 <tr>
@@ -40,16 +40,16 @@
                 </tr>
                 <tr>
                     <td>Photo Url</td>
-                    <td><input type='text' name='editPhotoUrl' ngModel size='40' placeholder={{selected.photoURL}}/> </td>
+                    <td><input type='text' name='editPhotoUrl' ngModel size='40' placeholder={{selected.photoUrl}}/> </td>
                 </tr>
             </table>
             <br><button type='submit' (click)='changeTraveler(updateTraveler)'>UPDATE MY INFO</button>
         </form>
     </div>
 
-    <div class="displayTrips" align='center' *ngIf="selected && setDisplayMyTrips">
-        <!-- add *ngIf="selected && displayTrips-->
+    <div class="displayTrips" align='center' *ngIf='dT'>
 
+        <h2>Display Trips</h2>
         <table align='center' *ngFor='let trip of trips'>
             <tr>
                 <td>Review ID</td>
@@ -88,8 +88,9 @@
             </tr>
         </table>
     </div>
-    <div class="editTripRecord">
-        <!--add *ngIf='editTripReview && displayTrips'-->
+    <div class="editTripRecord" align='center' *ngIf='eT'>
+
+        <h2>Edit/Create Reviews</h2>
         <form #editReview='ngForm'>
             <table align='center'>
                 <tr>
@@ -112,17 +113,17 @@
                 <tr>
                     <td>My Review</td>
                     <td>
-                        <textarea type='text' id='review_textbox' name='review' rows='10' cols='80' ngModel placeholder={{selected.travelerTrip.review}}></textarea>
+                        <textarea type='text' id='review_textbox' name='review' rows='8' cols='60' ngModel placeholder={{selected.travelerTrip.review}}></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>My Trip Notes</td>
                     <td>
-                        <textarea type='text' id='review_textbox' name='myNotes' rows='10' cols='80' ngModel placeholder={{selected.travelerTrip.tripNote}}></textarea>
+                        <textarea type='text' id='review_textbox' name='myNotes' rows='8' cols='60' ngModel placeholder={{selected.travelerTrip.tripNote}}></textarea>
                     </td>
                 </tr>
             </table>
-            <button (click)='updateReview(editReview)'></button>
+            <button (click)='updateReview(editReview)'>Update / Submit</button>
         </form>
     </div>
 </body>
