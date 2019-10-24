@@ -19,9 +19,11 @@ export class TripService {
   private url = environment.baseUrl + 'api/trip';
 
   getTrips(): Observable<Trip[]> {
-    const options = this.httpOptions();
+    const options = this.authServ.httpOptionsNoAuth();
     console.log(`TripService.getTrips(): options:`);
     console.log(options);
+    console.log('Requesting ' + this.url);
+
     return this.http.get<Trip[]>(this.url, options).pipe(
       tap(_ => this.log('fetched trips')),
       catchError(this.handleError<Trip[]>('getTrips', []))

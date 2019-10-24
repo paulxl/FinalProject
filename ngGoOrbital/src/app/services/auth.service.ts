@@ -198,7 +198,7 @@ export class AuthService {
     };
   }
 
-  private httpOptionsNoAuth() {
+  public httpOptionsNoAuth() {
     return {
       headers: {
         'Content-Type': 'application/json',

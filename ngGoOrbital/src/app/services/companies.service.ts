@@ -19,7 +19,7 @@ export class CompaniesService {
   private url = environment.baseUrl + 'api/companies';
 
   getCompany(): Observable<Companies[]> {
-    return this.http.get<Companies[]>(this.url, this.httpOptions()).pipe(
+    return this.http.get<Companies[]>(this.url, this.authServ.httpOptionsNoAuth()).pipe(
       tap(_ => this.log('fetched Companies')),
       catchError(this.handleError<Companies[]>('getCompanies', []))
     );
