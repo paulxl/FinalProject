@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # NgGoOrbital
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
@@ -72,4 +71,3 @@ Don't work on on the master branch & always pull before you push.
 Communicate with team members often, effectively and with intent (be specific!) and attention to detail.
 Understand team members' strengths and weaknesses and utilize their strengths and "swarm" on the areas where that individual is "blocked". Retrain and teach where needed, however mission first, meet the deadline.
 Attempt to fully plan out the intended finished project with room for stretch goals within the database, otherwise it can be a challenge to alter data further along during project development we ran into this issue with user comments. and desired extra functionality.
->>>>>>> 512237f7b74342babe74a62678cec6dbf97dd71d
