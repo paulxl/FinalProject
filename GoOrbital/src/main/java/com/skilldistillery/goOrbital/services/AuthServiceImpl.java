@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
 		user.setPassword(encodedPW); // only persist encoded password
 		// set other fields to default values
 		user.setEnabled(true);
-		user.setRole("standard");
+//		user.setRole("standard");
 
 		uRepo.saveAndFlush(user);
 		return user;

@@ -28,7 +28,7 @@ export class TravelerService {
   /** GET Traveler by id. Return `undefined` when id not found */
   getTravelerNo404<Data>(id: number): Observable<Traveler> {
     const url = `${this.url}/?id=${id}`;
-    return this.http.get<Traveler[]>(url).pipe(
+    return this.http.get<Traveler[]>(url, this.httpOptions()).pipe(
       map(traveler => traveler[0]), // returns a {0|1} element array
       tap(h => {
         const outcome = h ? `fetched` : `did not find`;
@@ -41,14 +41,14 @@ export class TravelerService {
   /** GET Traveler by id. Will 404 if id not found */
   getTraveler(id: number): Observable<Traveler> {
     const url = `${this.url}/${id}`;
-    return this.http.get<Traveler>(url).pipe(
+    return this.http.get<Traveler>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`fetched Traveler id=${id}`)),
       catchError(this.handleError<Traveler>(`getTraveler id=${id}`))
     );
   }
   getTravelerByUserId(id: number) {
     const url = `${this.url}/user/${id}`;
-    return this.http.get<Traveler>(url).pipe(
+    return this.http.get<Traveler>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`fetched Traveler userId=${id}`)),
       catchError(this.handleError<Traveler>(`getTraveler UserId=${id}`))
     );
@@ -59,7 +59,7 @@ export class TravelerService {
       // if not search term, return empty Traveler array.
       return of([]);
     }
-    return this.http.get<Traveler[]>(`${this.url}/?name=${term}`).pipe(
+    return this.http.get<Traveler[]>(`${this.url}/?name=${term}`, this.httpOptions()).pipe(
       tap(_ => this.log(`found traveler matching "${term}"`)),
       catchError(this.handleError<Traveler[]>('searchTravelers', []))
     );

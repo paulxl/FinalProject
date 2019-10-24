@@ -21,34 +21,32 @@ import com.skilldistillery.goOrbital.services.CompaniesService;
 
 @RequestMapping("api")
 @RestController
-@CrossOrigin({"*", "http://localhost:4210"})
+@CrossOrigin({ "*", "http://localhost:4210" })
 public class CompaniesController {
-
 
 	@Autowired
 	private CompaniesService svr;
 
-	
 	@GetMapping("ping")
-	public String ping()
-	{ return "pong/n";  }
+	public String ping() {
+		return "pong/n";
+	}
 
-	
-	//err
-	@GetMapping(path ="companies")
+	// err
+	@GetMapping(path = "companies")
 	public List<Companies> index() {
 		return svr.index();
 	}
 
-	//works		
-	@GetMapping(path ="companies/{cid}")
+	// works
+	@GetMapping(path = "companies/{cid}")
 	public Companies getById(@PathVariable("cid") Integer cid, HttpServletResponse resp) {
 		Companies companies;
 		try {
 			companies = svr.findById(cid);
 			if (companies != null) {
 				resp.setStatus(200);
-			}else {
+			} else {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {
@@ -57,18 +55,18 @@ public class CompaniesController {
 			return null;
 		}
 		return companies;
-		
+
 	}
-	
+
 	// Get Company by user id
-	@GetMapping(path ="companies/user/{uid}")
+	@GetMapping(path = "companies/user/{uid}")
 	public Companies getByUId(@PathVariable("uid") Integer uid, HttpServletResponse resp) {
 		Companies companies;
 		try {
 			companies = svr.findByUid(uid);
 			if (companies != null) {
 				resp.setStatus(200);
-			}else {
+			} else {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {
@@ -77,17 +75,18 @@ public class CompaniesController {
 			return null;
 		}
 		return companies;
-		
+
 	}
+
 	// Get Company by Name
-	@GetMapping(path ="companies/{name}")
+	@GetMapping(path = "companies/{name}")
 	public Companies getByUId(@PathVariable("name") String name, HttpServletResponse resp) {
 		Companies companies;
 		try {
 			companies = svr.findByName(name);
 			if (companies != null) {
 				resp.setStatus(200);
-			}else {
+			} else {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {
@@ -96,12 +95,10 @@ public class CompaniesController {
 			return null;
 		}
 		return companies;
-		
+
 	}
 
-
-	
-	@PostMapping(path ="companies")
+	@PostMapping(path = "companies")
 	public Companies create(@RequestBody Companies company, HttpServletResponse resp, HttpServletRequest req) {
 		Companies companies;
 		try {
@@ -120,33 +117,32 @@ public class CompaniesController {
 		}
 		return companies;
 	}
-	
 
-	@PutMapping(path ="companies/{cid}")
-	public Companies update(@PathVariable("cid") Integer cid, 
-			@RequestBody Companies companies, HttpServletResponse resp,
-			HttpServletRequest req) {
+	@PutMapping(path = "companies/{cid}")
+	public Companies update(@PathVariable("cid") Integer cid, @RequestBody Companies companies,
+			HttpServletResponse resp, HttpServletRequest req) {
 
 		try {
 			companies.setId(cid);
-			companies =  svr.update(companies, cid);
-			
-			if (companies == null) 
-			{resp.setStatus(404);}
-			
+			companies = svr.update(companies, cid);
+
+			if (companies == null) {
+				resp.setStatus(404);
+			}
+
 		} catch (Exception e) {
 			resp.setStatus(400);
 			companies = null;
 			e.printStackTrace();
 		}
 		return companies;
-		
+
 	}
 
-	@DeleteMapping(path ="companies/{id}")
+	@DeleteMapping(path = "companies/{id}")
 	public void delete(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse resp) {
 		Boolean status;
-		
+
 		try {
 			status = svr.delete(id);
 			if (status) {
@@ -162,6 +158,5 @@ public class CompaniesController {
 			e.printStackTrace();
 		}
 	}
-	
 
 }

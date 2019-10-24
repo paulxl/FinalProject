@@ -1,8 +1,13 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  OnChanges
+} from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-sidenav',
@@ -10,55 +15,70 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnDestroy, OnInit {
-  
-    username: string;
-  password: string;
-  errorMessage = "Invalid Credentials";
-  successMessage: string;
-  invalidLogin = false;
-  loginSuccess = false;
-  mobileQuery: MediaQueryList;
-  isLoggedIn = false;
-  loginDo = false;
-
-  ngOnInit() {
-    this.isLoggedIn = this.auth.isUserLoggedIn();
-    console.log("navbar logged in: " + this.isLoggedIn);
-  }
-
-   constructor(private changeDetectorRef: ChangeDetectorRef, private media: MediaMatcher, private auth: AuthService, private router:Router) {
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private media: MediaMatcher,
+    private auth: AuthService,
+    private router: Router
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+
+  username: string;
+  password: string;
+  errorMessage = 'Invalid Credentials';
+  successMessage: string;
+  invalidLogin = false;
+  loginSuccess = false;
+  mobileQuery: MediaQueryList;
+  // isLoggedIn = false;
+  loginDo = false;
 
   // fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   // fillerContent = Array.from({length: 50}, () =>
   //     `Lorem ipsum dolor sit amet`);
 
-    private _mobileQueryListener: () => void;
- 
+  private _mobileQueryListener: () => void;
+
+  ngOnInit() {
+    // this.isLoggedIn() = this.auth.isUserLoggedIn();
+    console.log('navbar logged in: ' + this.checkLoggedIn());
+  }
+
+  checkLoggedIn(): boolean {
+    return this.auth.isUserLoggedIn();
+  }
+
+  isTraveler(): boolean {
+    return this.auth.isTraveler();
+  }
+
+  isCompany(): boolean {
+    return this.auth.isCompany();
+  }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-handleLogin() {
-    console.log(this.username + ":" + this.password);
+  handleLogin() {
+    console.log(this.username + ':' + this.password);
 
-    this.auth.authenticationService(this.username, this.password)
-      .subscribe(
-        result => {
-          this.invalidLogin = false;
-          this.loginSuccess = true;
-          this.successMessage = "Login Successful.";
-          this.router.navigate(["/main"]);
-        },
-        fail => {
-          this.invalidLogin = true;
-          this.loginSuccess = false;
-        }
-      );
+    this.auth.authenticationService(this.username, this.password).subscribe(
+      result => {
+        this.invalidLogin = false;
+        this.loginSuccess = true;
+        this.successMessage = 'Login Successful.';
+        this.router.navigate(['/main']);
+      },
+      fail => {
+        this.invalidLogin = true;
+        this.loginSuccess = false;
+      }
+    );
   }
-  
+
 }

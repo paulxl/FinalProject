@@ -1,10 +1,5 @@
 import { AuthService } from 'src/app/services/auth.service';
-import {
-  HttpClientModule,
-  HttpClient,
-  HttpHeaders,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Trip } from '../models/trip';
@@ -24,7 +19,10 @@ export class TripService {
   private url = environment.baseUrl + 'api/trip';
 
   getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.url).pipe(
+    const options = this.httpOptions();
+    console.log(`TripService.getTrips(): options:`);
+    console.log(options);
+    return this.http.get<Trip[]>(this.url, options).pipe(
       tap(_ => this.log('fetched trips')),
       catchError(this.handleError<Trip[]>('getTrips', []))
     );
@@ -33,7 +31,7 @@ export class TripService {
   /** GET trip by id. Return `undefined` when id not found */
   getTripNo404<Data>(id: number): Observable<Trip> {
     const url = `${this.url}/?id=${id}`;
-    return this.http.get<Trip[]>(url).pipe(
+    return this.http.get<Trip[]>(url, this.httpOptions()).pipe(
       map(trips => trips[0]), // returns a {0|1} element array
       tap(h => {
         const outcome = h ? `fetched` : `did not find`;
@@ -46,7 +44,7 @@ export class TripService {
   /** GET trip by id. Will 404 if id not found */
   getTrip(id: number): Observable<Trip> {
     const url = `${this.url}/${id}`;
-    return this.http.get<Trip>(url).pipe(
+    return this.http.get<Trip>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`fetched trip id=${id}`)),
       catchError(this.handleError<Trip>(`getTrip id=${id}`))
     );
@@ -58,7 +56,7 @@ export class TripService {
     //   // if not search term, return empty trip array.
     //   return of([]);
     // }
-    return this.http.get<Trip[]>(`${this.url}/destination/dest=${term}`).pipe(
+    return this.http.get<Trip[]>(`${this.url}/destination/dest=${term}`, this.httpOptions()).pipe(
       tap(_ => this.log(`found trips matching "${term}"`)),
       catchError(this.handleError<Trip[]>('searchTrips', []))
     );
@@ -66,7 +64,7 @@ export class TripService {
 
   getTripsByCompanyId(id: number): Observable<Trip[]> {
     const url = `${this.url}/companies/${id}`;
-    return this.http.get<Trip[]>(url).pipe(
+    return this.http.get<Trip[]>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`fetched trips Companies id=${id}`)),
       catchError(this.handleError<Trip[]>(`get trips by Companies id=${id}`))
     );
@@ -116,6 +114,7 @@ export class TripService {
 
   private httpOptions() {
     const cred = this.authServ.getCredentials();
+    console.log('TripService.httpOptions(): ' + cred);
     return {
       headers: {
         'Content-Type': 'application/json',

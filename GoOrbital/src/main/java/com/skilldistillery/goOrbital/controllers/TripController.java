@@ -21,25 +21,24 @@ import com.skilldistillery.goOrbital.services.TripService;
 
 @RequestMapping("api")
 @RestController
-@CrossOrigin({"*", "http://localhost:4210"})
+@CrossOrigin({ "*", "http://localhost:4210" })
 public class TripController {
-
 
 	@Autowired
 	private TripService svr;
 
 //	ping check
 	@GetMapping("trip/ping")
-	public String ping()
-	{ return "pong";  }
+	public String ping() {
+		return "pong";
+	}
 
-	
 //	Return all trips     GET api/trip
 	@GetMapping("trip")
 	public List<Trip> index() {
 		return svr.index();
 	}
-	
+
 //	Return trip by id     GET api/trip/{id} 
 	@GetMapping("trip/{tid}")
 	public Trip getTripById(@PathVariable int tid, HttpServletResponse resp) {
@@ -60,12 +59,13 @@ public class TripController {
 		}
 		return trip;
 	}
+
 //	Return trip by cid     GET api/trip/{cid} 
 	@GetMapping("trip/companies/{cid}")
 	public List<Trip> getTripByCId(@PathVariable int cid, HttpServletResponse resp) {
-		
+
 		List<Trip> trip;
-		
+
 		try {
 			trip = svr.findByCId(cid);
 			if (trip == null) {
@@ -80,13 +80,13 @@ public class TripController {
 		}
 		return trip;
 	}
-	
+
 //	Return trip by id     GET api/trip/{Destination} 
 	@GetMapping("trip/destination/dest={dest}")
 	public List<Trip> getTripByDest(@PathVariable String dest, HttpServletResponse resp) {
-		
+
 		List<Trip> trips;
-		
+
 		try {
 			trips = svr.findByDestination(dest);
 			if (trips == null) {
@@ -108,22 +108,22 @@ public class TripController {
 		try {
 			trip = svr.create(trip);
 			resp.setStatus(201);
-            StringBuffer url = req.getRequestURL();
-            url.append("/");
-            url.append(trip.getId());
-            resp.setHeader("Location", url.toString());
-        } catch (Exception e) {
-            resp.setStatus(400);
-            trip = null;
-            e.printStackTrace();
-        }
+			StringBuffer url = req.getRequestURL();
+			url.append("/");
+			url.append(trip.getId());
+			resp.setHeader("Location", url.toString());
+		} catch (Exception e) {
+			resp.setStatus(400);
+			trip = null;
+			e.printStackTrace();
+		}
 		return trip;
 	}
 
 //	Update / Edit Trip           PUT api.trip{tid}
 	@PutMapping("trip/{tid}")
-	public Trip replaceTrip(@PathVariable int tid, @RequestBody Trip trip, HttpServletRequest req, HttpServletResponse res
-			) {
+	public Trip replaceTrip(@PathVariable int tid, @RequestBody Trip trip, HttpServletRequest req,
+			HttpServletResponse res) {
 
 		try {
 			trip.setId(tid);
@@ -140,7 +140,7 @@ public class TripController {
 		}
 		return trip;
 	}
-	
+
 	@DeleteMapping("trip/{tid}")
 	public Boolean destroyTripById(@PathVariable int tid, HttpServletResponse resp, HttpServletRequest req) {
 		Boolean status;
@@ -162,8 +162,4 @@ public class TripController {
 		return status;
 	}
 
-	
-
-	
 }
-

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   handleLogin() {
-    console.log(this.username + ':' + this.password);
+    console.log('LoginComponent.handleLogin(): ' + this.username + ':' + this.password);
 
     this.authenticationService
       .authenticationService(this.username, this.password)
@@ -33,7 +33,15 @@ export class LoginComponent implements OnInit {
           this.invalidLogin = false;
           this.loginSuccess = true;
           this.successMessage = 'Login Successful.';
-          this.router.navigate(['/main']);
+          let rte = '/main';
+          if (this.authenticationService.isTraveler()) {
+            rte = '/traveler';
+          } else if (this.authenticationService.isCompany()) {
+            rte = '/companies';
+          }
+          console.log('Routing to ' + rte);
+
+          this.router.navigate([rte]);
         },
         fail => {
           this.invalidLogin = true;

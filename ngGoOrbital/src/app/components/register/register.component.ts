@@ -83,6 +83,7 @@ export class RegisterComponent implements OnInit {
             console.log(
               'RegisterComponent.register(): user logged in, routing to /main.'
             );
+            this.router.navigateByUrl('/main');
           },
           error => {
             console.log(error);

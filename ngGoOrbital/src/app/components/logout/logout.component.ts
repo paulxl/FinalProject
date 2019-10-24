@@ -29,7 +29,7 @@ export class LogoutComponent implements OnInit {
     this.authenticationService.logout();
     if (localStorage.length === 0) {
       console.log('inside logout if');
-      // this.router.navigateByUrl('/logout');
+      this.router.navigateByUrl('/main');
     }
   }
 }

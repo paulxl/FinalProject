@@ -19,7 +19,7 @@ export class CompaniesService {
   private url = environment.baseUrl + 'api/companies';
 
   getCompany(): Observable<Companies[]> {
-    return this.http.get<Companies[]>(this.url).pipe(
+    return this.http.get<Companies[]>(this.url, this.httpOptions()).pipe(
       tap(_ => this.log('fetched Companies')),
       catchError(this.handleError<Companies[]>('getCompanies', []))
     );
@@ -28,7 +28,7 @@ export class CompaniesService {
   /** GET Company by id. Return `undefined` when id not found */
   getCompaniesNo404<Data>(id: number): Observable<Companies> {
     const url = `${this.url}/?id=${id}`;
-    return this.http.get<Companies[]>(url).pipe(
+    return this.http.get<Companies[]>(url, this.httpOptions()).pipe(
       map(Companys => Companies[0]), // returns a {0|1} element array
       tap(h => {
         const outcome = h ? `fetched` : `did not find`;
@@ -42,7 +42,7 @@ export class CompaniesService {
   /** GET Provider by id. Will 404 if id not found */
   getCompanies(id: number): Observable<Companies> {
     const url = `${this.url}/${id}`;
-    return this.http.get<Companies>(url).pipe(
+    return this.http.get<Companies>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`fetched Companies id=${id}`)),
       catchError(this.handleError<Companies>(`getCompanies id=${id}`))
     );
@@ -51,7 +51,7 @@ export class CompaniesService {
 
     getCompanyByUserId(id: number){
      const url = `${this.url}/user/${id}`;
-    return this.http.get<Companies>(url).pipe(
+     return this.http.get<Companies>(url, this.httpOptions()).pipe(
       tap(_ => this.log(`fetched Companies userId=${id}`)),
       catchError(this.handleError<Companies>(`getCompanies UserId=${id}`))
     );
@@ -63,7 +63,7 @@ export class CompaniesService {
     //   // if not search term, return empty Company array.
     //   return of([]);
     // }
-    return this.http.get<Companies[]>(`${this.url}/?name=${term}`).pipe(
+    return this.http.get<Companies[]>(`${this.url}/?name=${term}`, this.httpOptions()).pipe(
       tap(_ => this.log(`found Companies matching "${term}"`)),
       catchError(this.handleError<Companies[]>('searchCompanies', []))
     );
@@ -119,6 +119,8 @@ export class CompaniesService {
   }
   private httpOptions() {
     const cred = this.authServ.getCredentials();
+    console.log('CompaniesService.httpOptions(): ' + cred);
+
     return {
       headers: {
         'Content-Type': 'application/json',

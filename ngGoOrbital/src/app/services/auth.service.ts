@@ -2,19 +2,18 @@ import { environment } from './../../environments/environment';
 import { TravelerDTO } from 'src/app/models/traveler-dto';
 import { User } from './../models/user';
 import { CompanyDTO } from './../models/company-dto';
-import { Companies } from 'src/app/models/companies';
-import { Traveler } from './../models/traveler';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-import { tap, map, catchError } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   USER_NAME_SESSION_ATTRIBUTE_NAME = 'inSessionUser';
+  USER_NAME_SESSION_ATTRIBUTE_ID = 'inSessionUserId';
   USER_NAME_SESSION_ATTRIBUTE_ROLE = 'inSessionRole';
 
   private baseUrl = environment.baseUrl;
@@ -24,13 +23,15 @@ export class AuthService {
   public role: string;
 
   constructor(
-    private http: HttpClient // , private userServ: UserService
+    private http: HttpClient,
+    private userServ: UserService
   ) {}
 
   authenticationService(username: string, password: string) {
     console.log(username + ':' + password);
     const basicAuthToken = this.createBasicAuthToken(username, password);
     console.log(basicAuthToken);
+    sessionStorage.setItem('credentials', basicAuthToken);
 
     return this.http
       .get(this.authUrl, {
@@ -52,6 +53,10 @@ export class AuthService {
                 this.USER_NAME_SESSION_ATTRIBUTE_ROLE,
                 currentUser.role
               );
+              sessionStorage.setItem(
+                this.USER_NAME_SESSION_ATTRIBUTE_ID,
+                '' + currentUser.id
+              );
             },
             bad => {
               console.error('Error retrieving logged in user');
@@ -67,9 +72,11 @@ export class AuthService {
   }
 
   getCredentials(): string {
-    return 'Basic ' + window.btoa(this.username + ':' + this.password);
+    // return 'Basic ' + window.btoa(this.username + ':' + this.password);
     // or
-    // return sessionStorage.getItem('credentials');
+    const cred = sessionStorage.getItem('credentials');
+    console.log(`AuthService.getCredentials(): returning [${cred}]`);
+    return cred;
   }
 
   registerSuccessfulLogin(username) {
@@ -78,8 +85,11 @@ export class AuthService {
     console.log('In registerSuccessfulLogin()');
     const url = `${this.baseUrl}api/user/username/${username}`;
     console.log('Requesting ' + url);
+    const options = this.httpOptions();
+    console.log(options);
 
-    return this.http.get<User>(url, this.httpOptions()).pipe(
+
+    return this.http.get<User>(url, options).pipe(
       tap(result => {
         console.log(`fetched User name=${username}`);
         console.log(result);
@@ -91,24 +101,12 @@ export class AuthService {
         return throwError(`registerSuccessfulLogin: Error: name=${username}`);
       })
     );
-    // this.userServ.getUserByName(username).subscribe(
-    //   user => {
-    //     console.log("Current User ", user);
-    //     const currentUser: User = user;
-    //     sessionStorage.setItem(
-    //       this.USER_NAME_SESSION_ATTRIBUTE_ROLE,
-    //       currentUser.role
-    //     );
-    //   },
-    //   err => {
-    //     console.log("Error Getting user: ", err);
-    //   }
-    // );
   }
 
   logout() {
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_NAME);
     sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE);
+    sessionStorage.removeItem(this.USER_NAME_SESSION_ATTRIBUTE_ID);
     sessionStorage.removeItem('credentials');
     this.username = null;
     this.password = null;
@@ -131,24 +129,24 @@ export class AuthService {
     return user;
   }
 
-  //    login(username, password) {
-  //     // Make credentials
-  //     const credentials = this.generateBasicAuthCredentials(username, password);
-  //     // Send credentials as Authorization header (this is spring security convention for basic auth)
-  //     const httpOptions = {
-  //       headers: new HttpHeaders({
-  //         Authorization: `Basic ${credentials}`,
-  //         "X-Requested-With": "XMLHttpRequest"
-  //       })
-  //     };
+  getLoggedInUserId() {
+    const id = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ID);
+    if (id === null) {
+      return '';
+    }
+    return id;
+  }
 
   registerTraveler(dto: TravelerDTO) {
     console.log('inside of register traveler method');
+    // const url = this.baseUrl + 'api/traveler';
     const url = this.baseUrl + 'register/traveler';
     console.log('posting to ' + url);
+    const httpOptions = this.httpOptionsNoAuth();
+    console.log(httpOptions);
 
     // create request to register a new account
-    return this.http.post(url, dto).pipe(
+    return this.http.post(url, dto, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -160,9 +158,13 @@ export class AuthService {
 
   registerCompany(dto: CompanyDTO) {
     // create request to register a new account
+    const url = this.baseUrl + 'register/company';
     console.log('inside of register company method auth service');
+    console.log('posting to ' + url);
+    const httpOptions = this.httpOptionsNoAuth();
+    console.log(httpOptions);
 
-    return this.http.post(this.baseUrl + 'register/company', dto).pipe(
+    return this.http.post(url, dto, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -172,13 +174,35 @@ export class AuthService {
     );
   }
 
+  public isTraveler(): boolean {
+    console.log('isTraveler(): logged in: ' + this.isUserLoggedIn());
+    console.log('isTraveler(): role: ' + sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE));
+
+    return this.isUserLoggedIn() && sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE) === 'traveler';
+  }
+
+  public isCompany(): boolean {
+    return this.isUserLoggedIn() && sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE) === 'company';
+  }
+
   private httpOptions() {
     const cred = this.getCredentials();
+    console.log('httpOptions(): cred: ' + cred);
+
     return {
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
         Authorization: cred
+      }
+    };
+  }
+
+  private httpOptionsNoAuth() {
+    return {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       }
     };
   }

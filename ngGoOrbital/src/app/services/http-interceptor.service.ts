@@ -4,10 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpHeaders
-} from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { AuthService } from "./auth.service";
+} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
@@ -19,17 +19,19 @@ export class HttpInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     if (
       this.authenticationService.isUserLoggedIn() &&
-      req.url.indexOf("basicauth") === -1
+      req.url.indexOf('basicauth') === -1
     ) {
+      const cred = this.authenticationService.getCredentials();
       const authReq = req.clone({
         headers: new HttpHeaders({
-          "Content-Type": "application/json",
-          Authorization: `Basic ${window.btoa(
-            this.authenticationService.username +
-              ":" +
-              this.authenticationService.password
-          )}`,
-          "X-Requested-With": "XMLHttpRequest"
+          'Content-Type': 'application/json',
+          // Authorization: `Basic ${window.btoa(
+          //   this.authenticationService.username +
+          //     ':' +
+          //     this.authenticationService.password
+          // )}`,
+          Authorization: cred,
+          'X-Requested-With': 'XMLHttpRequest'
         })
       });
       return next.handle(authReq);

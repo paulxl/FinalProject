@@ -1,10 +1,9 @@
-import { Companies } from "src/app/models/companies";
-import { Launchport } from "./launchport";
-import { Vehicle } from "./vehicle";
-import { Traveler } from "./traveler";
+import { Companies } from 'src/app/models/companies';
+import { Launchport } from './launchport';
+import { Vehicle } from './vehicle';
+import { Traveler } from './traveler';
 
 export class Trip {
-  
   id: number;
   travelers: Traveler[];
   companies: Companies;
@@ -28,7 +27,7 @@ export class Trip {
     cost?: number,
     length?: number,
     date?: Date,
-    photoUrl?: string,
+    photoUrl?: string
   ) {
     this.id = id;
     this.travelers = travelers;
@@ -43,4 +42,3 @@ export class Trip {
     this.photoUrl = photoUrl;
   }
 }
-

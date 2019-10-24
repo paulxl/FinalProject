@@ -56,21 +56,22 @@ export class TravelerComponent implements OnInit {
     this.userServ.getUserByName(username).subscribe(
       good => {
         user = good;
+        this.travServ.getTravelerByUserId(user.id).subscribe(
+          success => {
+            this.selected = success;
+          },
+          fail => {
+            console.error(fail);
+          }
+        );
+        this.start = true;
+
       },
       bad => {
         console.error(bad);
       }
     );
-    this.travServ.getTraveler(user.id).subscribe(
-      good => {
-        this.selected = good;
-      },
-      bad => {
-        console.error(bad);
-      }
-    );
-    this.start = true;
-  }
+   }
 
   setDisplayMyTrips() {
 

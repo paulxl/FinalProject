@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CompaniesService } from 'src/app/services/companies.service';
@@ -24,7 +25,11 @@ export class MainComponent implements OnInit {
   show = false;
 
   // Constructors
-  constructor(private router: Router, private tripService: TripService, private compService: CompaniesService) { }
+  constructor(
+    private router: Router,
+    private tripService: TripService,
+    private compService: CompaniesService,
+    private auth: AuthService) { }
   // Methods
 
   ngOnInit() {
@@ -34,7 +39,9 @@ export class MainComponent implements OnInit {
   reload() {
     this.tripService.getTrips()
     .subscribe(
-      data => (this.trips = data),
+      data => {
+        this.trips = data;
+      },
       err => console.error('Observer got an error:' + err)
     );
     this.compService.getCompany()
@@ -78,6 +85,9 @@ export class MainComponent implements OnInit {
   showDetailById(id: number) {
     this.tripService.getTrip(id);
     this.router.navigateByUrl('detail/id/' + id);
+  }
 
+  isTraveler() {
+    return this.auth.isTraveler();
   }
 }
