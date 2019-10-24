@@ -3,21 +3,21 @@
 
     <br>
 
-  <div class="card" style="width:800px">
+  <mat-card>
 
-    <div class="card-body">
-        <img src='{{ trip.photoUrl }}' alt="card image" />
-      <h5 class="card-title">{{ trip.title }}</h5>
-      <p class="card-text"><b>Destination:</b> {{ trip.destination }}</p>
-      <p class="card-text"><b>Number of days: </b>{{ trip.length }}</p>
-      <p class="card-text"><b>Departure Date:</b> {{ trip.date }}</p>
-      <p class="card-text"><b>$</b>{{ trip.cost }}</p>
-    </div>
-  </div>
-  <div class="card-body">
-      <hr>
-    <button align="bottom right">View More</button>
-  </div>
+      <mat-card-content>
+        <img [src]='trip.photoUrl' alt="card image" />
+      </mat-card-content>
+      <mat-card-title>{{ trip.title }}</mat-card-title>
+      <mat-card-subtitle><b>Destination:</b> {{ trip.destination }}</mat-card-subtitle>
+      <mat-card-subtitle><b>Number of days: </b>{{ trip.length }}</mat-card-subtitle>
+      <mat-card-subtitle><b>Departure Date:</b> {{ trip.date }}</mat-card-subtitle>
+      <mat-card-subtitle><b>$</b>{{ trip.cost }}</mat-card-subtitle>
+      <div *ngIf="isTraveler()">
+        <button mat-raised-button (click)='signUpForTrip(trip)'>Take This Trip</button>
+      </div>
+  </mat-card>
+
 </div>
 
 

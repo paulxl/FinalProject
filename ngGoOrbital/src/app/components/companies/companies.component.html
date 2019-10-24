@@ -1,167 +1,75 @@
 <!-- need intro / view their details / update their info / add trips / delete trips / update trips / view their trips-->
 
-<body>
     <h1>Hello {{selected.name}}</h1>
     <h3>This is your companies account page.</h3><br>
-    <div class="center-container">
 
-        <div class="start" *ngIf='start'>
-            <form>
-                <a>To view and update your details <button (click)="compInfo()" sytle="margin: 20px">Companies Info</button><br></a>
-                <a>To view/edit your offered Trips <button (click)="tripselector = true" style="margin: 20px">Our Trips</button><br></a>
-                <a>To add a new Trips <button (click)="addTripNew = true" style="margin: 20px">Add A Trip</button></a>
-            </form>
-        </div>
-    </div>
-    <div class="displayTrips" align='center' *ngIf='tripselector'>
-
-        <h2>Diplay All Trips By Company</h2>
-        <table align='center' *ngFor='let trip of selected.trips'>
-            <tr>
-                <td>Trip Id</td>
-                <td>{{trip.id}}</td>
-            </tr>
-            <tr>
-                <td>Vehicle Id</td>
-                <td>{{trip.vehicle}}</td>
-            </tr>
-            <tr>
-                <td>Launchport Id</td>
-                <td>{{trip.launchport}}</td>
-            </tr>
-            <tr>
-                <td>Title </td>
-                <td>{{trip.title}}</td>
-            </tr>
-            <tr>
-                <td>Destination</td>
-                <td>{{trip.destination}}</td>
-            </tr>
-            <tr>
-                <td>Cost</td>
-                <td>{{trip.cost}}</td>
-            </tr>
-            <tr>
-                <td>Length of Trip</td>
-                <td>{{trip.length}}</td>
-            </tr>
-            <tr>
-                <td>Trip Date</td>
-                <td>{{trip.date}}</td>
-            </tr>
-            <tr>
-                <td>Photo URL</td>
-                <td>{{trip.photoUrl}}</td>
-            </tr>
-            <tr>
-                <td (click)="setEditTrip(trip)" type='button' style=background-color:greenyellow>EDIT THIS ENTRY</td>
-            </tr>
-            <tr>
-                <td (click)='deleteTrip(trip.id)' type='button' style=background-color:lightcoral>DELETE THIS TRIP</td>
-            </tr>
-        </table>
+    <div>
+      <h3 *ngIf="trips.length > 0">Your Trips</h3>
+      <h3 *ngIf="trips.length < 1">No Trips Scheduled</h3>
+      <div *ngFor="let trip of trips">
+        <br />
+        <mat-card>
+          <mat-card-content>
+            <img [src]="trip.photoUrl" alt="card image" />
+          </mat-card-content>
+          <mat-card-title>{{ trip.title }}</mat-card-title>
+          <mat-card-subtitle
+            ><b>Destination:</b>
+            {{ trip.destination }}</mat-card-subtitle
+          >
+          <mat-card-subtitle
+            ><b>Number of days: </b>{{ trip.length }}</mat-card-subtitle
+          >
+          <mat-card-subtitle
+            ><b>Departure Date:</b> {{ trip.date }}</mat-card-subtitle
+          >
+          <mat-card-subtitle><b>$</b>{{ trip.cost }}</mat-card-subtitle>
+          <button mat-raised-button (click)="deleteCompanyTrip(travTrip)">
+            Delete This Trip
+          </button>
+          <button mat-raised-button (click)="goToEditTrip(trip)">
+            Edit This Trip
+          </button>
+        </mat-card>
+      </div>
     </div>
 
-    <!-- <div class="editTrip" align='center' *ngIf='eT'>
-        <h2>Edit A Trip</h2>
-
-        <form #editTrip='ngForm'>
-            <table align='center'>
-                <tr>
-                    <td>Vehicle Id</td>
-                    <td><input type="number" name='editVehicleId' ngModel size='40' placeholder={{selected.trips.vehicle}}/></td>
-                </tr>
-                <tr>
-                    <td>Launchport Id</td>
-                    <td><input type="number" name='editLaunchportId' ngModel size='40' placeholder={{selected.trips.launchport}}/></td>
-                </tr>
-                <tr>
-                    <td>Title</td>
-                    <td><input type="text" name='editTitle' ngModel size='40' placeholder={{selected.trips.title}}/></td>
-                </tr>
-                <tr>
-                    <td>Destination</td>
-                    <td><input type='string' name='editDestination' ngModel size='40' placeholder={{selected.trips.destination}}/></td>
-                </tr>
-                <tr>
-                    <td>Cost</td>
-                    <td><input type="number" name='editCost' ngModel size='40' placeholder={{selected.trips.cost}}/></td>
-                </tr>
-                <tr>
-                    <td>Length of Trip in Days</td>
-                    <td><input type='number' name='editLength' ngModel size='40' placeholder={{selected.trips.length}}/></td>
-                </tr>
-                <tr>
-                    <td>Trip Date</td>
-                    <td><input type="date" name='editDate' ngModel size='40' placeholder={{selected.trips.date}}/></td>
-                </tr>
-                <tr>
-                    <td>Photo URL</td>
-                    <td><input type="text" name='editPhoto' ngModel size='40' placeholder={{selected.trips.photoURL}} /></td>
-                </tr>
-            </table>
-            <br><button type="submit" (click)='updateTrip(editTrip)'>UPDATE THIS TRIP</button>
-        </form>
-    </div>
-
-    <div class='editCompanies' align='center' *ngIf='eC '>
-
-        <h2>Edit Company Info</h2>
-        <form #editCompanies='ngForm'>
-            <table align='center'>
-                <tr>
-                    <td>Company Name</td>
-                    <td><input type='text' name='editName' ngModel size='40' placeholder={{selected.name}}/> </td>
-                </tr>
-                <tr>
-                    <td>Logo URL</td>
-                    <td><input type='text' name='editLogo' size='40' placeholder={{selected.logoURL}}/></td>
-                </tr>
-                <tr>
-                    <td>Web URL</td>
-                    <td><input type="text" name='editWeb' ngModel size='40' placeholder={{selected.webURL}}/></td>
-                </tr>
-            </table>
-            <button type="submit" (click)='updateCompany(editCompanies)'>UPDATE US</button>
-        </form>
-    </div>
- -->
-    <div class='addTrip' align='center' *ngIf='addTripNew'>
+    <div class='addTrip' align='center'>
 
         <h2>Add A Trip</h2>
         <form #addTrip='ngForm'>
             <table align='center'>
                 <tr>
                     <td>Vehicle Id (if known)</td>
-                    <td><input type="number" value='vehicle' ngModel size='40' placeholder='Vehicle id' /></td>
+                    <td><input type="number" name='vehicle' ngModel size='40' placeholder='Vehicle id' /></td>
                 </tr>
                 <tr>
                     <td>Launchport ID</td>
-                    <td><input type='number' value='launchport' ngModel size='40' placeholder="Launchport id" />
+                    <td><input type='number' name='launchport' ngModel size='40' placeholder="Launchport id" />
                 </tr>
                 <tr>
                     <td>Title</td>
-                    <td><input type='text' value='title' ngModel size='40' placeholder="Title" /></td>
+                    <td><input type='text' name='title' ngModel size='40' placeholder="Title" /></td>
                 </tr>
                 <tr>
                     <td>Destination</td>
-                    <td><input type='text' value='destination' ngModel size='40' placeholder="Destination" /></td>
+                    <td><input type='text' name='destination' ngModel size='40' placeholder="Destination" /></td>
                 </tr>
                 <tr>
                     <td>Cost</td>
-                    <td><input type='number' value='cost' ngModel size='40' placeholder="Cost" /></td>
+                    <td><input type='number' name='cost' ngModel size='40' placeholder="Cost" /></td>
                 </tr>
                 <tr>
                     <td>Length of Trip</td>
-                    <td><input type='number' value='length' ngModel size='40' placeholder="Length" /></td>
+                    <td><input type='number' name='length' ngModel size='40' placeholder="Length" /></td>
                 </tr>
                 <tr>
                     <td>Trip Date</td>
-                    <td><input type='date' value='date' ngModel size='40' placeholder="Date" /></td>
+                    <td><input type='date' name='date' ngModel size='40' placeholder="Date" /></td>
                 </tr>
                 <tr>
                     <td>Photo URL</td>
-                    <td><input type="text" value='photoURL' ngModel size='40' placeholder="Photo URL" /></td>
+                    <td><input type="text" name='photoUrl' ngModel size='40' placeholder="Photo URL" /></td>
                 </tr>
             </table><br>
             <input type="hidden" name='providerId' value='selected.id'>
@@ -169,4 +77,3 @@
         </form>
     </div>
 
-</body>

@@ -1,3 +1,4 @@
+import { TravelerTripService } from './services/traveler-trip.service';
 import { ModalFormComponent } from './components/modal-form/modal-form.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { AuthService } from 'src/app/services/auth.service';
@@ -41,6 +42,7 @@ import { MatLineModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -72,11 +74,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatLineModule,
     MatButtonModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule
   ],
 
   providers: [
     TravelerService,
+    TravelerTripService,
     UserService,
     CompaniesService,
     TripService,

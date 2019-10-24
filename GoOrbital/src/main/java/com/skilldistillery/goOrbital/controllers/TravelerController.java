@@ -82,10 +82,13 @@ public class TravelerController {
 
 //		Return Type	traveler	GET api/traveler/{id}	Gets one traveler by id
 	@GetMapping("traveler/{id}/travelerTrip")
-	public List<TravelerTrip> getTravelerTrips(@PathVariable int id, HttpServletResponse resp) {
+	public List<TravelerTrip> getTravelerTrips(
+			@PathVariable int id,
+			HttpServletResponse resp) 
+	{
 		Traveler traveler;
 		try {
-			traveler = serv.findById(id);
+			traveler = serv.findByUid(id);
 			if (traveler == null) {
 				resp.setStatus(400);
 			} else {

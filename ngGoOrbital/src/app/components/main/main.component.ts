@@ -19,10 +19,11 @@ export class MainComponent implements OnInit {
   newTrip: Trip = new Trip();
   destinations: Trip['destination'][] = [];
   newCompanies: Companies = new Companies();
-  selected: Trip = null;
+  // selected: Trip = null;
   trips: Trip[] = [];
   companiess: Companies[];
   show = false;
+  tripDest: Trip[] = [];
 
   // Constructors
   constructor(
@@ -41,42 +42,58 @@ export class MainComponent implements OnInit {
     .subscribe(
       data => {
         this.trips = data;
+        this.tripDest = data;
       },
-      err => console.error('Observer got an error:' + err)
+      err => {
+        console.error('Observer got an error:' + err);
+      }
     );
     this.compService.getCompany()
     .subscribe(
-      data => (this.companiess = data),
-      err => console.error('Observer got an error:' + err)
+      data => {
+        this.companiess = data;
+      },
+      err => {
+        console.error('Observer got an error:' + err);
+      }
     );
     // console.log(this.companiess.length);
 
   }
 
-  getTrips(trip: Trip) {
-    this.selected = trip;
-  }
+  // getTrips(trip: Trip) {
+  //   this.selected = trip;
+  // }
 
   searchByDest(form: NgForm) {
     const sbd: string = form.value.destination;
     this.show = true;
+    if (!sbd) {
+      this.reload();
+    }
     this.tripService.searchTrips(sbd)
     .subscribe(
-      data => {(this.trips = data);
-               console.log(this.trips);
+      data => {
+        this.trips = data;
+        console.log(this.trips);
       },
       err => console.error('Observer got an error:' + err)
     );
   }
 // Change to new method inside of trip service
   searchByComp(form: NgForm) {
-    const sbc: number = form.value;
-    this.show = true;
+    const sbc: number = form.value.companies;
+    if (!sbc) {
+      this.reload();
+    }
+   // tslint:disable-next-line: align
+   this.show = true;
     this.tripService.getTripsByCompanyId(sbc)
     .subscribe(
-      data => {(this.trips = data);
-               console.log('inside search by comp');
-               console.log(this.trips);
+      data => {
+        this.trips = data;
+        console.log('inside search by comp');
+        console.log(this.trips);
       },
       err => console.error('Observer got an error:' + err)
     );

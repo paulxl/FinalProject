@@ -1,13 +1,14 @@
+import { TravelerTrip } from './../../models/traveler-trip';
 import { UserService } from './../../services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Traveler } from 'src/app/models/traveler';
-import { TravelerTrip } from '../../models/traveler-trip';
 import { Component, OnInit } from '@angular/core';
 import { TravelerService } from 'src/app/services/traveler.service';
 
 import { TripService } from 'src/app/services/trip.service';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/models/user';
+import { TravelerTripService } from 'src/app/services/traveler-trip.service';
 // import { Trip } from 'src/app/models/trip';
 
 
@@ -34,12 +35,14 @@ export class TravelerComponent implements OnInit {
   start = null;
   dT = null;
   eT = null;
+  trips: TravelerTrip[] = [];
+  selectedTrip: TravelerTrip = null;
 
   id: any;
 
   constructor(
     private travServ: TravelerService,
-    private tripServ: TripService,
+    private tripServ: TravelerTripService,
     private authServ: AuthService,
     private userServ: UserService
   ) {}
@@ -59,6 +62,17 @@ export class TravelerComponent implements OnInit {
         this.travServ.getTravelerByUserId(user.id).subscribe(
           success => {
             this.selected = success;
+            this.travServ.getTravelerTripsByUserId(user.id).subscribe(
+              yay => {
+                console.log('Got traveler trips');
+                console.log(yay);
+                this.trips = yay;
+              },
+              boo => {
+                console.error('Error getting traveler trips');
+                console.error(boo);
+              }
+            );
           },
           fail => {
             console.error(fail);
@@ -118,20 +132,50 @@ export class TravelerComponent implements OnInit {
     this.eT = true;
   }
 
-  updateReview(form: NgForm) {
+  deleteTravelerTrip(trip: TravelerTrip) {
+    this.tripServ.deleteTravelerTrip(trip).subscribe(
+      good => {
+        console.log('TravelerTrip deleted');
+        this.reload();
+      },
+      bad => {
+        console.error('Error deleting traveler trip');
+        console.error(bad);
+      }
+    );
+
+  }
+
+  goToEditTrip(tTrip: TravelerTrip) {
+    this.selectedTrip = Object.assign({}, tTrip);
+  }
+
+  updateTraveler(form: NgForm) {
     const updateReview: Traveler = form.value;
     this.travServ.updateTraveler(updateReview).subscribe(
       data => {
-        this.ngOnInit();
+        this.reload();
       },
       err => {
 
         console.error('Error in update traveler ' + err);
       }
     );
-    this.eT = false;
-    this.dT = false;
-    this.ngOnInit();
+  }
+
+  updateReview(updatedTrip: TravelerTrip) {
+    this.tripServ.updateTravelerTrip(updatedTrip).subscribe(
+      data => {
+        console.log('TravelerTrip updated');
+        this.selectedTrip = null;
+
+        this.reload();
+      },
+      err => {
+
+        console.error('Error in update traveler trip' + err);
+      }
+    );
   }
 
 }

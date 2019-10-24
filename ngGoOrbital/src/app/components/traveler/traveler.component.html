@@ -1,125 +1,227 @@
 <body>
-
-    <h1> Welcome {{selected.firstName}} &nbsp {{selected.lastName}}</h1>
-    <h3>This is your account page.</h3>
-    <div class="center-container">
-
-        <div class="start" *ngIf='start'>
-            <form>
-                <a> Get My Trips :<button (click)="setDisplayMyTrips()" style="margin: 20px">VIEW TRIPS</button><br></a>
-
-                <a> Update Personal Information :<button (click)="setEditTraveler()" style="margin: 20px">EDIT MY INFO</button><br></a>
-            </form>
-        </div>
+  <h1>Welcome {{ selected.firstName }} {{ selected.lastName }}</h1>
+  <div *ngIf="!selectedTrip">
+    <h3 *ngIf="trips.length > 0">Your Trips</h3>
+    <h3 *ngIf="trips.length < 1">No Trips Scheduled</h3>
+    <div *ngFor="let travTrip of trips">
+      <br />
+      <mat-card>
+        <mat-card-content>
+          <img [src]="travTrip.trip.photoUrl" alt="card image" />
+        </mat-card-content>
+        <mat-card-title>{{ travTrip.trip.title }}</mat-card-title>
+        <mat-card-subtitle
+          ><b>Destination:</b>
+          {{ travTrip.trip.destination }}</mat-card-subtitle
+        >
+        <mat-card-subtitle
+          ><b>Number of days: </b>{{ travTrip.trip.length }}</mat-card-subtitle
+        >
+        <mat-card-subtitle
+          ><b>Departure Date:</b> {{ travTrip.trip.date }}</mat-card-subtitle
+        >
+        <mat-card-subtitle><b>$</b>{{ travTrip.trip.cost }}</mat-card-subtitle>
+        <button mat-raised-button (click)="deleteTravelerTrip(travTrip)">
+          Delete This Trip
+        </button>
+        <button mat-raised-button (click)="goToEditTrip(travTrip)">
+          Edit This Trip
+        </button>
+      </mat-card>
     </div>
+  </div>
 
-    <div class="editTraveler" *ngIf='eT'>
+  <div class="editTraveler" *ngIf="eT">
+    <h2>Update My Information</h2>
+    <form #updateTraveler="ngForm">
+      <table align="center">
+        <tr>
+          <td>User Name</td>
+          <td>
+            <input
+              type="text"
+              name="editUserName"
+              ngModel
+              size="40"
+              placeholder="{{ selected.user.username }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>User Password</td>
+          <td>
+            <input
+              type="password"
+              name="editPassword"
+              ngModel
+              size="40"
+              placeholder="{{ selected.user.password }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input
+              type="text"
+              name="editEmail"
+              ngModel
+              size="40"
+              placeholder="{{ selected.user.email }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>First Name</td>
+          <td>
+            <input
+              type="text"
+              name="editFirstName"
+              ngModel
+              size="40"
+              placeholder="{{ selected.firstName }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Last Name</td>
+          <td>
+            <input
+              type="text"
+              name="editLastName"
+              ngModel
+              size="40"
+              placeholder="{{ selected.lastName }}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Photo Url</td>
+          <td>
+            <input
+              type="text"
+              name="editPhotoUrl"
+              ngModel
+              size="40"
+              placeholder="{{ selected.photoUrl }}"
+            />
+          </td>
+        </tr>
+      </table>
 
-        <h2>Update My Information</h2>
-        <form #updateTraveler='ngForm'>
-            <table align="center">
-                <tr>
-                    <td>User Name </td>
-                    <td><input type='text' name='editUserName' ngModel size='40' placeholder={{selected.user.username}}/></td>
-                </tr>
-                <tr>
-                    <td>User Password </td>
-                    <td> <input type='password' name='editPassword' ngModel size='40' placeholder={{selected.user.password}}/> </td>
-                </tr>
-                <tr>
-                    <td>Email </td>
-                    <td><input type='text' name='editEmail' ngModel size='40' placeholder={{selected.user.email}}/> </td>
-                </tr>
-                <tr>
-                    <td>First Name </td>
-                    <td><input type='text' name='editFirstName' ngModel size='40' placeholder={{selected.firstName}}/> </td>
-                </tr>
-                <tr>
-                    <td>Last Name </td>
-                    <td><input type='text' name='editLastName' ngModel size='40' placeholder={{selected.lastName}}/> </td>
-                </tr>
-                <tr>
-                    <td>Photo Url</td>
-                    <td><input type='text' name='editPhotoUrl' ngModel size='40' placeholder={{selected.photoUrl}}/> </td>
-                </tr>
-            </table>
-            <br><button type='submit' (click)='changeTraveler(updateTraveler)'>UPDATE MY INFO</button>
-        </form>
-    </div>
+      <br /><button type="submit" (click)="changeTraveler(updateTraveler)">
+        UPDATE MY INFO
+      </button>
+    </form>
+  </div>
 
-    <div class="displayTrips" align='center' *ngIf='dT'>
+  <div class="displayTrips" align="center" *ngIf="dT">
+    <h2>Display Trips</h2>
+    <table align="center" *ngFor="let myTrip of selected.trips">
+      <tr>
+        <td>Trip ID</td>
+        <td>{{ myTrip.id }}</td>
+      </tr>
+      <tr>
+        <td>Destination</td>
+        <td>{{ myTrip.trip.destination }}</td>
+      </tr>
+      <tr>
+        <td>Description / Title</td>
+        <td>{{ myTrip.trip.title }}</td>
+      </tr>
+      <tr>
+        <td>Date Completed</td>
+        <td>{{ myTrip.dateCompleted }}</td>
+      </tr>
+      <tr>
+        <td>Rating</td>
+        <td>{{ myTrip.rating }}</td>
+      </tr>
+      <tr>
+        <td>My Review</td>
+        <td>{{ myTrip.review }}</td>
+      </tr>
+      <tr>
+        <td>My Notes</td>
+        <td>{{ myTrip.tripNote }}</td>
+      </tr>
+      <tr>
+        <td
+          (click)="editTripRecord(selected.id)"
+          type="button"
+          style="background-color:greenyellow"
+        >
+          EDIT THIS ENTRY
+        </td>
+      </tr>
+    </table>
+  </div>
 
-        <h2>Display Trips</h2>
-        <table align='center' *ngFor='let myTrip of selected.trips'>
-             <tr>
-                <td>Trip ID</td>
-                <td>{{myTrip.id}}</td>
-            </tr>
-            <tr>
-                <td>Destination</td>
-                <td>{{myTrip.trip.destination}}</td>
-            </tr>
-            <tr>
-                <td>Description / Title</td>
-                <td>{{myTrip.trip.title}}</td>
-            </tr>
-            <tr>
-                <td>Date Completed</td>
-                <td>{{myTrip.dateCompleted}}</td>
-            </tr>
-            <tr>
-                <td>Rating</td>
-                <td>{{myTrip.rating}}</td>
-            </tr>
-            <tr>
-                <td>My Review</td>
-                <td>{{myTrip.review}}</td>
-            </tr>
-            <tr>
-                <td>My Notes</td>
-                <td>{{myTrip.tripNote}}</td>
-            </tr>
-            <tr>
-                <td (click)='editTripRecord(selected.id)' type='button' style=background-color:greenyellow>EDIT THIS ENTRY</td>
-            </tr>
-        </table>
-    </div>
-    <div class="editTripRecord" align='center' *ngIf='eT'>
+  <div class="editTripRecord" align="center" *ngIf="selectedTrip">
+    <h2>Edit/Create Reviews</h2>
+    <form>
+      <table align="center">
+        <tr>
+          <td>My Trip Rating</td>
+          <td align="center">
+            <h6>Current Rating: {{selectedTrip.rating}}</h6>
+            <fieldset class="rating">
+              <input
+                type="radio"
+                id="5stars"
+                name="rating"
+                value="5"
+                size="20" [(ngModel)]="selectedTrip.rating"
+              />
+              <label for="star5" title="text">5 stars</label
+              >&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="4stars" name="rating" value="4" [(ngModel)]="selectedTrip.rating"/>
+              <label for="star4" title="text">4 stars</label
+              >&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="3stars" name="rating" value="3"  [(ngModel)]="selectedTrip.rating"/>
+              <label for="star3" title="text">3 stars</label
+              >&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="2stars" name="rating" value="2"  [(ngModel)]="selectedTrip.rating"/>
+              <label for="star2" title="text">2 stars</label
+              >&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="radio" id="1stars" name="rating" value="1"  [(ngModel)]="selectedTrip.rating"/>
+              <label for="star1" title="text">1 stars</label>
+            </fieldset>
+          </td>
+        </tr>
+        <tr>
+          <td>My Review</td>
+          <td>
+            <textarea
+              type="text"
+              id="review_textbox"
+              name="review"
+              rows="8"
+              cols="60"
+              [(ngModel)]="selectedTrip.review"
+              placeholder="{{ selectedTrip.review }}"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>My Trip Notes</td>
+          <td>
+            <textarea
+              type="text"
+              id="review_textbox"
+              name="myNotes"
+              rows="8"
+              cols="60"
+              [(ngModel)]="selectedTrip.tripNote  "
+              placeholder="{{ selectedTrip.tripNote }}"
+            ></textarea>
+          </td>
+        </tr>
+      </table>
 
-        <h2>Edit/Create Reviews</h2>
-        <form #editReview='ngForm'>
-            <table align='center'>
-                <tr>
-                    <td>My Trip Rating</td>
-                    <td align='center'>
-                        <fieldset class='rating' ngModel>
-                            <input type="radio" id="5stars" name='rating' value='5' size='20' />
-                            <label for='star5' title='text'>5 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="4stars" name='rating' value='4' />
-                            <label for='star4' title='text'>4 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="3stars" name='rating' value='3' />
-                            <label for='star3' title='text'>3 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="2stars" name='rating' value='2' />
-                            <label for='star2' title='text'>2 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="1stars" name='rating' value='1' />
-                            <label for='star1' title='text'>1 stars</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                        </fieldset>
-                    </td>
-                </tr>
-                <!-- <tr>
-                    <td>My Review</td>
-                    <td>
-                        <textarea type='text' id='review_textbox' name='review' rows='8' cols='60' ngModel placeholder={{selected.travelerTrip.review}}></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>My Trip Notes</td>
-                    <td>
-                        <textarea type='text' id='review_textbox' name='myNotes' rows='8' cols='60' ngModel placeholder={{selected.travelerTrip.tripNote}}></textarea>
-                    </td>
-                </tr> -->
-            </table>
-            <!-- <button (click)='updateReview(editReview)'>Update / Submit</button> -->
-        </form>
-    </div>
+      <button (click)="updateReview(selectedTrip)">Save</button>
+      <button (click)="selectedTrip = null">Cancel</button>
+    </form>
+  </div>
 </body>

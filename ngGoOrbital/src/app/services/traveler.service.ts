@@ -6,6 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Traveler } from '../models/traveler';
 import { tap, catchError, map } from 'rxjs/operators';
+import { TravelerTrip } from '../models/traveler-trip';
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +95,19 @@ export class TravelerService {
     return this.http.put(this.url, traveler, this.httpOptions()).pipe(
       tap(_ => this.log(`updated traveler id=${traveler.id}`)),
       catchError(this.handleError<any>('updateTraveler'))
+    );
+  }
+
+  getTravelerTripsByUserId(id: number): Observable<TravelerTrip[]> {
+    const url = `${this.url}/${id}/travelerTrip`;
+    return this.http.get<TravelerTrip[]>(url, this.httpOptions()).pipe(
+      tap(_ => {
+        this.log(`fetched TravelerTrips for user id=${id}`);
+        console.log(_);
+      }
+        )
+      ,
+      catchError(this.handleError<TravelerTrip[]>(`get trips by Companies id=${id}`))
     );
   }
 

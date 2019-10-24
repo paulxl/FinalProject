@@ -132,9 +132,9 @@ export class AuthService {
   getLoggedInUserId() {
     const id = sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ID);
     if (id === null) {
-      return '';
+      return -1;
     }
-    return id;
+    return Number.parseInt(id, 10);
   }
 
   registerTraveler(dto: TravelerDTO) {
@@ -175,8 +175,8 @@ export class AuthService {
   }
 
   public isTraveler(): boolean {
-    console.log('isTraveler(): logged in: ' + this.isUserLoggedIn());
-    console.log('isTraveler(): role: ' + sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE));
+    // console.log('isTraveler(): logged in: ' + this.isUserLoggedIn());
+    // console.log('isTraveler(): role: ' + sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE));
 
     return this.isUserLoggedIn() && sessionStorage.getItem(this.USER_NAME_SESSION_ATTRIBUTE_ROLE) === 'traveler';
   }
@@ -187,7 +187,7 @@ export class AuthService {
 
   private httpOptions() {
     const cred = this.getCredentials();
-    console.log('httpOptions(): cred: ' + cred);
+    // console.log('httpOptions(): cred: ' + cred);
 
     return {
       headers: {

@@ -20,8 +20,10 @@ export class CompaniesComponent implements OnInit {
   companies: Companies;
   editTrip: Trip = null;
   tripselector = null;
+  trips: Trip[] = [];
+  selectedTrip: Trip = null;
 
-  addTripNew = null;
+  // addTripNew = null;
   eC = null;
   eT = null;
 
@@ -50,21 +52,37 @@ export class CompaniesComponent implements OnInit {
     this.userServ.getUserByName(username).subscribe(
       good => {
         user = good;
+        this.compServ.getCompanyByUserId(user.id).subscribe(
+          comp => {
+            this.selected = comp;
+            this.tripServ.getTripsByCompanyId(comp.id).subscribe(
+              yay => {
+                console.log('Got companys trips');
+                console.log(yay);
+                this.trips = yay;
+              },
+              boo => {
+                console.error('Error getting company trips');
+                console.error(boo);
+              }
+              );
+            }
+            );
+
       },
       bad => {
         console.error(bad);
 
       }
     );
-    this.compServ.getCompanies(user.id).subscribe(
-      good => {
-        this.selected = good;
-      },
-      bad => {
-        console.error(bad);
-      }
-    );
-    this.start = true;
+    // this.compServ.getCompanies(user.id).subscribe(
+    //   good => {
+    //     this.selected = good;
+    //   },
+    //   bad => {
+    //     console.error(bad);
+    //   }
+    // );
   }
 
   compInfo() {
@@ -74,15 +92,21 @@ export class CompaniesComponent implements OnInit {
 
   addAnotherTrip(form: NgForm) {
     const addTrip = form.value;
+    console.log('Adding trip');
+    console.log(addTrip);
+    addTrip.vehicle = { id: addTrip.vehicle };
+    addTrip.launchport = { id: addTrip.launchport };
+    addTrip.companies = this.selected;
+    console.log(addTrip);
+
     this.tripServ.addTrip(addTrip).subscribe(
       data => {
-        this.ngOnInit();
+        this.reload();
       },
       err => {
         console.error('error in creating trip'); }
     );
-    this.addTripNew = false;
-    this.ngOnInit();
+
   }
 
   setEditTrip(trip: Trip) {
@@ -127,7 +151,23 @@ export class CompaniesComponent implements OnInit {
     this.eC = false;
  }
 
+ goToEditTrip(trip: Trip) {
+  this.selectedTrip = Object.assign({}, trip);
+}
 
+deleteCompanyTrip(trip: Trip) {
+  this.tripServ.deleteTrip(trip).subscribe(
+    good => {
+      console.log('Trip deleted');
+      this.reload();
+    },
+    bad => {
+      console.error('Error deleting  trip');
+      console.error(bad);
+    }
+  );
+
+}
 
   // deleteVehicle(id: number) { }
 
